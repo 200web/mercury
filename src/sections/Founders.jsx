@@ -134,7 +134,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
@@ -167,7 +167,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
@@ -194,7 +194,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
@@ -220,7 +220,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Игорь</label>
@@ -245,7 +245,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
@@ -274,7 +274,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
@@ -307,7 +307,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
@@ -334,7 +334,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
@@ -360,7 +360,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Игорь</label>
@@ -385,7 +385,7 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.avatar}>
-                  <img draggable="false" src={like} alt="like" />
+                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Анастасия</label>
