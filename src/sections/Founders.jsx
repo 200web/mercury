@@ -4,6 +4,8 @@ import arrow from "../assets/img/Arrow.webp";
 import like from "../assets/img/like.webp";
 import evgen from "../assets/img/Evgen.webp";
 import georgiy from "../assets/img/georgi.webp";
+import arrowLeft from "../assets/img/arrow Left.png";
+import arrowRight from "../assets/img/arrow Right.png";
 
 const Founders = ({ setIsModalVisible }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -109,10 +111,10 @@ const Founders = ({ setIsModalVisible }) => {
         </div>
         <div className={appStyle.reviewNav}>
           <button className={appStyle.buttonPrev} onClick={handlePrevClick}>
-            <span>&#129168;</span>
+            <img draggable="false" src={arrowLeft} />
           </button>
           <button className={appStyle.buttonNext} onClick={handleNextClick}>
-            <span>&#129170;</span>
+            <img draggable="false" src={arrowRight} />
           </button>
         </div>
       </div>
@@ -129,6 +131,9 @@ const Founders = ({ setIsModalVisible }) => {
             >
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.name}>
@@ -192,18 +197,17 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Мария</label>
+                  <span>Ресторан</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Мы долго искали подрядчиков по соцсетям, и парни предложили
+                  четкую стратегию, которая сработала! Теперь у нас стабильно
+                  растет аудитория в профиле и полный зал по вечерам и выходным.
+                  Рекомендуем!
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -219,18 +223,16 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Игорь</label>
+                  <span>Интернет-магазин одежды</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Ребята из Mercury Arts помогли нам настроить конверсионные
+                  кампании в Instagram и Facebook. Продажи выросли, планируем
+                  расширять ассортимент товарок на рекламу. Отличная работа!
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -335,18 +337,17 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Мария</label>
+                  <span>Ресторан</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Мы долго искали подрядчиков по соцсетям, и парни предложили
+                  четкую стратегию, которая сработала! Теперь у нас стабильно
+                  растет аудитория в профиле и полный зал по вечерам и выходным.
+                  Рекомендуем!
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -362,18 +363,16 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src={like} alt="like" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Игорь</label>
+                  <span>Интернет-магазин одежды</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Ребята из Mercury Arts помогли нам настроить конверсионные
+                  кампании в Instagram и Facebook. Продажи выросли, планируем
+                  расширять ассортимент товарок на рекламу. Отличная работа!
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div

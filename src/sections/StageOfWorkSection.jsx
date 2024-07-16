@@ -104,7 +104,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(3)}
           >
             <header className={appStyle.header}>
-              <label>Столешницы Getalit</label>
+              <label>Удароустойчивые столешницы Getalit</label>
             </header>
             <div className={appStyle.lower}>
               <span>03</span>
@@ -205,7 +205,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(2)}
           >
             <header className={appStyle.header}>
-              <label>Столешницы Getalit</label>
+              <label>Автосервис Real Auto</label>
             </header>
             <div className={appStyle.lower}>
               <span>02</span>
@@ -306,7 +306,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(4)}
           >
             <header className={appStyle.header}>
-              <label>Столешницы Getalit</label>
+              <label>Приложение-планер The Path </label>
             </header>
             <div className={appStyle.lower}>
               <span>04</span>

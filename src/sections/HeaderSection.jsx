@@ -3,8 +3,15 @@ import appStyle from "../scss/app.module.scss";
 import loaded from "../assets/img/accessLoaded.png";
 import stat from "../assets/img/Stat.png";
 import bomb from "../assets/img/bomb.webp";
+import aim from "../assets/img/aim.webp";
+import settings from "../assets/img/settings.webp";
+import pick from "../assets/img/pick2.png";
+import tick from "../assets/img/tick.webp";
+import pazzle from "../assets/img/pazzle.webp";
 import equlizer from "../assets/img/equlizer.gif";
 import mercury from "../assets/img/mercuri2.gif";
+import carouselIcon from "../assets/img/carouselIconn.gif";
+import photo from "../assets/img/cameraa.gif";
 import arrow from "../assets/img/Arrow.webp";
 import StageOfWork from "../components/StageWork";
 import FooterContact from "../components/FooterContact";
@@ -37,7 +44,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
               Помогаем бизнесу продавать свои товары и услуги в соцсетях
             </span>
             <div className={appStyle.descriptionButton}>
-              <div className={appStyle.button}>
+              <div className={appStyle.button} onClick={setIsModalVisible}>
                 <span>Бесплатная консультация</span>
               </div>
               <div className={appStyle.state}>
@@ -108,7 +115,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={aim} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
@@ -119,38 +126,36 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={settings} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Платные вспомогательные софты
                   </div>
                 </div>
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={pick} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Неограниченное количество фото и видео-объявлений 
                   </div>
                 </div>
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={tick} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Отчетность по результатам рекламной кампании и формирование
+                    дальнейшей стратегии
                   </div>
                 </div>
               </div>
-              <div className={appStyle.orderBut}>
+              <div className={appStyle.orderBut} onClick={setIsModalVisible}>
                 <span>Заказать</span>
               </div>
             </div>
@@ -178,7 +183,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={aim} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
@@ -189,38 +194,36 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={settings} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Платные вспомогательные софты
                   </div>
                 </div>
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={pick} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Неограниченное количество фото и видео-объявлений 
                   </div>
                 </div>
                 <div className={appStyle.card}>
                   <header>
                     <div className={appStyle.image}>
-                      <img draggable="false" src="" alt="" />
+                      <img draggable="false" src={tick} alt="tick" />
                     </div>
                   </header>
                   <div className={appStyle.text}>
-                    Разработка рекламной стратегии и продвижение в соцсетях (1
-                    месяц)
+                    Отчетность по результатам рекламной кампании и формирование
+                    дальнейшей стратегии
                   </div>
                 </div>
               </div>
-              <div className={appStyle.orderBut}>
+              <div className={appStyle.orderBut} onClick={setIsModalVisible}>
                 <span>Заказать</span>
               </div>
             </div>
@@ -255,78 +258,73 @@ const HeaderSection = ({ setIsModalVisible }) => {
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img draggable="false" src={equlizer} alt="equlizer" />
                       </div>
                     </header>
                     <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
+                      Создание контент-плана, темы и идеи для постов и reels
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img draggable="false" src={settings} alt="settings" />
                       </div>
                     </header>
                     <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
+                      Написание продающих и вовлекающих постов для повышения
+                      активности
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img draggable="false" src={pazzle} alt="pazzle" />
                       </div>
                     </header>
                     <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
+                      Создание бренд-бука: hightlights, визуал, описание и т.п.
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img
+                          draggable="false"
+                          src={carouselIcon}
+                          alt="carousel"
+                        />
                       </div>
                     </header>
                     <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
+                      Публикация контента в профиль
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img draggable="false" src={photo} alt="photo" />
                       </div>
                     </header>
-                    <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
-                    </div>
+                    <div className={appStyle.text}>Съемки по запросу </div>
                   </div>
                   <div className={appStyle.card}>
                     <header>
                       <div className={appStyle.image}>
-                        <img draggable="false" src="" alt="" />
+                        <img draggable="false" src={tick} alt="tick" />
                       </div>
                     </header>
-                    <div className={appStyle.text}>
-                      Разработка рекламной стратегии и продвижение в соцсетях (1
-                      месяц)
-                    </div>
+                    <div className={appStyle.text}>Отчетность</div>
                   </div>
                 </div>
-                <div className={appStyle.orderBut}>
+                <div className={appStyle.orderBut} onClick={setIsModalVisible}>
                   <span>Заказать</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <StageOfWork />
+        <StageOfWork setIsModalVisible={setIsModalVisible} />
         <StageOfWorkSection />
         <Founders setIsModalVisible={setIsModalVisible} />
         <FooterContact />

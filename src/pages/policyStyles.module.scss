@@ -1,0 +1,40 @@
+.container {
+  max-width: 2200px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #010101;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Inter";
+}
+
+h1,
+h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+.ul {
+  color: white;
+  padding: 0;
+  width: 50%;
+  left: 35%;
+
+  li {
+    padding: 5px 0;
+  }
+}
+
+.p {
+  margin: 10px 0;
+  color: white;
+  text-align: center;
+}

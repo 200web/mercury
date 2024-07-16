@@ -2,7 +2,7 @@ import React from "react";
 import style from "../scss/components/stageOfWork.module.scss";
 import flag from "../assets/img/Flag.webp";
 
-const StageOfWork = () => {
+const StageOfWork = ({ setIsModalVisible }) => {
   const myRef = React.useRef();
   const [isVisible, setIsVisible] = React.useState(false);
   const [startAnimation, setStartAnimation] = React.useState(false);
@@ -308,7 +308,7 @@ const StageOfWork = () => {
               rowVisible[5] ? style.active : ""
             }`}
           >
-            <div className={style.button}>
+            <div className={style.button} onClick={setIsModalVisible}>
               <span>Форма</span>
             </div>
           </div>

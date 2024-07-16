@@ -51,35 +51,21 @@ const Header = ({ setIsModalVisible }) => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-    };
-
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 840);
     };
 
-    window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <header
-      className={`${headerStyle.headerLayout} ${
-        isVisible ? "" : headerStyle.hidden
-      }`}
-      ref={headerRef}
-    >
+    <header className={headerStyle.headerLayout} ref={headerRef}>
       <div className={headerStyle.header}>
+        <div className={headerStyle.title}>MERCURYARTS</div>
         <div className={headerStyle.logo}>
           <img src={logo} alt="Logo" />
         </div>

@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import style from "../scss/components/modal.module.scss";
 import picture from "../assets/img/picture.webp";
 import zvezda from "../assets/img/zvezda.webp";
+import { Link } from "react-router-dom";
 
-const Modal = ({ isVisible, onClose }) => {
+const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -63,6 +64,10 @@ const Modal = ({ isVisible, onClose }) => {
       .catch((error) => {
         console.error("Error submitting the form: ", error);
       });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -168,6 +173,15 @@ const Modal = ({ isVisible, onClose }) => {
               <button type="submit">Давайте начнём!</button>
             </div>
           </form>
+          <div className={style.policy}>
+            <span>
+              Отправляя данную форму. Вы даете согласие на обработку
+              персональных данных, а также ознакомлен(-а) с{" "}
+              <Link to="/policy" onClick={handleCloseModal}>
+                политикой конфиденциальности
+              </Link>
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -57,6 +57,20 @@
     margin: 1rem 0.7rem 4rem 0.7rem;
   }
 
+  .title {
+    position: absolute;
+    color: white;
+    font-family: "Inter";
+    font-weight: 700;
+    font-size: 20;
+    left: clamp(3rem, 5vw, 4.5rem);
+    z-index: 999;
+
+    @media (max-width: 420px) {
+      display: none;
+    }
+  }
+
   .logo {
     background-color: white;
     border-radius: 50%;
@@ -89,18 +103,20 @@
     button {
       width: 100%;
       padding: 1.5rem clamp(1rem, 4vw, 5.5rem);
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
+      background-color: #4a5dea;
+      color: rgb(255, 255, 255);
+      border: 1px solid #4a5dea;
       border-radius: 156px;
       cursor: pointer;
       transition: 0.3s;
       font-family: "Inter";
       font-size: clamp(10px, 1vw, 14px);
+      box-shadow: 0 4px 7px 1px rgb(0, 0, 0);
 
       &:hover {
-        background-color: #d6ff63;
         color: black;
+        background-color: white;
+        box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.75);
       }
     }
   }
@@ -169,7 +185,7 @@
 
 .nav {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 0.5rem);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
@@ -204,7 +220,7 @@
 
       .underline {
         width: 50%;
-        height: 10%;
+        height: 20%;
       }
     }
 

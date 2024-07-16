@@ -3,7 +3,7 @@ import React from "react";
 import appStyles from "./scss/app.module.scss";
 import HomePage from "./pages/HomePage";
 import Modal from "./components/Modal";
-import Header from "./components/Header";
+import Policy from "./pages/Policy";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -12,13 +12,17 @@ function App() {
   };
   return (
     <div className={appStyles.layout}>
-      <Header setIsModalVisible={setIsModalVisible} />
-      <Modal isVisible={isModalVisible} onClose={handleModalClose} />
+      <Modal
+        isVisible={isModalVisible}
+        onClose={handleModalClose}
+        setIsModalVisible={setIsModalVisible}
+      />
       <Routes>
         <Route
           path="/"
           element={<HomePage setIsModalVisible={setIsModalVisible} />}
         />
+        <Route path="/policy" element={<Policy />} />
       </Routes>
     </div>
   );
