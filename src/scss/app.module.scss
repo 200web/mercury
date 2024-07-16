@@ -646,7 +646,7 @@
                 width: auto;
                 margin: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 25px;
+                font-size: clamp(16px, 4vw, 25px);
                 transition: 1s;
                 transform: translateY(-150%);
                 opacity: 0;
@@ -654,7 +654,7 @@
 
               .description {
                 width: 65%;
-                font-size: 18px;
+                font-size: clamp(13px, 4vw, 25px);
                 margin: 1rem 0 0 1rem;
                 transition: 1s;
                 transform: translateY(-150%);
@@ -707,7 +707,7 @@
               .HText {
                 padding: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 22px;
+                font-size: clamp(13px, 3.5vw, 22px);
               }
 
               .value {
@@ -1036,7 +1036,7 @@
                 width: auto;
                 margin: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 25px;
+                font-size: clamp(16px, 4vw, 25px);
                 transition: 1s;
                 transform: translateY(-150%);
                 opacity: 0;
@@ -1044,7 +1044,7 @@
 
               .description {
                 width: 65%;
-                font-size: 18px;
+                font-size: clamp(13px, 4vw, 25px);
                 margin: 1rem 0 0 1rem;
                 transition: 1s;
                 transform: translateY(-150%);
@@ -1429,7 +1429,7 @@
                 width: auto;
                 margin: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 25px;
+                font-size: clamp(16px, 4vw, 25px);
                 transition: 1s;
                 transform: translateY(-150%);
                 opacity: 0;
@@ -1437,7 +1437,7 @@
 
               .description {
                 width: 65%;
-                font-size: 18px;
+                font-size: clamp(13px, 4vw, 25px);
                 margin: 1rem 0 0 1rem;
                 transition: 1s;
                 transform: translateY(-150%);
@@ -1490,7 +1490,7 @@
               .HText {
                 padding: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 22px;
+                font-size: clamp(13px, 3.5vw, 22px);
               }
 
               .value {
@@ -1820,7 +1820,7 @@
                 width: auto;
                 margin: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 25px;
+                font-size: clamp(16px, 4vw, 25px);
                 transition: 1s;
                 transform: translateY(-150%);
                 opacity: 0;
@@ -1828,7 +1828,7 @@
 
               .description {
                 width: 65%;
-                font-size: 18px;
+                font-size: clamp(13px, 4vw, 25px);
                 margin: 1rem 0 0 1rem;
                 transition: 1s;
                 transform: translateY(-150%);
@@ -1881,7 +1881,7 @@
               .HText {
                 padding: 1rem 0 0 1rem;
                 color: rgba(255, 255, 255, 0.5);
-                font-size: 22px;
+                font-size: clamp(13px, 3.5vw, 22px);
               }
 
               .value {
