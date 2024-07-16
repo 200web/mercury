@@ -1,0 +1,841 @@
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.stageWorkBlock {
+  display: flex;
+  width: 95%;
+  margin: 10rem auto 0 auto;
+  overflow: hidden;
+
+  @media (max-width: 700px) {
+    .Row {
+      .HText {
+        width: 100%;
+        text-align: center;
+      }
+
+      .scrollerEl {
+        width: 88%;
+        margin: 0 0 0 1rem;
+        &.active {
+          transform: translateX(0);
+        }
+      }
+
+      .sideDescription {
+        position: relative;
+        top: 2%;
+        left: 52%;
+        width: 100%;
+        gap: 0;
+      }
+    }
+  }
+
+  .Row {
+    position: relative;
+    font-size: 41px;
+    font-family: "Inter";
+    color: #deff50;
+    font-weight: bold;
+  }
+
+  .sideDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    position: absolute;
+    width: 55%;
+    top: 40%;
+    left: 72%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.5s;
+    margin-top: 5rem;
+
+    &.active {
+      opacity: 1;
+    }
+
+    .buttonLayout {
+      display: flex;
+      width: 96%;
+      justify-content: end;
+      opacity: 0;
+      transition: 1s;
+
+      @media (max-width: 700px) {
+        margin-top: 4rem;
+      }
+
+      .button {
+        display: block;
+        width: 20%;
+        border-radius: 77px;
+        background-color: #4d60e2;
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        padding: 1rem 3rem;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          color: black;
+          background-color: white;
+          box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.75);
+        }
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .rowList {
+      width: 95%;
+      height: 30rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+
+        &.active {
+          .description {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+
+          .header {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+        }
+
+        .header {
+          position: relative;
+          bottom: 0;
+          right: 0;
+          width: 45%;
+          margin: 0.5rem 0 0 1rem;
+          color: #deff50;
+          font-size: clamp(50px, 7vw, 65px);
+          transition: 1s;
+          transform: translateY(-150%);
+          opacity: 0;
+        }
+
+        .description {
+          width: 55%;
+          font-size: clamp(12px, 1.6vw, 17px);
+          margin: auto 0 auto 1rem;
+          transition: 1s;
+          transform: translateY(-150%);
+          opacity: 0;
+          color: white;
+          font-weight: 300;
+
+          @media (max-width: 850px) {
+            width: 100%;
+          }
+
+          span {
+            display: inline-block;
+            width: 75%;
+          }
+        }
+      }
+    }
+  }
+
+  .scrollerEl {
+    transition: 9s linear;
+    &.active {
+      transform: translateX(-66%);
+    }
+  }
+
+  .roadmap {
+    width: fit-content;
+    flex-wrap: nowrap;
+
+    @media (max-width: 630px) {
+      scale: 0.95;
+    }
+
+    @media (max-width: 500px) {
+      scale: 0.9;
+    }
+
+    .circle {
+      content: "";
+      width: 16px !important;
+      height: 16px !important;
+      background-color: yellow;
+      border-radius: 50%;
+      position: absolute;
+      top: -0.3em;
+      left: 18%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.6s ease;
+
+      img {
+        position: absolute;
+        top: -150%;
+        left: 210%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: transform 0.6s ease;
+
+        @media (max-width: 670px) {
+          left: 70%;
+          scale: 0.6;
+        }
+      }
+
+      &.active {
+        transform: translate(-50%, -50%) scale(1);
+
+        img {
+          opacity: 1;
+        }
+      }
+    }
+
+    .circle:nth-child(2) {
+      width: 15rem;
+      top: 7.7em;
+      left: 14%;
+
+      @media (width < 1570px) {
+        top: 7.75em;
+      }
+
+      @media (width < 1200px) {
+        top: 7.8em;
+      }
+
+      @media (width < 990px) {
+        top: 7.9em;
+      }
+
+      @media (width < 750px) {
+        top: 8em;
+      }
+
+      @media (width < 450px) {
+        top: 8.05em;
+      }
+
+      @media (width > 1600px) {
+        top: 7.65em;
+      }
+
+      @media (width > 1800px) {
+        top: 7.6em;
+      }
+
+      @media (width > 1940px) {
+        top: 7.55em;
+      }
+
+      @media (width > 2200px) {
+        top: 7.5em;
+      }
+    }
+
+    .circle:nth-child(3) {
+      width: 15rem;
+      top: 4.34em;
+      left: 32%;
+
+      @media (width < 1460px) {
+        top: 4.4em;
+      }
+
+      @media (width < 1430px) {
+        top: 4.5em;
+      }
+
+      @media (width < 1390px) {
+        top: 4.63em;
+      }
+
+      @media (width < 1345px) {
+        top: 4.75em;
+      }
+
+      @media (width < 1300px) {
+        top: 4.85em;
+      }
+
+      @media (width < 1265px) {
+        top: 4.95em;
+      }
+
+      @media (width < 1235px) {
+        top: 5.05em;
+      }
+
+      @media (width < 1190px) {
+        top: 5.15em;
+      }
+
+      @media (width < 1160px) {
+        top: 5.25em;
+      }
+
+      @media (width < 1110px) {
+        top: 5.4em;
+      }
+
+      @media (width < 1060px) {
+        top: 5.52em;
+      }
+
+      @media (width < 1010px) {
+        top: 5.65em;
+      }
+
+      @media (width < 970px) {
+        top: 5.79em;
+      }
+
+      @media (width < 920px) {
+        top: 5.9em;
+      }
+
+      @media (width < 870px) {
+        top: 6em;
+      }
+
+      @media (width < 835px) {
+        top: 6.12em;
+      }
+
+      @media (width < 790px) {
+        top: 6.25em;
+      }
+
+      @media (width < 760px) {
+        top: 6.3em;
+      }
+
+      @media (width < 700px) {
+        top: 6.6em;
+      }
+
+      @media (width < 655px) {
+        top: 6.64em;
+      }
+
+      @media (width < 605px) {
+        top: 6.75em;
+      }
+
+      @media (width < 560px) {
+        top: 6.85em;
+      }
+
+      @media (width < 520px) {
+        top: 6.95em;
+      }
+
+      @media (width < 500px) {
+        top: 7.08em;
+      }
+
+      @media (width < 450px) {
+        top: 7.18em;
+      }
+
+      @media (width < 400px) {
+        top: 7.3em;
+      }
+
+      @media (width < 360px) {
+        top: 7.4em;
+      }
+
+      @media (width > 1600px) {
+        top: 3.9em;
+      }
+
+      @media (width > 1800px) {
+        top: 3.35em;
+      }
+
+      @media (width > 1940px) {
+        top: 3em;
+      }
+
+      @media (width > 2200px) {
+        top: 2.36em;
+      }
+
+      @media (width > 2500px) {
+        top: 2.22em;
+      }
+    }
+
+    .circle:nth-child(4) {
+      width: 15rem;
+      top: 8.1em;
+      left: 50.5%;
+    }
+
+    .circle:nth-child(5) {
+      width: 15rem;
+      top: 4.3em;
+      left: 70.5%;
+
+      @media (width < 1460px) {
+        top: 4.4em;
+      }
+
+      @media (width < 1430px) {
+        top: 4.5em;
+      }
+
+      @media (width < 1390px) {
+        top: 4.63em;
+      }
+
+      @media (width < 1345px) {
+        top: 4.75em;
+      }
+
+      @media (width < 1300px) {
+        top: 4.85em;
+      }
+
+      @media (width < 1265px) {
+        top: 4.95em;
+      }
+
+      @media (width < 1235px) {
+        top: 5.05em;
+      }
+
+      @media (width < 1190px) {
+        top: 5.15em;
+      }
+
+      @media (width < 1160px) {
+        top: 5.25em;
+      }
+
+      @media (width < 1110px) {
+        top: 5.4em;
+      }
+
+      @media (width < 1060px) {
+        top: 5.52em;
+      }
+
+      @media (width < 1010px) {
+        top: 5.65em;
+      }
+
+      @media (width < 970px) {
+        top: 5.79em;
+      }
+
+      @media (width < 920px) {
+        top: 5.9em;
+      }
+
+      @media (width < 870px) {
+        top: 6em;
+      }
+
+      @media (width < 835px) {
+        top: 6.12em;
+      }
+
+      @media (width < 790px) {
+        top: 6.25em;
+      }
+
+      @media (width < 760px) {
+        top: 6.25em;
+      }
+
+      @media (width < 700px) {
+        top: 6.6em;
+      }
+
+      @media (width < 655px) {
+        top: 6.8em;
+      }
+
+      @media (width < 560px) {
+        top: 6.95em;
+      }
+
+      @media (width < 520px) {
+        top: 6.95em;
+      }
+
+      @media (width < 500px) {
+        top: 7.08em;
+      }
+
+      @media (width < 450px) {
+        top: 7.18em;
+      }
+
+      @media (width < 400px) {
+        top: 7.3em;
+      }
+
+      @media (width < 360px) {
+        top: 7.4em;
+      }
+
+      @media (width > 1600px) {
+        top: 3.85em;
+      }
+
+      @media (width > 1800px) {
+        top: 3.3em;
+      }
+
+      @media (width > 1940px) {
+        top: 2.95em;
+      }
+
+      @media (width > 2200px) {
+        top: 2.3em;
+      }
+
+      @media (width > 2500px) {
+        top: 2.15em;
+      }
+    }
+
+    .circle:nth-child(6) {
+      width: 15rem;
+      top: 7.3em;
+      left: 100%;
+
+      @media (width < 1570px) {
+        top: 7.37em;
+      }
+
+      @media (width < 1240px) {
+        top: 7.48em;
+      }
+
+      @media (width < 1100px) {
+        top: 7.55em;
+      }
+
+      @media (width < 960px) {
+        top: 7.65em;
+      }
+
+      @media (width < 850px) {
+        top: 7.75em;
+      }
+
+      @media (width < 670px) {
+        top: 7.86em;
+      }
+
+      @media (width < 480px) {
+        top: 7.95em;
+      }
+
+      @media (width < 350px) {
+        top: 8.05em;
+      }
+
+      @media (width > 1600px) {
+        top: 7.22em;
+      }
+
+      @media (width > 1800px) {
+        top: 7.1em;
+      }
+
+      @media (width > 1940px) {
+        top: 7.05em;
+      }
+
+      @media (width > 2200px) {
+        top: 6.92em;
+      }
+    }
+
+    .roadmapItem:nth-child(2) {
+      width: 15rem;
+      top: 9em;
+      left: 18%;
+
+      @media (max-width: 675px) {
+        left: 23%;
+        span {
+          width: 50%;
+        }
+      }
+
+      @media (max-width: 540px) {
+        left: 27%;
+      }
+    }
+
+    .roadmapItem:nth-child(3) {
+      width: 42%;
+      top: 3em;
+      left: 58%;
+
+      span {
+        width: 50%;
+      }
+
+      @media (width < 800px) {
+        top: 3.8em;
+      }
+
+      @media (width < 670px) {
+        top: 4.8em;
+      }
+
+      @media (width < 500px) {
+        top: 5.3em;
+      }
+
+      @media (width > 1600px) {
+        top: 2.6em;
+      }
+
+      @media (width > 1800px) {
+        top: 2.1em;
+      }
+
+      @media (width > 1940px) {
+        top: 2em;
+      }
+
+      @media (width > 2200px) {
+        top: 1em;
+      }
+    }
+
+    .roadmapItem:nth-child(4) {
+      width: 42%;
+      top: 9.5em;
+      left: 68%;
+
+      span {
+        width: 50%;
+      }
+
+      @media (max-width: 570px) {
+        top: 9.4em;
+        left: 60%;
+
+        span {
+          width: 70%;
+        }
+      }
+
+      @media (max-width: 450px) {
+        top: 9.6em;
+      }
+    }
+
+    .roadmapItem:nth-child(5) {
+      width: 42%;
+      top: 6em;
+      left: 88%;
+
+      @media (width < 1570px) {
+        top: 6em;
+      }
+
+      @media (width < 1380px) {
+        top: 6.4em;
+      }
+
+      @media (width < 1260px) {
+        top: 6.8em;
+      }
+
+      @media (width < 1140px) {
+        top: 7.1em;
+      }
+
+      @media (width < 1040px) {
+        top: 7.5em;
+      }
+
+      @media (width < 940px) {
+        top: 7.6em;
+      }
+
+      @media (width < 701px) {
+        top: 7.6em;
+        left: 82%;
+      }
+
+      @media (width < 560px) {
+        top: 7.9em;
+      }
+
+      @media (width < 450px) {
+        top: 8.1em;
+      }
+
+      @media (width > 1600px) {
+        top: 5.5em;
+      }
+
+      @media (width > 1800px) {
+        top: 5em;
+      }
+
+      @media (width > 1940px) {
+        top: 4.8em;
+      }
+
+      @media (width > 2200px) {
+        top: 4em;
+      }
+
+      span {
+        width: 20%;
+      }
+    }
+
+    .roadmapItem:nth-child(6) {
+      width: 42%;
+      top: 9.5em;
+      left: 119.5%;
+      flex-direction: column;
+
+      @media (width < 1570px) {
+        top: 9.1em;
+      }
+
+      @media (width < 1140px) {
+        left: 119%;
+        top: 9.2em;
+      }
+
+      @media (width < 1040px) {
+        top: 9.3em;
+      }
+
+      @media (width < 730px) {
+        left: 118.4%;
+      }
+
+      @media (width > 1600px) {
+        left: 119.8%;
+        top: 9.3em;
+      }
+
+      @media (width > 1800px) {
+        top: 9.1em;
+      }
+
+      @media (width > 1940px) {
+        top: 9em;
+      }
+
+      @media (width > 2200px) {
+        left: 120%;
+        top: 8.8em;
+      }
+
+      span {
+        left: -2.5em !important;
+      }
+    }
+  }
+
+  .roadmap svg {
+    display: block;
+    max-height: 100%;
+    width: 100%;
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .roadmapItem {
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0;
+    transition: 0.8s;
+
+    label {
+      font-size: clamp(45px, 6vw, 65px);
+      margin: auto 0;
+      color: #deff50;
+    }
+
+    span {
+      position: relative;
+      top: 0 !important;
+      left: 3% !important;
+      margin: auto 0;
+      text-align: start;
+      font-size: clamp(12px, 1.6vw, 17px);
+      font-weight: 300;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .roadmapDate {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .roadmapTitle {
+    font-size: 1rem;
+  }
+
+  path {
+    stroke: #ccff00;
+    stroke-width: 4;
+    fill: none;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+
+    &.active {
+      animation: dash 10s linear forwards;
+    }
+  }
+
+  .flag {
+    fill: #ccff00;
+  }
+
+  text {
+    fill: #ccff00;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

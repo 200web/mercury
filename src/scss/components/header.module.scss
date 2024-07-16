@@ -1,0 +1,262 @@
+@mixin noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently*/
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.headerLayout {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 995;
+
+  &.hidden {
+    .header {
+      .logo {
+        opacity: 0;
+      }
+    }
+    .nav {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    &.hidden {
+      .header {
+        .logo {
+          opacity: 1 !important;
+        }
+      }
+      .nav {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  max-width: 100%;
+  margin: 1rem 1.5rem 2rem 1.5rem;
+  transition: 0.5s;
+
+  @media (max-width: 600px) {
+    margin: 1rem 0.7rem 4rem 0.7rem;
+  }
+
+  .logo {
+    background-color: white;
+    border-radius: 50%;
+    width: clamp(35px, 4vw, 50px);
+    height: clamp(35px, 4vw, 50px);
+    transition: 0.5s;
+    z-index: 999;
+  }
+
+  .logo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+  }
+
+  .button {
+    z-index: 10;
+    transition: 1s;
+
+    @media (max-width: 840px) {
+      transform: translateX(-65%);
+
+      button {
+        padding: 1rem 3rem !important;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 1.5rem clamp(1rem, 4vw, 5.5rem);
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      border-radius: 156px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: "Inter";
+      font-size: clamp(10px, 1vw, 14px);
+
+      &:hover {
+        background-color: #d6ff63;
+        color: black;
+      }
+    }
+  }
+}
+
+.menuButton {
+  position: absolute;
+  right: 2%;
+  width: 50px;
+  height: 50px;
+  z-index: -1;
+  opacity: 0;
+
+  .toggle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 4px;
+    transition: 0.5s;
+
+    &:nth-child(1) {
+      top: 35%;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+    }
+
+    &:nth-child(3) {
+      width: 15px;
+      left: calc(50% - 5px);
+      top: 65%;
+    }
+  }
+
+  &.visible {
+    opacity: 1;
+    z-index: 999;
+  }
+
+  &.active {
+    .toggle {
+      &:nth-child(1) {
+        top: 50%;
+        transform: rotate(135deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0);
+      }
+
+      &:nth-child(3) {
+        top: 50%;
+        left: 50%;
+        width: 25px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 7px 1px rgb(0, 0, 0);
+  border-radius: 156px;
+  font-family: "Inter";
+  transition: 0.5s;
+  overflow: hidden;
+
+  &.mobile {
+    width: 100%;
+    height: 0;
+    border-radius: 0 0 15px 15px;
+    top: 23.5%;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    transition: 1s;
+
+    ul {
+      width: 50%;
+      margin-top: 0 !important;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      height: max-content;
+
+      li {
+        width: 100%;
+      }
+
+      .underline {
+        width: 50%;
+        height: 10%;
+      }
+    }
+
+    &.active {
+      height: 60rem;
+      box-shadow: 0 4px 7px 1px rgb(0, 0, 0);
+
+      ul {
+        margin-top: 35rem !important;
+        opacity: 1;
+      }
+    }
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: 1s;
+
+    li {
+      position: relative;
+      width: 25%;
+      text-align: center;
+      @include noselect();
+
+      a {
+        display: flex;
+        color: rgb(255, 255, 255);
+        z-index: 8;
+        padding: 1.5rem 0;
+        font-size: clamp(14px, 1vw, 14px);
+        text-decoration: none;
+        justify-content: center;
+        text-align: center;
+        border-radius: 25px;
+        cursor: pointer;
+        mix-blend-mode: difference;
+      }
+    }
+  }
+
+  .underline {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translate(0, -50%);
+    width: 25%;
+    height: 100%;
+    background-color: white;
+    transition: 0.35s;
+    border-radius: 156px;
+  }
+}

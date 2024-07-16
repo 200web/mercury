@@ -1,0 +1,424 @@
+import React, { useRef } from "react";
+import appStyle from "../scss/app.module.scss";
+import arrow from "../assets/img/Arrow.webp";
+import like from "../assets/img/like.webp";
+import evgen from "../assets/img/Evgen.webp";
+import georgiy from "../assets/img/georgi.webp";
+
+const Founders = ({ setIsModalVisible }) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isAnimating, setIsAnimating] = React.useState(false);
+  const firstRowRef = useRef(null);
+  const secondRowRef = useRef(null);
+  const persons = [
+    {
+      name: "Евгений Полудень",
+      headerLabel: "Сооснователь и Генеральный директор",
+      headerSpan: "Евгений Полудень",
+      description: `Опытный специалист в области <b>диджитал-маркетинга</b> с более чем <b>5 лет опыта.</b> Его глубокие технические знания помогли создать и развить наше агентство. Евгений фокусируется на <b>стратегическом развитии бизнеса</b> и постоянном улучшении наших услуг.`,
+      image: evgen,
+    },
+    {
+      name: "Георгий Залецкий",
+      headerLabel: "Сооснователь и Директор по клиентским отношениям",
+      headerSpan: "Георгий Залецкий",
+      description: `<b>Экспертный по работе с клиентами с многолетним стажем</b>. Его способность <b>понимать потребности клиентов</b> и создавать персонализированные стратегии - ключ к <b>успеху нашего агенства.</b> Георгий управляет клиентскими проектами и стремится к установлению <b>долгосрочных партнерских отношений.</b>`,
+      image: georgiy,
+    },
+  ];
+
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (firstRowRef.current && secondRowRef.current) {
+      const firstRow = firstRowRef.current;
+      const secondRow = secondRowRef.current;
+
+      if (isPaused) {
+        firstRow.style.animationPlayState = "paused";
+        secondRow.style.animationPlayState = "paused";
+      } else {
+        firstRow.style.animationPlayState = "running";
+        secondRow.style.animationPlayState = "running";
+      }
+    }
+  }, [isPaused]);
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  const handlePrevClick = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? persons.length - 1 : prevIndex - 1
+      );
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handleNextClick = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === persons.length - 1 ? 0 : prevIndex + 1
+      );
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const currentPerson = persons[currentIndex];
+
+  return (
+    <section className={appStyle.section}>
+      <div className={appStyle.foundersBlock}>
+        <div className={appStyle.Row}>
+          <label>Founders</label>
+        </div>
+        <div className={appStyle.image}>
+          <img
+            className={isAnimating ? appStyle.fadeOut : appStyle.fadeIn}
+            draggable="false"
+            src={currentPerson.image}
+            alt={currentPerson.name}
+          />
+        </div>
+        <span className={appStyle.name}>
+          <span>{currentPerson.name}</span>
+          <span>{currentPerson.name}</span>
+          <span>{currentPerson.name}</span>
+        </span>
+        <div
+          className={`${appStyle.descriptionContainer} ${
+            isAnimating ? appStyle.fadeOut : appStyle.fadeIn
+          }`}
+        >
+          <div className={appStyle.header}>
+            <label>{currentPerson.headerLabel}</label>
+            <span>{currentPerson.headerSpan}</span>
+          </div>
+          <div
+            className={appStyle.description}
+            dangerouslySetInnerHTML={{ __html: currentPerson.description }}
+          />
+        </div>
+        <div className={appStyle.reviewNav}>
+          <button className={appStyle.buttonPrev} onClick={handlePrevClick}>
+            <span>&#129168;</span>
+          </button>
+          <button className={appStyle.buttonNext} onClick={handleNextClick}>
+            <span>&#129170;</span>
+          </button>
+        </div>
+      </div>
+      <div className={appStyle.rewievsBlock}>
+        <div className={appStyle.Row}>
+          <label>Наши отзывы</label>
+        </div>
+        <div className={appStyle.rewievsCarousel}>
+          <div className={appStyle.firstVertRow} ref={firstRowRef}>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>
+                  The website he designed for me is amazing, but what's truly
+                  invaluable is the ongoing support he provides in managing
+                  social media and just being there for me whenever I need
+                  assistance.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+          </div>
+          <div className={appStyle.secondVertRow} ref={secondRowRef}>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>
+                  The website he designed for me is amazing, but what's truly
+                  invaluable is the ongoing support he provides in managing
+                  social media and just being there for me whenever I need
+                  assistance.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Анастасия</label>
+                  <span>Студия танцев</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  I recently had the pleasure of working with Dmitry, and I must
+                  say, he's been the best thing that could have happened to me
+                  as someone who decided to take a new step in business and open
+                  up a new direction.
+                </p>
+                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={appStyle.formButton}>
+        <div className={appStyle.label}>
+          <label>Заполни форму</label>
+          <span>и получи бесплатную консультацию</span>
+        </div>
+        <div className={appStyle.buttonLayout}>
+          <div className={appStyle.button} onClick={setIsModalVisible}>
+            <img draggable="false" src={arrow} alt="arrow" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Founders;
