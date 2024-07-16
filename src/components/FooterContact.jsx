@@ -10,7 +10,7 @@ const FooterContact = () => {
     <div className={appStyles.contactBlock} id="Контакты">
       <div className={appStyles.contactContent}>
         <div className={appStyles.container__contact}>
-          <h1 id="Contacts">Контакты</h1>
+          <label id="Contacts">Контакты</label>
         </div>
         <div className={appStyles.cardGrid}>
           <div className={appStyles.socialContainer}>
