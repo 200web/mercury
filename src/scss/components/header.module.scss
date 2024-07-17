@@ -18,6 +18,8 @@
   top: 0;
   width: 100%;
   z-index: 995;
+  background-color: #000000;
+  box-shadow: 0 4px 2px 1px rgb(0, 0, 0);
 
   &.hidden {
     .header {
@@ -111,7 +113,6 @@
       transition: 0.3s;
       font-family: "Inter";
       font-size: clamp(10px, 1vw, 14px);
-      box-shadow: 0 4px 7px 1px rgb(0, 0, 0);
 
       &:hover {
         color: black;

@@ -67,21 +67,22 @@ const StageOfWorkSection = () => {
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>География</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Польша, Чехия, Германия
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>Цели</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Продажи билетов на концерт, повышение узнаваемости
+                      мероприятия в Instagram, TikTok, Facebook, YouTube
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>Результат</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Продано необходимое количество билетов
                     </span>
                   </div>
                 </div>
@@ -128,19 +129,21 @@ const StageOfWorkSection = () => {
                   <div className={appStyle.row}>
                     <label className={appStyle.header}>Описание</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Удароустойчивые, водонепроницаемые, с огромным кол-вом
+                      стилей столешницы HPL
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>География</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Польша, Беларусь
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>Цели</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Продажа столешниц + наращивание узнаваемости на польском и
+                      беларуском рынках
                     </span>
                   </div>
                 </div>
@@ -229,19 +232,19 @@ const StageOfWorkSection = () => {
                   <div className={appStyle.row}>
                     <label className={appStyle.header}>Описание</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Автосервис с такими услугами как: покраска, удаление
+                      вмятин и царапин
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
-                    <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
-                    </span>
+                    <label className={appStyle.header}>География</label>
+                    <span className={appStyle.description}>Польша</span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>Цели</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Новые клиенты на услуги: покраска, удаление вмятин и
+                      царапин
                     </span>
                   </div>
                 </div>
@@ -251,7 +254,7 @@ const StageOfWorkSection = () => {
                       <span>Потрачено</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>2440$</span>
+                      <span>493$</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -259,7 +262,7 @@ const StageOfWorkSection = () => {
                       <span>Средняя цена заявка</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>5.2$</span>
+                      <span>4.9$</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -267,7 +270,7 @@ const StageOfWorkSection = () => {
                       <span>Лучшая цена заявки</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.1$</span>
+                      <span>3.5$</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -275,15 +278,7 @@ const StageOfWorkSection = () => {
                       <span>Получено заявок</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>384</span>
-                    </div>
-                  </div>
-                  <div className={appStyle.card}>
-                    <div className={appStyle.HText}>
-                      <span>Новых подписок</span>
-                    </div>
-                    <div className={appStyle.value}>
-                      <span>512</span>
+                      <span>101</span>
                     </div>
                   </div>
                 </div>
@@ -330,19 +325,20 @@ const StageOfWorkSection = () => {
                   <div className={appStyle.row}>
                     <label className={appStyle.header}>Описание</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Приложение-планер для интеграции полезных привычек в жизнь
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>География</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      США, Канада, Великобритания, Австралия, Новая Зеландия
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>Цели</label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      Новые скачивания приложения через рекламу в Meta, оплаты
+                      подписки 
                     </span>
                   </div>
                 </div>
@@ -352,39 +348,31 @@ const StageOfWorkSection = () => {
                       <span>Потрачено</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>2440$</span>
+                      <span>1004$</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Средняя цена заявка</span>
+                      <span>Количество скачиваний</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>5.2$</span>
+                      <span>93</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Лучшая цена заявки</span>
+                      <span>Лучшая стоимость одного скачивания</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.1$</span>
+                      <span>4.5$</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Получено заявок</span>
+                      <span>Среднемесячная стоимость одного скачивания</span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>384</span>
-                    </div>
-                  </div>
-                  <div className={appStyle.card}>
-                    <div className={appStyle.HText}>
-                      <span>Новых подписок</span>
-                    </div>
-                    <div className={appStyle.value}>
-                      <span>512</span>
+                      <span>11.2$</span>
                     </div>
                   </div>
                 </div>
