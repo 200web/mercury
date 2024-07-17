@@ -838,3 +838,9 @@
     stroke-dashoffset: 0;
   }
 }
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
