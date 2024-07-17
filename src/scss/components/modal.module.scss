@@ -303,6 +303,13 @@ input {
     font-size: 23px;
     padding: 1.5rem;
     cursor: pointer;
+    color: #000000 !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .submitButton button {
+    color: #000000 !important;
   }
 }
 
