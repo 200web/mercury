@@ -7,6 +7,7 @@ const StageOfWork = ({ setIsModalVisible }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [startAnimation, setStartAnimation] = React.useState(false);
   const [sideIsVisible, setSideIsVisible] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 1050);
   const [roadmapItemVisible, setRoadmapItemVisible] = React.useState([
     false,
     false,
@@ -24,6 +25,18 @@ const StageOfWork = ({ setIsModalVisible }) => {
   ]);
 
   React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1050);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -39,224 +52,179 @@ const StageOfWork = ({ setIsModalVisible }) => {
 
   React.useEffect(() => {
     if (isVisible) {
-      const timer = setTimeout(() => {
-        setStartAnimation(true);
-      }, 4000);
+      const animationDuration = isMobile ? 200 : 12000;
 
-      setTimeout(() => {
-        setSideIsVisible(true);
+      const timeoutIds = [
+        setTimeout(() => setStartAnimation(true), 4000),
+        setTimeout(() => setSideIsVisible(true), animationDuration),
+      ];
 
-        setTimeout(() => {
-          setRowVisible((prev) => {
-            const newRowVisible = [...prev];
-            newRowVisible[0] = true;
-            return newRowVisible;
-          });
-
-          setTimeout(() => {
-            setRowVisible((prev) => {
-              const newRowVisible = [...prev];
-              newRowVisible[1] = true;
-              return newRowVisible;
-            });
-
+      if (!isMobile) {
+        const rowVisibilityTimings = [0, 200, 400, 600, 800, 1000];
+        rowVisibilityTimings.forEach((time, index) =>
+          timeoutIds.push(
             setTimeout(() => {
               setRowVisible((prev) => {
                 const newRowVisible = [...prev];
-                newRowVisible[2] = true;
+                newRowVisible[index] = true;
                 return newRowVisible;
               });
+            }, animationDuration + time)
+          )
+        );
+      } else {
+        const rowVisibilityTimings = [0, 200, 400, 600, 800, 1000];
+        rowVisibilityTimings.forEach((time, index) =>
+          timeoutIds.push(
+            setTimeout(() => {
+              setRowVisible((prev) => {
+                const newRowVisible = [...prev];
+                newRowVisible[index] = true;
+                return newRowVisible;
+              });
+            }, animationDuration + time)
+          )
+        );
+      }
 
-              setTimeout(() => {
-                setRowVisible((prev) => {
-                  const newRowVisible = [...prev];
-                  newRowVisible[3] = true;
-                  return newRowVisible;
-                });
-
-                setTimeout(() => {
-                  setRowVisible((prev) => {
-                    const newRowVisible = [...prev];
-                    newRowVisible[4] = true;
-                    return newRowVisible;
-                  });
-
-                  setTimeout(() => {
-                    setRowVisible((prev) => {
-                      const newRowVisible = [...prev];
-                      newRowVisible[5] = true;
-                      return newRowVisible;
-                    });
-                  }, 200);
-                }, 200);
-              }, 200);
-            }, 200);
-          }, 200);
-        }, 500);
-      }, 12000);
-
-      setTimeout(() => {
-        setRoadmapItemVisible((prev) => {
-          const newRowVisible = [...prev];
-          newRowVisible[0] = true;
-          return newRowVisible;
-        });
-
-        setTimeout(() => {
-          setRoadmapItemVisible((prev) => {
-            const newRowVisible = [...prev];
-            newRowVisible[1] = true;
-            return newRowVisible;
-          });
-
+      const roadmapVisibilityTimings = [1300, 3100, 5100, 7200, 9300];
+      roadmapVisibilityTimings.forEach((time, index) =>
+        timeoutIds.push(
           setTimeout(() => {
             setRoadmapItemVisible((prev) => {
               const newRowVisible = [...prev];
-              newRowVisible[2] = true;
+              newRowVisible[index] = true;
               return newRowVisible;
             });
+          }, time)
+        )
+      );
 
-            setTimeout(() => {
-              setRoadmapItemVisible((prev) => {
-                const newRowVisible = [...prev];
-                newRowVisible[3] = true;
-                return newRowVisible;
-              });
-
-              setTimeout(() => {
-                setRoadmapItemVisible((prev) => {
-                  const newRowVisible = [...prev];
-                  newRowVisible[4] = true;
-                  return newRowVisible;
-                });
-              }, 2700);
-            }, 2100);
-          }, 2000);
-        }, 1800);
-      }, 1300);
-
-      return () => clearTimeout(timer);
+      return () => timeoutIds.forEach(clearTimeout);
     }
-  }, [isVisible]);
+  }, [isVisible, isMobile]);
 
   return (
     <div className={style.stageWorkBlock} id="Этапы">
-      <div className={style.Row}>
+      <div className={`${!isMobile ? style.Row : style.RowMobile}`}>
         <div className={style.HText}>
           <label>Этапы работы</label>
         </div>
-        <div
-          className={`${style.scrollerEl} ${
-            startAnimation ? style.active : ""
-          }`}
-        >
-          <div className={style.roadmap}>
-            <div>
-              <svg
-                width="3370px"
-                height="671px"
-                viewBox="0 0 3370 671"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xlink="http://www.w3.org/1999/xlink"
-                className={style.svg}
-              >
-                <path
-                  ref={myRef}
-                  d="M0 150 Q 500 450, 800 120 T 1400 150 T 2000 150 T 2800 100 T 3900 100"
-                  className={isVisible ? style.active : ""}
-                  style={{
-                    strokeDasharray: "3800px",
-                    strokeDashoffset: "3800px",
-                  }}
-                />
-              </svg>
-              <div
-                className={`${style.circle} ${
+        {!isMobile && (
+          <div
+            className={`${style.scrollerEl} ${
+              startAnimation ? style.active : ""
+            }`}
+          >
+            <div className={style.roadmap}>
+              <div>
+                <svg
+                  width="3370px"
+                  height="671px"
+                  viewBox="0 0 3370 671"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xlink="http://www.w3.org/1999/xlink"
+                  className={style.svg}
+                >
+                  <path
+                    ref={myRef}
+                    d="M0 150 Q 500 450, 800 120 T 1400 150 T 2000 150 T 2800 100 T 3900 100"
+                    className={isVisible ? style.active : ""}
+                    style={{
+                      strokeDasharray: "3800px",
+                      strokeDashoffset: "3800px",
+                    }}
+                  />
+                </svg>
+                <div
+                  className={`${style.circle} ${
+                    roadmapItemVisible[0] ? style.active : ""
+                  }`}
+                >
+                  <img draggable="false" src={flag} alt="flag" />
+                </div>
+                <div
+                  className={`${style.circle} ${
+                    roadmapItemVisible[1] ? style.active : ""
+                  }`}
+                >
+                  <img draggable="false" src={flag} alt="flag" />
+                </div>
+                <div
+                  className={`${style.circle} ${
+                    roadmapItemVisible[2] ? style.active : ""
+                  }`}
+                >
+                  <img draggable="false" src={flag} alt="flag" />
+                </div>
+                <div
+                  className={`${style.circle} ${
+                    roadmapItemVisible[3] ? style.active : ""
+                  }`}
+                >
+                  <img draggable="false" src={flag} alt="flag" />
+                </div>
+                <div
+                  className={`${style.circle} ${
+                    roadmapItemVisible[4] ? style.active : ""
+                  }`}
+                >
+                  <img draggable="false" src={flag} alt="flag" />
+                </div>
+              </div>
+              <span
+                className={`${style.roadmapItem} ${
                   roadmapItemVisible[0] ? style.active : ""
                 }`}
               >
-                <img draggable="false" src={flag} alt="flag" />
-              </div>
+                <label>1</label>
+                <span>
+                  Консультация и брифинг: выявление задач и постановка целей
+                </span>
+              </span>
               <div
-                className={`${style.circle} ${
+                className={`${style.roadmapItem} ${
                   roadmapItemVisible[1] ? style.active : ""
                 }`}
               >
-                <img draggable="false" src={flag} alt="flag" />
+                <label>2</label>
+                <span>Формирование стратегии и планирование бюджета</span>
               </div>
               <div
-                className={`${style.circle} ${
+                className={`${style.roadmapItem} ${
                   roadmapItemVisible[2] ? style.active : ""
                 }`}
               >
-                <img draggable="false" src={flag} alt="flag" />
+                <label>3</label>
+                <span>
+                  Создание общих чатов и передача доступов к таблицам отчетности
+                </span>
               </div>
               <div
-                className={`${style.circle} ${
+                className={`${style.roadmapItem} ${
                   roadmapItemVisible[3] ? style.active : ""
                 }`}
               >
-                <img draggable="false" src={flag} alt="flag" />
+                <label>4</label>
+                <span>Подписание договора</span>
               </div>
               <div
-                className={`${style.circle} ${
+                className={`${style.roadmapItem} ${
                   roadmapItemVisible[4] ? style.active : ""
                 }`}
               >
-                <img draggable="false" src={flag} alt="flag" />
+                <label>5</label>
+                <span>Начало работы</span>
               </div>
             </div>
-            <span
-              className={`${style.roadmapItem} ${
-                roadmapItemVisible[0] ? style.active : ""
-              }`}
-            >
-              <label>1</label>
-              <span>
-                Консультация и брифинг: выявление задач и постановка целей
-              </span>
-            </span>
-            <div
-              className={`${style.roadmapItem} ${
-                roadmapItemVisible[1] ? style.active : ""
-              }`}
-            >
-              <label>2</label>
-              <span>Формирование стратегии и планирование бюджета</span>
-            </div>
-            <div
-              className={`${style.roadmapItem} ${
-                roadmapItemVisible[2] ? style.active : ""
-              }`}
-            >
-              <label>3</label>
-              <span>
-                Создание общих чатов и передача доступов к таблицам отчетности
-              </span>
-            </div>
-            <div
-              className={`${style.roadmapItem} ${
-                roadmapItemVisible[3] ? style.active : ""
-              }`}
-            >
-              <label>4</label>
-              <span>Подписание договора</span>
-            </div>
-            <div
-              className={`${style.roadmapItem} ${
-                roadmapItemVisible[4] ? style.active : ""
-              }`}
-            >
-              <label>5</label>
-              <span>Начало работы</span>
-            </div>
           </div>
-        </div>
+        )}
         <div
-          className={`${style.sideDescription} ${
-            sideIsVisible ? style.active : ""
-          }`}
+          className={`${
+            !isMobile ? style.sideDescription : style.sideDescriptionMobile
+          } ${sideIsVisible ? style.active : ""}`}
+          ref={myRef}
         >
           <div className={style.rowList}>
             <div
@@ -310,7 +278,7 @@ const StageOfWork = ({ setIsModalVisible }) => {
             }`}
           >
             <div className={style.button} onClick={setIsModalVisible}>
-              <span>Форма</span>
+              <span>Консультация</span>
             </div>
           </div>
         </div>

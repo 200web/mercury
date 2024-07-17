@@ -43,6 +43,19 @@
     font-weight: bold;
   }
 
+  .RowMobile {
+    width: 100%;
+    position: relative;
+    font-size: 41px;
+    font-family: "Inter";
+    color: #deff50;
+    font-weight: bold;
+
+    .HText {
+      text-align: center;
+    }
+  }
+
   .sideDescription {
     display: flex;
     flex-direction: column;
@@ -74,6 +87,117 @@
       .button {
         display: block;
         width: 20%;
+        border-radius: 77px;
+        background-color: #4d60e2;
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        padding: 1rem 3rem;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          color: black;
+          background-color: #deff50;
+        }
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .rowList {
+      width: 95%;
+      height: 30rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+
+        &.active {
+          .description {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+
+          .header {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+        }
+
+        .header {
+          position: relative;
+          bottom: 0;
+          right: 0;
+          width: 45%;
+          margin: 0.5rem 0 0 1rem;
+          color: #deff50;
+          font-size: clamp(50px, 7vw, 65px);
+          transition: 1s;
+          transform: translateY(-150%);
+          opacity: 0;
+        }
+
+        .description {
+          width: 55%;
+          font-size: clamp(12px, 1.6vw, 17px);
+          margin: auto 0 auto 1rem;
+          transition: 1s;
+          transform: translateY(-150%);
+          opacity: 0;
+          color: white;
+          font-weight: 300;
+
+          @media (max-width: 850px) {
+            width: 100%;
+          }
+
+          span {
+            display: inline-block;
+            width: 75%;
+          }
+        }
+      }
+    }
+  }
+
+  .sideDescriptionMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 95%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.5s;
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+
+    &.active {
+      opacity: 1;
+    }
+
+    .buttonLayout {
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      transition: 1s;
+
+      @media (max-width: 700px) {
+        margin-top: 4rem;
+      }
+
+      .button {
+        display: block;
         border-radius: 77px;
         background-color: #4d60e2;
         color: white;
@@ -819,6 +943,7 @@
 
     &.active {
       animation: dash 10s linear forwards;
+      -webkit-animation: dash 10s linear forwards;
     }
   }
 
