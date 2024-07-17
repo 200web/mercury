@@ -2883,7 +2883,7 @@
               img {
                 transform: scale(1);
                 filter: sepia(40%) saturate(2501%) hue-rotate(16deg)
-                  brightness(103%) contrast(109%);
+                  brightness(103%);
 
                 @media (max-width: 600px) {
                   scale: 0.6;
@@ -3435,13 +3435,13 @@
 
 @keyframes fly-up2 {
   0% {
-    transform: translateY(2rem);
+    transform: translateY(0.5rem);
   }
   50% {
-    transform: translateY(1rem);
+    transform: translateY(0rem);
   }
   100% {
-    transform: translateY(2rem);
+    transform: translateY(0.5rem);
   }
 }
 
