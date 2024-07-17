@@ -9,8 +9,15 @@ const Header = ({ setIsModalVisible }) => {
   const [menuVisible, setMenuVisible] = React.useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
 
+  const handleMenuVisible = () => {
+    setMenuVisible(!menuVisible);
+  };
+
   const handleActiveButton = (id) => {
     setIsActive(id);
+    if (isMobile) {
+      setMenuVisible(!menuVisible);
+    }
     switch (id) {
       case 0: {
         const element = document.getElementById("Услуги");
@@ -44,10 +51,6 @@ const Header = ({ setIsModalVisible }) => {
         break;
       }
     }
-  };
-
-  const handleMenuVisible = () => {
-    setMenuVisible(!menuVisible);
   };
 
   useEffect(() => {

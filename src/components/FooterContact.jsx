@@ -14,38 +14,47 @@ const FooterContact = () => {
         </div>
         <div className={appStyles.cardGrid}>
           <div className={appStyles.socialContainer}>
-            <div className={appStyles.container}>
+            <a
+              href="https://www.facebook.com/profile.php?id=61555743932322"
+              className={appStyles.container}
+            >
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
                   <img src={facebook} width={50} height={50} alt="facebook" />
                 </div>
                 <div className={appStyles.title}>Facebook</div>
               </div>
-            </div>
-            <div className={appStyles.container}>
+            </a>
+            <a
+              href="https://t.me/robin_mercury"
+              className={appStyles.container}
+            >
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
-                  <img src={telegram} width={70} height={70} alt="facebook" />
+                  <img src={telegram} width={70} height={70} alt="Telegram" />
                 </div>
                 <div className={appStyles.title}>Telegram</div>
               </div>
-            </div>
-            <div className={appStyles.container}>
+            </a>
+            <a
+              href="https://www.instagram.com/mercury__arts?igsh=c2xoaGR1b3ZmOHUy"
+              className={appStyles.container}
+            >
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
-                  <img src={instagram} width={70} height={70} alt="facebook" />
+                  <img src={instagram} width={70} height={70} alt="Instagram" />
                 </div>
                 <div className={appStyles.title}>Instagram</div>
               </div>
-            </div>
-            <div className={appStyles.container}>
+            </a>
+            <a href="https://wa.me/48576216786" className={appStyles.container}>
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
-                  <img src={whatsapp} width={70} height={70} alt="facebook" />
+                  <img src={whatsapp} width={70} height={70} alt="WhatsApp" />
                 </div>
                 <div className={appStyles.title}>WhatsApp</div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

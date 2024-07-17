@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./policyStyles.module.scss";
 
 const Policy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div class={styles.container}>
       <h1>Polityka Prywatności Mercury Arts - GEORGIY ZALETSKI</h1>
