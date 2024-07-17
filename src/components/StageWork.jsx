@@ -153,11 +153,12 @@ const StageOfWork = ({ setIsModalVisible }) => {
           <div className={style.roadmap}>
             <div>
               <svg
-                width="3370"
-                height="671"
+                width="3370px"
+                height="671px"
                 viewBox="0 0 3370 671"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                xlink="http://www.w3.org/1999/xlink"
                 className={style.svg}
               >
                 <path
