@@ -137,24 +137,17 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Дмитрий</label>
+                  <span>Автосервис</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Ребята из Mercury Arts сделали для нас рекламу, которая
+                  привлекла новых клиентов в наш автосервис. За короткое время
+                  количество записей на обслуживание выросло, и мы довольны
+                  результатом.
                 </p>
-                <p>
-                  The website he designed for me is amazing, but what's truly
-                  invaluable is the ongoing support he provides in managing
-                  social media and just being there for me whenever I need
-                  assistance.
-                </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -170,18 +163,16 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Вадим</label>
+                  <span>Приложение-планер</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Большое спасибо, агентство отлично справилось с задачей.
+                  Ребята всегда оперативно реагируют на запросы, и работать с
+                  ними очень комфортно.
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -233,33 +224,6 @@ const Founders = ({ setIsModalVisible }) => {
                   кампании в Instagram и Facebook. Продажи выросли, планируем
                   расширять ассортимент товарок на рекламу. Отличная работа!
                 </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
-                </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
           </div>
@@ -277,24 +241,17 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Дмитрий</label>
+                  <span>Автосервис</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Ребята из Mercury Arts сделали для нас рекламу, которая
+                  привлекла новых клиентов в наш автосервис. За короткое время
+                  количество записей на обслуживание выросло, и мы довольны
+                  результатом.
                 </p>
-                <p>
-                  The website he designed for me is amazing, but what's truly
-                  invaluable is the ongoing support he provides in managing
-                  social media and just being there for me whenever I need
-                  assistance.
-                </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -310,18 +267,16 @@ const Founders = ({ setIsModalVisible }) => {
                   <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
+                  <label>Вадим</label>
+                  <span>Приложение-планер</span>
                 </div>
               </div>
               <div className={appStyle.reviewDescriptionText}>
                 <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
+                  Большое спасибо, агентство отлично справилось с задачей.
+                  Ребята всегда оперативно реагируют на запросы, и работать с
+                  ними очень комфортно.
                 </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
             <div
@@ -373,33 +328,6 @@ const Founders = ({ setIsModalVisible }) => {
                   кампании в Instagram и Facebook. Продажи выросли, планируем
                   расширять ассортимент товарок на рекламу. Отличная работа!
                 </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Анастасия</label>
-                  <span>Студия танцев</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  I recently had the pleasure of working with Dmitry, and I must
-                  say, he's been the best thing that could have happened to me
-                  as someone who decided to take a new step in business and open
-                  up a new direction.
-                </p>
-                <p>Dmitry, I can't thank you enough! You're simply the best.</p>
               </div>
             </div>
           </div>

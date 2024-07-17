@@ -86,7 +86,6 @@
 
       .button {
         display: block;
-        width: 20%;
         border-radius: 77px;
         background-color: #4d60e2;
         color: white;
@@ -192,7 +191,7 @@
       opacity: 0;
       transition: 1s;
 
-      @media (max-width: 700px) {
+      @media (max-width: 1050px) {
         margin-top: 4rem;
       }
 
