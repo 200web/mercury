@@ -91,7 +91,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               />
               <input
                 type="text"
-                placeholder="Сфера бизнеса"
+                placeholder="Сфера бизнеса (не обязательно)"
                 value={businessField}
                 onChange={(e) => setBusinessField(e.target.value)}
               />
@@ -113,7 +113,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               />
               <input
                 type="text"
-                placeholder="Сколько лет работаете"
+                placeholder="Сколько лет работаете (не обязательно)"
                 value={yearsInBusiness}
                 onChange={(e) => setYearsInBusiness(e.target.value)}
               />
@@ -129,7 +129,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
             <div className={style.formGroup}>
               <input
                 type="text"
-                placeholder="Где запускали / планируете запускать трафик KPI"
+                placeholder="Где запускали / планируете запускать трафик KPI (не обязательно)"
                 value={trafficKPI}
                 onChange={(e) => setTrafficKPI(e.target.value)}
               />
@@ -139,7 +139,9 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 }`}
               >
                 <span>
-                  {selectedFiles.length === 0 ? "Прикрепите материалы" : ""}
+                  {selectedFiles.length === 0
+                    ? "Прикрепите материалы (не обязательно)"
+                    : ""}
                 </span>
                 <div className={style.image} onClick={handleImageClick}>
                   <img draggable="false" src={picture} alt="data" />

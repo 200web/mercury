@@ -34,6 +34,12 @@ const HeaderSection = ({ setIsModalVisible }) => {
     setIsHovered(false);
   };
 
+  const handleMoveLeaveCard = () => {
+    if (isHovered) {
+      setIsHovered(false);
+    }
+  };
+
   return (
     <>
       <section className={appStyle.section}>
@@ -100,6 +106,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
               }`}
               onMouseOver={() => handleMoveOver(1)}
               onMouseLeave={handleMoveLeave}
+              onClick={handleMoveLeaveCard}
             >
               <header className={appStyle.header}>
                 <label>TikTok Ads</label>
@@ -169,6 +176,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
               }`}
               onMouseOver={() => handleMoveOver(2)}
               onMouseLeave={handleMoveLeave}
+              onClick={handleMoveLeaveCard}
             >
               <header className={appStyle.header}>
                 <label>Meta Ads</label>
@@ -237,6 +245,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
               }`}
               onMouseOver={() => handleMoveOver(3)}
               onMouseLeave={handleMoveLeave}
+              onClick={handleMoveLeaveCard}
             >
               <div className={appStyle.bigCard}>
                 <img
