@@ -7,7 +7,11 @@ const StageOfWork = ({ setIsModalVisible }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [startAnimation, setStartAnimation] = React.useState(false);
   const [sideIsVisible, setSideIsVisible] = React.useState(false);
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 1050);
+
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const [isMobile, setIsMobile] = React.useState(
+    window.innerWidth <= 1050 || isSafari
+  );
   const [roadmapItemVisible, setRoadmapItemVisible] = React.useState([
     false,
     false,
@@ -26,7 +30,7 @@ const StageOfWork = ({ setIsModalVisible }) => {
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1050);
+      setIsMobile(window.innerWidth <= 1050 || isSafari);
     };
 
     window.addEventListener("resize", handleResize);
@@ -34,7 +38,7 @@ const StageOfWork = ({ setIsModalVisible }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isSafari]);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
