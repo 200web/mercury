@@ -114,7 +114,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
               </header>
               <div className={appStyle.lower}>
                 <span>Включает в себя</span>
-                <div className={appStyle.image} onClick={handleMoveLeave}>
+                <div className={appStyle.image}>
                   <img draggable="false" src={arrow} alt="arrow" />
                 </div>
               </div>
@@ -183,7 +183,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <span>Реклама в Instagram и Facebook</span>
               </header>
               <div className={appStyle.lower}>
-                <div className={appStyle.image} onClick={handleMoveLeave}>
+                <div className={appStyle.image}>
                   <img draggable="false" src={arrow} alt="arrow" />
                 </div>
               </div>
@@ -259,7 +259,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 </header>
                 <div className={appStyle.lower}>
                   <span>Включает в себя</span>
-                  <div className={appStyle.image} onClick={handleMoveLeave}>
+                  <div className={appStyle.image}>
                     <img draggable="false" src={arrow} alt="arrow" />
                   </div>
                 </div>
