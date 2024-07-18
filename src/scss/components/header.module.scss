@@ -20,10 +20,14 @@
   z-index: 995;
   background-color: #000000;
   box-shadow: 0 4px 2px 1px rgb(0, 0, 0);
+  transition: 0.3s ease-in-out;
 
   &.hidden {
+    background-color: transparent;
+    box-shadow: none;
     .header {
-      .logo {
+      .logo,
+      .title {
         opacity: 0;
       }
     }
@@ -67,6 +71,7 @@
     font-size: 20;
     left: clamp(3rem, 5vw, 4.5rem);
     z-index: 999;
+    transition: 0.5s;
 
     @media (max-width: 420px) {
       display: none;

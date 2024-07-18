@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import headerStyle from "../scss/components/header.module.scss";
 import logo from "../assets/img/logo.webp";
 
 const Header = ({ setIsModalVisible }) => {
-  const headerRef = React.useRef();
-  const [isActive, setIsActive] = React.useState(0);
-  const [isVisible, setIsVisible] = React.useState(true);
-  const [menuVisible, setMenuVisible] = React.useState(false);
+  const headerRef = useRef();
+  const [isActive, setIsActive] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const [menuVisible, setMenuVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   const handleMenuVisible = () => {
     setMenuVisible(!menuVisible);
@@ -53,20 +55,38 @@ const Header = ({ setIsModalVisible }) => {
     }
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY.current) {
+      // Скролл вниз
+      setIsHeaderHidden(true);
+    } else {
+      // Скролл вверх
+      setIsHeaderHidden(false);
+    }
+    lastScrollY.current = window.scrollY;
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 840);
     };
 
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <header className={headerStyle.headerLayout} ref={headerRef}>
+    <header
+      className={`${headerStyle.headerLayout} ${
+        isHeaderHidden ? headerStyle.hidden : ""
+      }`}
+      ref={headerRef}
+    >
       <div className={headerStyle.header}>
         <div className={headerStyle.title}>MERCURYARTS</div>
         <div className={headerStyle.logo}>
