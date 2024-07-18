@@ -19,10 +19,16 @@ const StageOfWorkSection = () => {
   const handleClickLeave = () => {
     setIsActiveCard(0);
     setIsClicked(false);
-    console.log(isClicked);
+  };
+
+  const handleClickLeaveSection = () => {
+    if (isClicked) {
+      setIsActiveCard(0);
+      setIsClicked(false);
+    }
   };
   return (
-    <section className={appStyle.section}>
+    <section className={appStyle.section} onClick={handleClickLeaveSection}>
       <div className={appStyle.caseBlock} id="Портфолио">
         <div className={appStyle.Row}>
           <label>Кейсы</label>
