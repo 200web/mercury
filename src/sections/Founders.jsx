@@ -226,6 +226,83 @@ const Founders = ({ setIsModalVisible }) => {
                 </p>
               </div>
             </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Дмитрий</label>
+                  <span>Автосервис</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Ребята из Mercury Arts сделали для нас рекламу, которая
+                  привлекла новых клиентов в наш автосервис. За короткое время
+                  количество записей на обслуживание выросло, и мы довольны
+                  результатом.
+                </p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Вадим</label>
+                  <span>Приложение-планер</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Большое спасибо, агентство отлично справилось с задачей.
+                  Ребята всегда оперативно реагируют на запросы, и работать с
+                  ними очень комфортно.
+                </p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Мария</label>
+                  <span>Ресторан</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Мы долго искали подрядчиков по соцсетям, и парни предложили
+                  четкую стратегию, которая сработала! Теперь у нас стабильно
+                  растет аудитория в профиле и полный зал по вечерам и выходным.
+                  Рекомендуем!
+                </p>
+              </div>
+            </div>
           </div>
           <div className={appStyle.secondVertRow} ref={secondRowRef}>
             <div
@@ -327,6 +404,83 @@ const Founders = ({ setIsModalVisible }) => {
                   Ребята из Mercury Arts помогли нам настроить конверсионные
                   кампании в Instagram и Facebook. Продажи выросли, планируем
                   расширять ассортимент товарок на рекламу. Отличная работа!
+                </p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Дмитрий</label>
+                  <span>Автосервис</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Ребята из Mercury Arts сделали для нас рекламу, которая
+                  привлекла новых клиентов в наш автосервис. За короткое время
+                  количество записей на обслуживание выросло, и мы довольны
+                  результатом.
+                </p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Вадим</label>
+                  <span>Приложение-планер</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Большое спасибо, агентство отлично справилось с задачей.
+                  Ребята всегда оперативно реагируют на запросы, и работать с
+                  ними очень комфортно.
+                </p>
+              </div>
+            </div>
+            <div
+              className={appStyle.card}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={appStyle.reviewCardHeader}>
+                <div className={appStyle.like}>
+                  <img draggable="false" src={like} alt="like" />
+                </div>
+                <div className={appStyle.avatar}>
+                  <img draggable="false" src="" />
+                </div>
+                <div className={appStyle.name}>
+                  <label>Мария</label>
+                  <span>Ресторан</span>
+                </div>
+              </div>
+              <div className={appStyle.reviewDescriptionText}>
+                <p>
+                  Мы долго искали подрядчиков по соцсетям, и парни предложили
+                  четкую стратегию, которая сработала! Теперь у нас стабильно
+                  растет аудитория в профиле и полный зал по вечерам и выходным.
+                  Рекомендуем!
                 </p>
               </div>
             </div>
