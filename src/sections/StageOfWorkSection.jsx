@@ -85,12 +85,6 @@ const StageOfWorkSection = () => {
                       мероприятия в Instagram, TikTok, Facebook, YouTube
                     </span>
                   </div>
-                  <div className={appStyle.row}>
-                    <label className={appStyle.header}>Результат</label>
-                    <span className={appStyle.description}>
-                      Продано необходимое количество билетов
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -265,7 +259,7 @@ const StageOfWorkSection = () => {
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Средняя цена заявка</span>
+                      <span>Средняя цена заявки</span>
                     </div>
                     <div className={appStyle.value}>
                       <span>4.9$</span>
