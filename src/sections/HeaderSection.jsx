@@ -21,6 +21,7 @@ import StageOfWorkSection from "./StageOfWorkSection";
 const HeaderSection = ({ setIsModalVisible }) => {
   const [activeCard, setIsActiveCard] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 960);
 
   const timestamp = new Date().getTime();
   const apngSrc = `${stat}?${timestamp}`;
@@ -39,6 +40,18 @@ const HeaderSection = ({ setIsModalVisible }) => {
       setIsHovered(false);
     }
   };
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 960);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -183,6 +196,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
                 <span>Реклама в Instagram и Facebook</span>
               </header>
               <div className={appStyle.lower}>
+                {isMobile && <span>Включает в себя</span>}
                 <div className={appStyle.image}>
                   <img draggable="false" src={arrow} alt="arrow" />
                 </div>

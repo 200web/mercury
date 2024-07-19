@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+import axios from "axios";
+import CryptoJS from "crypto-js";
+import md5 from "crypto-js/md5";
 import style from "../scss/components/modal.module.scss";
 import picture from "../assets/img/picture.webp";
 import zvezda from "../assets/img/zvezda.webp";
@@ -40,30 +43,56 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const createSignature = (method, paramsStr, secret) => {
+    const stringToSign = method + paramsStr + md5(paramsStr);
+    const hash = CryptoJS.HmacSHA1(stringToSign, secret);
+    const base64Hash = CryptoJS.enc.Base64.stringify(hash);
+    return base64Hash;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("entry.140982984", name);
-    formData.append("entry.581554228", phone);
-    formData.append("entry.532256391", businessField);
-    formData.append("entry.2123035029", yearsInBusiness);
-    formData.append("entry.464661711", trafficKPI);
+    const userKey = "YOUR_USER_KEY";
+    const secret = "YOUR_SECRET_KEY";
+    const method = "/v1/zcrm/customers";
 
-    fetch(
-      "https://docs.google.com/forms/d/e/1FAIpQLSciBD6OY3iKdKQ_RJHQ4PYsV_7M6xu8t-eyD4ZFW8vNhaGUVA/formResponse",
-      {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
+    const customerData = {
+      name: name,
+      status: "individual",
+      type: "potential",
+      comment: "",
+      phones: [
+        {
+          type: "work",
+          phone: phone,
+        },
+      ],
+    };
+
+    const paramsStr = new URLSearchParams(customerData).toString();
+    const signature = createSignature(method, paramsStr, secret);
+
+    try {
+      const response = await axios.post(
+        "https://api.zadarma.com/v1/zcrm/customers",
+        customerData,
+        {
+          headers: {
+            Authorization: `${userKey}:${signature}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Client created successfully!");
+      } else {
+        console.error("Failed to create client", response);
       }
-    )
-      .then(() => {
-        alert("Form submitted successfully!");
-      })
-      .catch((error) => {
-        console.error("Error submitting the form: ", error);
-      });
+    } catch (error) {
+      console.error("Error creating client: ", error);
+    }
   };
 
   const handleCloseModal = () => {
@@ -129,47 +158,10 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
             <div className={style.formGroup}>
               <input
                 type="text"
-                placeholder="Где запускали / планируете запускать трафик KPI (не обязательно)"
+                placeholder="Где запускали / планируете запускать трафик KPI (необязательно)"
                 value={trafficKPI}
                 onChange={(e) => setTrafficKPI(e.target.value)}
               />
-              <div
-                className={`${style.fileInput} ${
-                  selectedFiles.length === 0 ? "" : style.active
-                }`}
-              >
-                <span>
-                  {selectedFiles.length === 0
-                    ? "Прикрепите материалы (не обязательно)"
-                    : ""}
-                </span>
-                <div className={style.image} onClick={handleImageClick}>
-                  <img draggable="false" src={picture} alt="data" />
-                </div>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                  accept=".png,.jpg,.jpeg,.mp4,.mov"
-                  onChange={handleFileChange}
-                />
-                {selectedFiles.length > 0 && (
-                  <div className={style.selectedFiles}>
-                    {selectedFiles.map((file, index) => (
-                      <div className={style.fileName} key={index}>
-                        <label>{file.name}</label>
-                        <div
-                          className={style.cancelButton}
-                          onClick={() => deleteFiles(index)}
-                        >
-                          <span className={style.cancel}></span>
-                          <span className={style.cancel}></span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
             <div className={style.submitButton}>
               <button type="submit">Давайте начнём!</button>

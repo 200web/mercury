@@ -73,7 +73,7 @@
     z-index: 999;
     transition: 0.5s;
 
-    @media (max-width: 420px) {
+    @media (max-width: 440px) {
       display: none;
     }
   }
@@ -117,7 +117,7 @@
       cursor: pointer;
       transition: 0.3s;
       font-family: "Inter";
-      font-size: clamp(10px, 1vw, 14px);
+      font-size: clamp(13px, 1vw, 14px);
 
       &:hover {
         color: black;

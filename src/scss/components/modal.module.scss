@@ -91,6 +91,10 @@ input {
       input:nth-child(2) {
         z-index: 95;
         padding: 0.75rem 0.75rem 0.5rem 0 !important;
+
+        @media (max-width: 289px) {
+          padding: 0.75rem 0.75rem 1.25rem 0 !important;
+        }
       }
     }
 
@@ -101,7 +105,7 @@ input {
 
       input:nth-child(2) {
         padding: 0.75rem 0.75rem 0.5rem 0 !important;
-        @media (max-width: 344px) {
+        @media (max-width: 339.5px) {
           padding: 0.75rem 0.75rem 1.25rem 0 !important;
         }
       }
@@ -113,7 +117,7 @@ input {
 
       input:nth-child(1) {
         padding: 0.75rem 0.75rem 0.5rem 0 !important;
-        @media (max-width: 535px) {
+        @media (max-width: 530px) {
           padding: 0.75rem 0.75rem 1.25rem 0 !important;
         }
         @media (max-width: 324px) {
@@ -163,23 +167,16 @@ input {
 }
 
 .formGroup {
-  &:nth-child(1) {
-    input:nth-child(2) {
-      @media (max-width: 724px) {
-        padding: 0.75rem 0.75rem 1.5rem 0;
-      }
-    }
-  }
   &:nth-child(2) {
     input:nth-child(2) {
-      @media (max-width: 916px) {
+      @media (max-width: 905px) {
         padding: 0.75rem 0.75rem 1.5rem 0;
       }
     }
   }
   &:nth-child(3) {
     input:nth-child(1) {
-      @media (max-width: 1470px) {
+      @media (max-width: 1458px) {
         padding: 0.75rem 0.75rem 1.5rem 0;
       }
       @media (max-width: 860px) {
