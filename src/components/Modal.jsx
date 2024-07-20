@@ -1,9 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import CryptoJS from "crypto-js";
-import md5 from "crypto-js/md5";
 import style from "../scss/components/modal.module.scss";
-import picture from "../assets/img/picture.webp";
 import zvezda from "../assets/img/zvezda.webp";
 import { Link } from "react-router-dom";
 import { generateSignature } from "../utils/auth";
@@ -20,17 +17,19 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   if (!isVisible) return null;
 
   const createCustomer = async (customerData) => {
-    const method = "/v1/zcrm/customers";
+    const method = "https://api.zadarma.com/v1/zcrm/customers";
     const signature = generateSignature(method, customerData);
+
+    console.log("Generated Signature:", signature);
+    console.log("Customer Data:", customerData);
 
     try {
       const response = await axios.post(
-        "https://example.com/v1/zcrm/customers",
+        "/api/v1/zcrm/customers",
         customerData,
         {
           headers: {
             Authorization: signature,
-            "Content-Type": "application/x-www-form-urlencoded",
           },
         }
       );
@@ -40,9 +39,8 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const customerData = {
       name: "Good Company",
       status: "company",

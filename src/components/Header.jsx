@@ -57,10 +57,8 @@ const Header = ({ setIsModalVisible }) => {
 
   const handleScroll = () => {
     if (window.scrollY > lastScrollY.current) {
-      // Скролл вниз
       setIsHeaderHidden(true);
     } else {
-      // Скролл вверх
       setIsHeaderHidden(false);
     }
     lastScrollY.current = window.scrollY;

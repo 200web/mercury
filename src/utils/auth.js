@@ -1,7 +1,7 @@
-import crypto from "crypto-browserify";
+import CryptoJS from "crypto-js";
 
-const userKey = "2rt3vdeg344323";
-const secret = "43453453";
+const userKey = process.env.REACT_APP_USER_KEY;
+const secret = process.env.REACT_APP_SECRET;
 
 export const generateSignature = (method, params) => {
   const sortedParams = Object.keys(params)
@@ -12,14 +12,13 @@ export const generateSignature = (method, params) => {
     }, {});
 
   const paramsStr = new URLSearchParams(sortedParams).toString();
-  const methodStr =
-    method +
-    paramsStr +
-    crypto.createHash("md5").update(paramsStr).digest("hex");
 
-  const hash = crypto
-    .createHmac("sha1", secret)
-    .update(methodStr)
-    .digest("base64");
-  return `${userKey}:${hash}`;
+  const md5Hash = CryptoJS.MD5(paramsStr).toString();
+  const methodStr = method + paramsStr + md5Hash;
+
+  const hash = CryptoJS.HmacSHA1(methodStr, secret);
+
+  const base64Hash = CryptoJS.enc.Base64.stringify(hash);
+
+  return `${userKey}:${base64Hash}`;
 };
