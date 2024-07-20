@@ -18,43 +18,38 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
 
   if (!isVisible) return null;
 
-  const handleImageClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const deleteFiles = (index) => {
-    setSelectedFiles((prevFiles) => {
-      const updatedFiles = prevFiles.filter((file, idx) => idx !== index);
-      return updatedFiles;
+  const createSignature = (method, params, secret) => {
+    const sortedKeys = Object.keys(params).sort();
+    console.log(sortedKeys);
+    const sortedParams = {};
+    sortedKeys.forEach((key) => {
+      sortedParams[key] = params[key];
     });
-  };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
+    console.log(
+      sortedKeys.forEach((key) => {
+        sortedParams[key] = params[key];
+      })
+    );
 
-    setSelectedFiles((prevFiles) => {
-      const remainingSlots = 5 - prevFiles.length;
+    const paramsStr = new URLSearchParams(sortedParams).toString();
 
-      const newFiles = files.slice(0, remainingSlots);
-
-      return [...prevFiles, ...newFiles];
-    });
-  };
-
-  const createSignature = (method, paramsStr, secret) => {
+    console.log(paramsStr);
     const stringToSign = method + paramsStr + md5(paramsStr);
+    console.log(stringToSign);
     const hash = CryptoJS.HmacSHA1(stringToSign, secret);
+    console.log(hash);
     const base64Hash = CryptoJS.enc.Base64.stringify(hash);
+    console.log(base64Hash);
+
     return base64Hash;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userKey = "YOUR_USER_KEY";
-    const secret = "YOUR_SECRET_KEY";
+    const userKey = "5ba4d41ebe8d429e3168";
+    const secret = "284907f1222384d26678";
     const method = "/v1/zcrm/customers";
 
     const customerData = {
@@ -62,20 +57,16 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
       status: "individual",
       type: "potential",
       comment: "",
-      phones: [
-        {
-          type: "work",
-          phone: phone,
-        },
-      ],
     };
 
-    const paramsStr = new URLSearchParams(customerData).toString();
-    const signature = createSignature(method, paramsStr, secret);
+    const signature = createSignature(method, customerData, secret);
 
     try {
+      // console.log(userKey);
+      // console.log(secret);
+      // console.log(signature);
       const response = await axios.post(
-        "https://api.zadarma.com/v1/zcrm/customers",
+        "/api/v1/zcrm/customers",
         customerData,
         {
           headers: {

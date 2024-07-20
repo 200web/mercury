@@ -35,9 +35,12 @@ const HeaderSection = ({ setIsModalVisible }) => {
     setIsHovered(false);
   };
 
-  const handleMoveLeaveCard = () => {
+  const handleMoveLeaveCard = (id) => {
     if (isHovered) {
       setIsHovered(false);
+    } else if (isMobile) {
+      setIsHovered(true);
+      setIsActiveCard(id);
     }
   };
 
@@ -117,9 +120,9 @@ const HeaderSection = ({ setIsModalVisible }) => {
                   ? appStyle.active
                   : appStyle.hidden
               }`}
-              onMouseOver={() => handleMoveOver(1)}
-              onMouseLeave={handleMoveLeave}
-              onClick={handleMoveLeaveCard}
+              {...(!isMobile && { onMouseOver: () => handleMoveOver(1) })}
+              {...(!isMobile && { onMouseLeave: handleMoveLeave })}
+              {...(isMobile && { onClick: () => handleMoveLeaveCard(1) })}
             >
               <header className={appStyle.header}>
                 <label>TikTok Ads</label>
@@ -187,9 +190,9 @@ const HeaderSection = ({ setIsModalVisible }) => {
                   ? appStyle.active
                   : appStyle.hidden
               }`}
-              onMouseOver={() => handleMoveOver(2)}
-              onMouseLeave={handleMoveLeave}
-              onClick={handleMoveLeaveCard}
+              {...(!isMobile && { onMouseOver: () => handleMoveOver(2) })}
+              {...(!isMobile && { onMouseLeave: handleMoveLeave })}
+              {...(isMobile && { onClick: () => handleMoveLeaveCard(2) })}
             >
               <header className={appStyle.header}>
                 <label>Meta Ads</label>
@@ -257,9 +260,9 @@ const HeaderSection = ({ setIsModalVisible }) => {
                   ? appStyle.active
                   : appStyle.hidden
               }`}
-              onMouseOver={() => handleMoveOver(3)}
-              onMouseLeave={handleMoveLeave}
-              onClick={handleMoveLeaveCard}
+              {...(!isMobile && { onMouseOver: () => handleMoveOver(3) })}
+              {...(!isMobile && { onMouseLeave: handleMoveLeave })}
+              {...(isMobile && { onClick: () => handleMoveLeaveCard(3) })}
             >
               <div className={appStyle.bigCard}>
                 <img
