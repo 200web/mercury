@@ -105,7 +105,7 @@ input {
 
       input:nth-child(2) {
         padding: 0.75rem 0.75rem 0.5rem 0 !important;
-        @media (max-width: 339.5px) {
+        @media (max-width: 345px) {
           padding: 0.75rem 0.75rem 1.25rem 0 !important;
         }
       }
@@ -167,20 +167,17 @@ input {
 }
 
 .formGroup {
-  &:nth-child(2) {
+  &:nth-child(1) {
     input:nth-child(2) {
-      @media (max-width: 905px) {
+      @media (max-width: 725px) {
         padding: 0.75rem 0.75rem 1.5rem 0;
       }
     }
   }
-  &:nth-child(3) {
-    input:nth-child(1) {
-      @media (max-width: 1458px) {
+  &:nth-child(2) {
+    input:nth-child(2) {
+      @media (max-width: 905px) {
         padding: 0.75rem 0.75rem 1.5rem 0;
-      }
-      @media (max-width: 860px) {
-        padding: 0.75rem 0.75rem 3.4rem 0;
       }
     }
   }
