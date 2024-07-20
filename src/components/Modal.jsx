@@ -6,9 +6,10 @@ import style from "../scss/components/modal.module.scss";
 import picture from "../assets/img/picture.webp";
 import zvezda from "../assets/img/zvezda.webp";
 import { Link } from "react-router-dom";
+import { generateSignature } from "../utils/auth";
 
 const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [response, setResponse] = useState(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [businessField, setBusinessField] = useState("");
@@ -18,72 +19,66 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
 
   if (!isVisible) return null;
 
-  const createSignature = (method, params, secret) => {
-    const sortedKeys = Object.keys(params).sort();
-    console.log(sortedKeys);
-    const sortedParams = {};
-    sortedKeys.forEach((key) => {
-      sortedParams[key] = params[key];
-    });
+  const createCustomer = async (customerData) => {
+    const method = "/v1/zcrm/customers";
+    const signature = generateSignature(method, customerData);
 
-    console.log(
-      sortedKeys.forEach((key) => {
-        sortedParams[key] = params[key];
-      })
-    );
-
-    const paramsStr = new URLSearchParams(sortedParams).toString();
-
-    console.log(paramsStr);
-    const stringToSign = method + paramsStr + md5(paramsStr);
-    console.log(stringToSign);
-    const hash = CryptoJS.HmacSHA1(stringToSign, secret);
-    console.log(hash);
-    const base64Hash = CryptoJS.enc.Base64.stringify(hash);
-    console.log(base64Hash);
-
-    return base64Hash;
+    try {
+      const response = await axios.post(
+        "https://example.com/v1/zcrm/customers",
+        customerData,
+        {
+          headers: {
+            Authorization: signature,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      setResponse(response.data);
+    } catch (error) {
+      console.error("Error creating customer:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userKey = "5ba4d41ebe8d429e3168";
-    const secret = "284907f1222384d26678";
-    const method = "/v1/zcrm/customers";
-
     const customerData = {
-      name: name,
-      status: "individual",
-      type: "potential",
+      name: "Good Company",
+      status: "company",
+      type: "client",
+      responsible_user_id: 20,
+      employees_count: "50",
       comment: "",
+      country: "GB",
+      city: "London",
+      address: "",
+      zip: "",
+      website: "",
+      lead_source: "manual",
+      phones: [
+        {
+          type: "work",
+          phone: "+44123456789",
+        },
+      ],
+      contacts: [
+        {
+          type: "email_work",
+          value: "good_company@example.com",
+        },
+      ],
+      labels: [{ id: 12 }, { id: 13 }],
+      utms: [{ id: 19 }, { id: 20 }],
+      custom_properties: [
+        {
+          id: 18,
+          value: "high",
+        },
+      ],
     };
 
-    const signature = createSignature(method, customerData, secret);
-
-    try {
-      // console.log(userKey);
-      // console.log(secret);
-      // console.log(signature);
-      const response = await axios.post(
-        "/api/v1/zcrm/customers",
-        customerData,
-        {
-          headers: {
-            Authorization: `${userKey}:${signature}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        alert("Client created successfully!");
-      } else {
-        console.error("Failed to create client", response);
-      }
-    } catch (error) {
-      console.error("Error creating client: ", error);
-    }
+    createCustomer(customerData);
   };
 
   const handleCloseModal = () => {
@@ -166,6 +161,11 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 политикой конфиденциальности
               </Link>
             </span>
+            {response && (
+              <div>
+                <pre>{JSON.stringify(response, null, 2)}</pre>
+              </div>
+            )}
           </div>
         </div>
       </div>
