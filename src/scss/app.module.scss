@@ -1042,6 +1042,10 @@
           left: 2%;
         }
 
+        @media (max-width: 345px) {
+          left: 0;
+        }
+
         span {
           font-size: clamp(156px, 30vw, 287px);
           font-weight: 300;
@@ -1903,6 +1907,11 @@
           width: 38%;
         }
 
+        @media (max-width: 395px) {
+          margin: 0 0 2rem 1rem;
+          width: 40%;
+        }
+
         label {
           display: block;
           font-size: clamp(15px, 2.5vw, 22px);
@@ -1931,6 +1940,10 @@
 
         @media (max-width: 380px) {
           left: 2%;
+        }
+
+        @media (max-width: 345px) {
+          font-size: 0;
         }
 
         span {
