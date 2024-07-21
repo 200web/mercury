@@ -3,6 +3,9 @@ import CryptoJS from "crypto-js";
 const userKey = process.env.REACT_APP_USER_KEY;
 const secret = process.env.REACT_APP_SECRET;
 
+console.log("User Key:", process.env.REACT_APP_USER_KEY);
+console.log("Secret:", process.env.REACT_APP_SECRET);
+
 export const generateSignature = (method, params) => {
   const sortedParams = Object.keys(params)
     .sort()
