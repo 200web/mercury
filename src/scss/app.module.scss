@@ -999,13 +999,13 @@
         }
 
         @media (max-width: 420px) {
-          width: 48%;
-          margin: 0 0 10rem 0.5rem;
+          width: 45%;
+          margin: 0 0 2.5rem 1rem;
         }
 
         @media (max-width: 365px) {
-          width: 48%;
-          margin: 0 0 10rem 0;
+          width: 45%;
+          margin: 0 0 2.5rem 1.5rem;
         }
 
         label {
@@ -1017,7 +1017,7 @@
           }
 
           @media (max-width: 365px) {
-            font-size: clamp(14px, 3vw, 22px);
+            font-size: clamp(13px, 3vw, 22px);
           }
         }
       }
@@ -1908,7 +1908,7 @@
         }
 
         @media (max-width: 395px) {
-          margin: 0 0 2rem 1rem;
+          margin: 0 0 2rem 1.5rem;
           width: 40%;
         }
 
@@ -1918,6 +1918,10 @@
 
           @media (max-width: 960px) {
             font-size: clamp(15px, 3vw, 22px);
+          }
+
+          @media (max-width: 365px) {
+            font-size: clamp(13px, 3vw, 22px);
           }
         }
       }
