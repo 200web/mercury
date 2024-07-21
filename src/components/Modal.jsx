@@ -153,7 +153,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
           </form>
           <div className={style.policy}>
             <span>
-              Отправляя данную форму. Вы даете согласие на обработку
+              Отправляя данную форму, вы даете согласие на обработку
               персональных данных, а также ознакомлен(-а) с{" "}
               <Link to="/policy" onClick={handleCloseModal}>
                 политикой конфиденциальности

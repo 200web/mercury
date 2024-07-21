@@ -301,7 +301,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(4)}
           >
             <header className={appStyle.header}>
-              <label>Приложение-планер The Path </label>
+              <label>Приложение-планер The Path</label>
             </header>
             <div className={appStyle.lower}>
               <span>04</span>
