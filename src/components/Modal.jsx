@@ -104,7 +104,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               />
               <input
                 type="text"
-                placeholder="Сфера бизнеса (не обязательно)"
+                placeholder="Сфера бизнеса (необязательно)"
                 value={businessField}
                 onChange={(e) => setBusinessField(e.target.value)}
               />
@@ -126,7 +126,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               />
               <input
                 type="text"
-                placeholder="Сколько лет работаете (не обязательно)"
+                placeholder="Сколько лет работаете (необязательно)"
                 value={yearsInBusiness}
                 onChange={(e) => setYearsInBusiness(e.target.value)}
               />
