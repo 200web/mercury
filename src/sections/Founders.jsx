@@ -133,9 +133,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Дмитрий</label>
                   <span>Автосервис</span>
@@ -159,9 +156,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Вадим</label>
                   <span>Приложение-планер</span>
@@ -183,9 +177,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
@@ -210,9 +201,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Игорь</label>
                   <span>Интернет-магазин одежды</span>
@@ -234,9 +222,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Дмитрий</label>
@@ -261,9 +246,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Вадим</label>
                   <span>Приложение-планер</span>
@@ -285,9 +267,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
@@ -314,9 +293,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Дмитрий</label>
                   <span>Автосервис</span>
@@ -340,9 +316,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Вадим</label>
                   <span>Приложение-планер</span>
@@ -364,9 +337,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
@@ -391,9 +361,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Игорь</label>
                   <span>Интернет-магазин одежды</span>
@@ -415,9 +382,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Дмитрий</label>
@@ -442,9 +406,6 @@ const Founders = ({ setIsModalVisible }) => {
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
                 </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
-                </div>
                 <div className={appStyle.name}>
                   <label>Вадим</label>
                   <span>Приложение-планер</span>
@@ -466,9 +427,6 @@ const Founders = ({ setIsModalVisible }) => {
               <div className={appStyle.reviewCardHeader}>
                 <div className={appStyle.like}>
                   <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.avatar}>
-                  <img draggable="false" src="" />
                 </div>
                 <div className={appStyle.name}>
                   <label>Мария</label>
