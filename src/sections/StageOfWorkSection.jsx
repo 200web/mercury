@@ -5,12 +5,18 @@ import radio from "../assets/img/radio.webp";
 import car from "../assets/img/car.webp";
 import desk from "../assets/img/desk.webp";
 import comp from "../assets/img/comp.webp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCards } from "../Redux/cardSlice";
 
 const StageOfWorkSection = () => {
   const [activeCard, setIsActiveCard] = React.useState(0);
   const [isClicked, setIsClicked] = React.useState(false);
   const { cards } = useSelector((state) => state.cards);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchCards());
+  }, []);
 
   const handleClick = (id) => {
     if (isClicked) return;
@@ -48,7 +54,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(1)}
           >
             <header className={appStyle.header}>
-              <label>Реклама концертов “Гио Пики” и “Метели”</label>
+              <label>{cards.length > 0 && cards[0].header}</label>
             </header>
             <div className={appStyle.lower}>
               <span>01</span>
@@ -70,22 +76,27 @@ const StageOfWorkSection = () => {
                   }`}
                 >
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[0].description[0].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Реклама концертов различных исполнителей в Европе
+                      {cards.length > 0 && cards[0].description[0].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>География</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[0].description[1].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Польша, Чехия, Германия
+                      {cards.length > 0 && cards[0].description[1].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Цели</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[0].description[2].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Продажи билетов на концерт, повышение узнаваемости
-                      мероприятия в Instagram, TikTok, Facebook, YouTube
+                      {cards.length > 0 && cards[0].description[2].text}
                     </span>
                   </div>
                 </div>
@@ -108,7 +119,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(3)}
           >
             <header className={appStyle.header}>
-              <label>Удароустойчивые столешницы Getalit</label>
+              <label>{cards.length > 0 && cards[2].header}</label>
             </header>
             <div className={appStyle.lower}>
               <span>03</span>
@@ -130,65 +141,73 @@ const StageOfWorkSection = () => {
                   }`}
                 >
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[2].description[0].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Удароустойчивые, водонепроницаемые, с огромным кол-вом
-                      стилей столешницы HPL
+                      {cards.length > 0 && cards[2].description[0].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>География</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[2].description[1].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Польша, Беларусь
+                      {cards.length > 0 && cards[2].description[1].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Цели</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[2].description[2].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Продажа столешниц + наращивание узнаваемости на польском и
-                      беларуском рынках
+                      {cards.length > 0 && cards[2].description[2].text}
                     </span>
                   </div>
                 </div>
                 <div className={appStyle.cards}>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Потрачено</span>
+                      <span>
+                        {cards.length > 0 && cards[2].cards[0].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>2440$</span>
+                      <span>{cards.length > 0 && cards[2].cards[0].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Средняя цена заявка</span>
+                      <span>
+                        {cards.length > 0 && cards[2].cards[1].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>5.2$</span>
+                      <span>{cards.length > 0 && cards[2].cards[1].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Лучшая цена заявки</span>
+                      {cards.length > 0 && cards[2].cards[2].header}
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.1$</span>
+                      <span>{cards.length > 0 && cards[2].cards[2].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Получено заявок</span>
+                      {cards.length > 0 && cards[2].cards[3].header}
                     </div>
                     <div className={appStyle.value}>
-                      <span>384</span>
+                      <span>{cards.length > 0 && cards[2].cards[3].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Новых подписок</span>
+                      {cards.length > 0 && cards[2].cards[4].header}
                     </div>
                     <div className={appStyle.value}>
-                      <span>512</span>
+                      <span>{cards.length > 0 && cards[2].cards[4].text}</span>
                     </div>
                   </div>
                 </div>
@@ -211,7 +230,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(2)}
           >
             <header className={appStyle.header}>
-              <label>Автосервис Real Auto</label>
+              <label>{cards.length > 0 && cards[1].header}</label>
             </header>
             <div className={appStyle.lower}>
               <span>02</span>
@@ -233,55 +252,69 @@ const StageOfWorkSection = () => {
                   }`}
                 >
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[1].description[0].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Автосервис с такими услугами как: покраска, удаление
-                      вмятин и царапин
+                      {cards.length > 0 && cards[1].description[0].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>География</label>
-                    <span className={appStyle.description}>Польша</span>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[1].description[1].header}
+                    </label>
+                    <span className={appStyle.description}>
+                      {cards.length > 0 && cards[1].description[1].text}
+                    </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Цели</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[1].description[2].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Новые клиенты на услуги: покраска, удаление вмятин и
-                      царапин
+                      {cards.length > 0 && cards[1].description[2].text}
                     </span>
                   </div>
                 </div>
                 <div className={appStyle.cards}>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Потрачено</span>
+                      <span>
+                        {cards.length > 0 && cards[1].cards[0].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>493$</span>
+                      <span>{cards.length > 0 && cards[1].cards[0].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Средняя цена заявки</span>
+                      <span>
+                        {cards.length > 0 && cards[1].cards[1].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.9$</span>
+                      <span>{cards.length > 0 && cards[1].cards[1].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Лучшая цена заявки</span>
+                      <span>
+                        {cards.length > 0 && cards[1].cards[2].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>3.5$</span>
+                      <span>{cards.length > 0 && cards[1].cards[2].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Получено заявок</span>
+                      <span>
+                        {cards.length > 0 && cards[1].cards[3].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>101</span>
+                      <span>{cards.length > 0 && cards[1].cards[3].text}</span>
                     </div>
                   </div>
                 </div>
@@ -304,7 +337,7 @@ const StageOfWorkSection = () => {
             onClick={() => handleClick(4)}
           >
             <header className={appStyle.header}>
-              <label>Приложение-планер The Path</label>
+              <label>{cards.length > 0 && cards[3].header}</label>
             </header>
             <div className={appStyle.lower}>
               <span>04</span>
@@ -326,56 +359,69 @@ const StageOfWorkSection = () => {
                   }`}
                 >
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Описание</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[3].description[0].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Приложение-планер для интеграции полезных привычек в жизнь
+                      {cards.length > 0 && cards[3].description[0].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>География</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[3].description[1].header}
+                    </label>
                     <span className={appStyle.description}>
-                      США, Канада, Великобритания, Австралия, Новая Зеландия
+                      {cards.length > 0 && cards[3].description[1].text}
                     </span>
                   </div>
                   <div className={appStyle.row}>
-                    <label className={appStyle.header}>Цели</label>
+                    <label className={appStyle.header}>
+                      {cards.length > 0 && cards[3].description[2].header}
+                    </label>
                     <span className={appStyle.description}>
-                      Новые скачивания приложения через рекламу в Meta, оплаты
-                      подписки 
+                      {cards.length > 0 && cards[3].description[2].text}
                     </span>
                   </div>
                 </div>
                 <div className={appStyle.cards}>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Потрачено</span>
+                      <span>
+                        {cards.length > 0 && cards[3].cards[0].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>1004$</span>
+                      <span>{cards.length > 0 && cards[3].cards[0].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Количество скачиваний</span>
+                      <span>
+                        {cards.length > 0 && cards[3].cards[1].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>93</span>
+                      <span>{cards.length > 0 && cards[3].cards[1].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Лучшая стоимость одного скачивания</span>
+                      <span>
+                        {cards.length > 0 && cards[3].cards[2].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.5$</span>
+                      <span>{cards.length > 0 && cards[3].cards[2].text}</span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
                     <div className={appStyle.HText}>
-                      <span>Среднемесячная стоимость одного скачивания</span>
+                      <span>
+                        {cards.length > 0 && cards[3].cards[3].header}
+                      </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>11.2$</span>
+                      <span>{cards.length > 0 && cards[3].cards[3].text}</span>
                     </div>
                   </div>
                 </div>
