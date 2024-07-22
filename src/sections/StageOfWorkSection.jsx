@@ -5,10 +5,12 @@ import radio from "../assets/img/radio.webp";
 import car from "../assets/img/car.webp";
 import desk from "../assets/img/desk.webp";
 import comp from "../assets/img/comp.webp";
+import { useSelector } from "react-redux";
 
 const StageOfWorkSection = () => {
   const [activeCard, setIsActiveCard] = React.useState(0);
   const [isClicked, setIsClicked] = React.useState(false);
+  const { cards } = useSelector((state) => state.cards);
 
   const handleClick = (id) => {
     if (isClicked) return;
@@ -27,6 +29,7 @@ const StageOfWorkSection = () => {
       setIsClicked(false);
     }
   };
+
   return (
     <section className={appStyle.section} onClick={handleClickLeaveSection}>
       <div className={appStyle.caseBlock} id="Портфолио">
