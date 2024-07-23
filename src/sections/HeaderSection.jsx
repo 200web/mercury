@@ -67,11 +67,15 @@ const HeaderSection = ({ setIsModalVisible }) => {
             </span>
             <div className={appStyle.descriptionButton}>
               <div className={appStyle.button} onClick={setIsModalVisible}>
-                <span>Бесплатная консультация</span>
+                <span>Консультация</span>
               </div>
               <div className={appStyle.state}>
                 <img src={loaded} alt="access" />
-                <span>сейчас</span>
+                <span>Бесплатно </span>
+              </div>
+              <div className={appStyle.state}>
+                <img src={loaded} alt="access" />
+                <span>Cейчас</span>
               </div>
             </div>
           </div>
