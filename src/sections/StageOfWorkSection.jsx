@@ -11,6 +11,7 @@ import { fetchCards } from "../Redux/cardSlice";
 const StageOfWorkSection = () => {
   const [activeCard, setIsActiveCard] = React.useState(0);
   const [isClicked, setIsClicked] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 960);
   const { cards } = useSelector((state) => state.cards);
   const dispatch = useDispatch();
 
@@ -22,6 +23,12 @@ const StageOfWorkSection = () => {
     if (isClicked) return;
     setIsClicked(true);
     setIsActiveCard(id);
+    if (isMobile) {
+      const element = document.getElementById("Портфолио");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const handleClickLeave = () => {
@@ -35,6 +42,18 @@ const StageOfWorkSection = () => {
       setIsClicked(false);
     }
   };
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 960);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <section className={appStyle.section} onClick={handleClickLeaveSection}>

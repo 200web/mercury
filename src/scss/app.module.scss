@@ -147,11 +147,12 @@
 
     .descriptionButton {
       display: flex;
-      margin-top: clamp(5vh, 50vw, 26vh);
+      margin-top: 28vh;
       z-index: 50;
 
       .button {
         background-color: #4a5dea;
+        min-width: fit-content;
         font-size: clamp(13px, 1.7vw, 19px);
         padding: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 2vw, 1.5rem);
         border-radius: 60px;
@@ -175,6 +176,8 @@
           top: 50%;
           left: clamp(30%, 3vw, 40%);
           transform: translate(-50%, -50%);
+          filter: sepia(100%) saturate(0%) hue-rotate(255deg) brightness(150%)
+            contrast(200%);
         }
 
         span {
@@ -383,7 +386,7 @@
     }
 
     @media (max-width: 500px) {
-      height: clamp(57rem, 215vw, 62rem);
+      height: clamp(58rem, 215vw, 62rem);
     }
 
     @media (max-width: 350px) {
@@ -1297,10 +1300,11 @@
           right: none;
           left: 5%;
           width: 35%;
+          margin: 0 0 3rem 0;
 
           @media (max-width: 960px) {
             bottom: 0;
-            left: 0;
+            left: 2rem;
             top: 3%;
           }
 
@@ -1639,6 +1643,9 @@
                       font-size: clamp(10px, 3vw, 22px);
                     }
                   }
+                }
+
+                @media (max-width: 430px) {
                   animation: fly-down3 4s ease-in-out infinite;
                 }
               }
@@ -2180,7 +2187,7 @@
     overflow: hidden;
 
     @media (max-width: 960px) {
-      height: 50rem;
+      height: 55rem;
 
       .upperCard {
         width: 100%;
@@ -2226,7 +2233,9 @@
         top: 23%;
 
         .header {
-          bottom: 20%;
+          bottom: none;
+          top: 0;
+          margin: 2rem 0 0 2rem;
         }
 
         &.active {
@@ -2234,7 +2243,7 @@
           height: 40rem;
 
           @media (max-width: 700px) {
-            height: 47rem;
+            height: 44rem;
           }
 
           .header {
@@ -2285,7 +2294,7 @@
         }
 
         &.active {
-          height: 48rem;
+          height: 55rem;
 
           .header {
             top: 5%;
@@ -2848,6 +2857,16 @@
           }
         }
 
+        :nth-of-type(5) {
+          header {
+            .image {
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
         .card {
           flex: 1 1 calc(33% - 1rem);
           background-color: #f3ffbe;
@@ -2889,8 +2908,12 @@
               width: 150px;
             }
 
-            @media (max-width: 420px) {
+            @media (max-width: 380px) {
               width: 130px;
+            }
+
+            @media (max-width: 330px) {
+              width: 120px;
             }
           }
         }
@@ -2935,11 +2958,13 @@
       position: relative;
 
       &__contact {
-        width: 50%;
-        padding-top: 0.5em;
+        width: 100%;
+        padding-top: 1em;
 
         @media (max-width: 900px) {
           position: absolute;
+          text-align: center;
+          padding-top: 4em;
         }
 
         label {
@@ -2948,7 +2973,7 @@
           font-family: "Inter";
           font-weight: 500;
           color: rgb(0, 0, 0);
-          font-size: clamp(30px, 5vw, 64px);
+          font-size: clamp(50px, 5vw, 64px);
         }
       }
     }
@@ -2964,7 +2989,7 @@
 
       @media (max-width: 900px) {
         width: 100%;
-        margin-top: 5rem;
+        margin-top: 12rem;
       }
 
       .socialContainer {
@@ -3095,10 +3120,14 @@
     height: clamp(38rem, 30vw, 80rem);
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
 
     @media (max-width: 800px) {
-      height: 450px;
+      height: 400px;
+    }
+
+    @media (max-width: 560px) {
+      height: 300px;
     }
 
     img {
@@ -3106,10 +3135,6 @@
       height: 100%;
       object-fit: contain;
       z-index: 2;
-
-      @media (max-width: 430px) {
-        object-fit: cover;
-      }
     }
 
     &::before {
@@ -3118,7 +3143,7 @@
       width: 100%;
       height: 28%;
       background: rgb(2, 2, 2);
-      filter: blur(20px);
+      filter: blur(15px);
       left: 0;
       bottom: -10%;
       z-index: 3;
@@ -3145,7 +3170,7 @@
     text-wrap: nowrap;
     z-index: -1;
     animation: animate_text_left 25s linear infinite;
-    margin-top: 5rem;
+    margin-top: -5rem;
     will-change: transform;
 
     span {
@@ -3182,12 +3207,12 @@
 
       label {
         color: #deff50;
-        font-size: 22px;
+        font-size: clamp(12px, 3vw, 22px);
       }
 
       span {
         margin-top: 1rem;
-        font-size: 35px;
+        font-size: clamp(20px, 4vw, 35px);
         font-weight: 500;
       }
     }
@@ -3512,6 +3537,7 @@
 
     @media (max-width: 550px) {
       margin-top: 5rem;
+      padding: 0 0 1rem 1rem;
     }
 
     label {
@@ -3553,7 +3579,6 @@
       cursor: pointer;
 
       img {
-        transform: rotate(180deg);
         object-fit: contain;
         filter: invert(36%) sepia(69%) saturate(3418%) hue-rotate(206deg)
           brightness(91%) contrast(89%);
@@ -3585,21 +3610,12 @@
   }
 }
 
-@keyframes animate_text_down {
+@keyframes animate_text_up {
   from {
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
     transform: translate3d(0, 0, 0);
   }
-}
-
-@keyframes animate_text_left {
-  from {
-    transform: translate3d(-50%, -50%, 0);
-  }
   to {
-    transform: translate3d(-100%, -50%, 0);
+    transform: translate3d(0, -100%, 0);
   }
 }
 
@@ -3665,12 +3681,12 @@
 
 @keyframes fly-down3 {
   0% {
-    transform: translateY(-1rem);
+    transform: translateY(-0.5rem);
   }
   50% {
-    transform: translateY(-2rem);
+    transform: translateY(-1rem);
   }
   100% {
-    transform: translateY(-1rem);
+    transform: translateY(-0.5rem);
   }
 }
