@@ -5,7 +5,7 @@ export const fetchCards = createAsyncThunk(
   "cards/fetchCardsStatus",
   async (param, thunkAPI) => {
     const { data } = await axios.get(
-      "https://669a6ce49ba098ed61ff99da.mockapi.io/cards"
+      "https://669fef36b132e2c136ff9df4.mockapi.io/cards"
     );
 
     if (data.length === 0) return thunkAPI.rejectWithValue("error");

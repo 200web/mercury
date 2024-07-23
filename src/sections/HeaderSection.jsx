@@ -12,7 +12,7 @@ import equlizer from "../assets/img/equlizer.gif";
 import mercury from "../assets/img/mercuri2.gif";
 import carouselIcon from "../assets/img/carouselIconn.gif";
 import photo from "../assets/img/cameraa.gif";
-import arrow from "../assets/img/Arrow.webp";
+import arrow from "../assets/img/Arrow.png";
 import StageOfWork from "../components/StageWork";
 import FooterContact from "../components/FooterContact";
 import Founders from "./Founders";
