@@ -1088,6 +1088,7 @@
               left: clamp(10rem, 25vw, 26rem);
               transform: translate(-55%, 0);
               transition: 0.5s;
+              filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.5));
 
               @media (max-width: 960px) {
                 width: 100%;
@@ -1509,6 +1510,7 @@
               left: clamp(10rem, 25vw, 26rem);
               transform: translate(-50%, 20%);
               transition: 0.5s;
+              filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.5));
 
               @media (max-width: 960px) {
                 width: 100%;
@@ -1981,6 +1983,7 @@
               left: clamp(10rem, 25vw, 26rem);
               transform: translate(-50%, 5%);
               transition: 0.5s;
+              filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.5));
 
               @media (max-width: 960px) {
                 width: 100%;
