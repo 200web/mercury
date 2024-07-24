@@ -72,6 +72,10 @@
     left: clamp(3rem, 5vw, 4.5rem);
     z-index: 999;
     transition: 0.5s;
+
+    @media (max-width: 360px) {
+      display: none;
+    }
   }
 
   .logo {
@@ -114,6 +118,7 @@
       transition: 0.3s;
       font-family: "Inter";
       font-size: clamp(13px, 1vw, 14px);
+      box-shadow: 0 4px 2px 1px rgb(0, 0, 0);
 
       &:hover {
         color: black;
