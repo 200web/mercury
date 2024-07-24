@@ -1,6 +1,6 @@
 import React from "react";
 import appStyle from "../scss/app.module.scss";
-import arrow from "../assets/img/Arrow.webp";
+import arrow from "../assets/img/Arrow.png";
 import radio from "../assets/img/radio.webp";
 import car from "../assets/img/car.webp";
 import desk from "../assets/img/desk.webp";

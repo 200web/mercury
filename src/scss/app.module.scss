@@ -147,7 +147,7 @@
 
     .descriptionButton {
       display: flex;
-      margin-top: 28vh;
+      margin-top: 26vh;
       z-index: 50;
 
       :nth-child(3) {
@@ -1388,7 +1388,7 @@
         }
 
         & .backBut {
-          bottom: 5%;
+          bottom: 3%;
 
           .image {
             z-index: 50;
@@ -3683,12 +3683,12 @@
 
 @keyframes fly-down3 {
   0% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-1.5rem);
   }
   50% {
-    transform: translateY(-1rem);
+    transform: translateY(-2rem);
   }
   100% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-1.5rem);
   }
 }
