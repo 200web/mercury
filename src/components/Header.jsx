@@ -91,7 +91,7 @@ const Header = ({ setIsModalVisible }) => {
           <img src={logo} alt="Logo" />
         </div>
         <div className={headerStyle.button} onClick={setIsModalVisible}>
-          <button>Форма</button>
+          <button>Консультанция</button>
         </div>
         <div
           className={`${headerStyle.menuButton} ${
