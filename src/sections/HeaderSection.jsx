@@ -41,6 +41,12 @@ const HeaderSection = ({ setIsModalVisible }) => {
     } else if (isMobile) {
       setIsHovered(true);
       setIsActiveCard(id);
+      if (isMobile) {
+        const element = document.getElementById("Услуги");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
     }
   };
 

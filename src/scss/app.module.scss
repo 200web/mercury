@@ -160,7 +160,7 @@
         background-color: #4a5dea;
         min-width: fit-content;
         font-size: clamp(13px, 1.7vw, 19px);
-        padding: clamp(0.6rem, 2vw, 1rem) 2rem;
+        padding: clamp(0.8rem, 2vw, 1rem) 2rem;
         border-radius: 60px;
         text-align: center;
         transition: 0.2s;
@@ -1886,7 +1886,7 @@
         }
 
         @media (max-width: 450px) {
-          margin: 0 0 3rem 1.8rem;
+          margin: 0 0 3rem 1.5rem;
           width: 35%;
         }
 
@@ -1896,7 +1896,7 @@
         }
 
         @media (max-width: 395px) {
-          margin: 0 0 2rem 1.5rem;
+          margin: 0 0 2rem 0.8rem;
           width: 40%;
         }
 
@@ -1931,6 +1931,7 @@
         }
 
         @media (max-width: 450px) {
+          letter-spacing: -0.8rem;
           bottom: -40%;
           left: 2%;
         }
@@ -2171,7 +2172,7 @@
   margin: 16rem auto 0 auto;
 
   @media (max-width: 560px) {
-    margin: 14rem auto 0 auto !important;
+    margin: 8rem auto 0 auto !important;
   }
 
   .Row {
@@ -2253,7 +2254,6 @@
           }
 
           .header {
-            top: 5%;
             bottom: none;
           }
 

@@ -68,14 +68,10 @@
     color: white;
     font-family: "Inter";
     font-weight: 700;
-    font-size: 20;
+    font-size: clamp(12px, 2vw, 20px);
     left: clamp(3rem, 5vw, 4.5rem);
     z-index: 999;
     transition: 0.5s;
-
-    @media (max-width: 440px) {
-      display: none;
-    }
   }
 
   .logo {
@@ -101,10 +97,10 @@
     transition: 1s;
 
     @media (max-width: 840px) {
-      transform: translateX(-65%);
+      transform: translateX(-55%);
 
       button {
-        padding: 1rem 2.5rem !important;
+        padding: 0.8rem 2.5rem !important;
       }
     }
     button {
