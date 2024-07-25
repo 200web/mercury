@@ -69,7 +69,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
           <div className={appStyle.description}>
             <label className={appStyle.HText}>Mercury Arts</label>
             <span className={appStyle.description}>
-              Помогаем бизнесу продавать свои товары и услуги в соцсетях
+              ПомTESTогаем бизнесу продавать свои товары и услуги в соцсетях
             </span>
             <div className={appStyle.descriptionButton}>
               <div className={appStyle.button} onClick={setIsModalVisible}>
