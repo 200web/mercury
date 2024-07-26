@@ -69,7 +69,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
         } else {
           const errorMessage = parsedData.leadData?.data?.error || 'An unknown error occurred';
           setErrorMessage(errorMessage);
-          setMessage(Error: ${errorMessage});
+          setMessage(`Error: ${errorMessage}`);
           console.error('Error creating lead:', errorMessage);
         }
       } else {
