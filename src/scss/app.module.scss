@@ -41,6 +41,14 @@
   width: 95%;
   margin: 4rem auto 0 auto;
 
+  @media (max-width: 1430px) {
+    .description {
+      .description {
+        width: 100% !important;
+      }
+    }
+  }
+
   @media (max-width: 560px) {
     height: 60vh;
     flex-direction: column;
@@ -48,8 +56,13 @@
     .description {
       width: 70% !important;
       height: 20vh;
+
+      @media (max-width: 355px) {
+        width: 80% !important;
+      }
+
       .description {
-        width: 90% !important;
+        width: 100% !important;
         margin-top: 1rem !important;
       }
     }
@@ -59,11 +72,11 @@
 
       .addCard1 {
         border-radius: 11px !important;
-        width: 75% !important;
+        width: 85% !important;
         height: 5rem !important;
         top: 13rem !important;
         transform: translateY(-50%);
-        left: 67%;
+        left: 77%;
 
         .description {
           padding: 0.5rem 1rem 0.5rem 0.5rem !important;
@@ -76,7 +89,7 @@
 
       .addCard2 {
         border-radius: 11px !important;
-        width: 65% !important;
+        width: 75% !important;
         height: 5rem !important;
         left: 0;
         top: 13rem !important;
@@ -89,7 +102,7 @@
 
         .lower {
           label {
-            font-size: clamp(12px, 4vw, 28px) !important;
+            font-size: clamp(16px, 4vw, 28px) !important;
           }
         }
 
@@ -100,7 +113,7 @@
 
       .addCard3 {
         bottom: 0 !important;
-        width: 80% !important;
+        width: 90% !important;
         height: 5rem !important;
         top: 18.4rem !important;
         transform: translateY(-50%);
@@ -108,7 +121,7 @@
         .description {
           width: 70% !important;
           padding: 0.5rem 0 0 0.5rem !important;
-          font-size: clamp(12px, 1.3vw, 20px) !important;
+          font-size: clamp(15px, 1.3vw, 20px) !important;
         }
 
         .number {
@@ -141,7 +154,7 @@
       font-size: clamp(16px, 3vw, 30px);
       font-family: "Inter";
       opacity: 0.75;
-      width: 63%;
+      width: 65%;
       margin-top: clamp(2rem, 5vw, 6rem);
     }
 
@@ -150,7 +163,14 @@
       margin-top: 26vh;
       z-index: 50;
 
+      :nth-child(2) {
+        .state {
+          margin-left: 1rem !important;
+        }
+      }
+
       :nth-child(3) {
+        margin-left: 1rem !important;
         span {
           margin-left: clamp(2.3rem, 6vw, 4rem) !important;
         }
@@ -159,7 +179,7 @@
       .button {
         background-color: #4a5dea;
         min-width: fit-content;
-        font-size: clamp(13px, 1.7vw, 19px);
+        font-size: clamp(14px, 1.7vw, 19px);
         padding: clamp(0.8rem, 2vw, 1rem) 2rem;
         border-radius: 60px;
         text-align: center;
@@ -187,7 +207,7 @@
         }
 
         span {
-          margin-left: clamp(2.5rem, 7vw, 4rem);
+          margin-left: clamp(3rem, 7vw, 4rem);
         }
       }
     }
@@ -248,7 +268,7 @@
           font-size: clamp(16px, 1.7vw, 22px);
 
           @media (max-width: 560px) {
-            font-size: clamp(12px, 1.3vw, 20px);
+            font-size: clamp(15px, 1.3vw, 20px);
           }
         }
       }
@@ -258,6 +278,10 @@
         height: 65%;
         display: flex;
         padding: 0 0.5rem;
+
+        @media (max-width: 560px) {
+          justify-content: space-between;
+        }
 
         label {
           width: 70%;
@@ -3621,6 +3645,15 @@
   }
   to {
     transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes animate_text_down {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }
 
