@@ -3574,6 +3574,7 @@
       width: 100%;
       font-size: clamp(23px, 6vw, 62px);
       font-family: "Inter";
+      margin-bottom: 1rem;
     }
 
     span {
@@ -3595,7 +3596,7 @@
     }
 
     @media (max-width: 550px) {
-      padding: 0 1rem 2rem 0;
+      padding: 0 1rem 0.7rem 0;
       scale: 0.7;
     }
 
