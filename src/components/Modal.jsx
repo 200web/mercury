@@ -14,6 +14,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [buttonText, setButtonText] = useState("Давайте начнём!");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -24,6 +25,18 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (isSubmitting) return;
+
+    // Validate required fields
+    if (!name || !phone) {
+      setErrorMessage("Имя и номер телефона обязательны для заполнения");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setButtonText("Отправка...");
+
     let comment = "lead from web";
 
     if (businessField) {
@@ -55,7 +68,6 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
 
       console.log("Response data:", response.data);
 
-      // Extract JSON part from the response data
       const jsonResponse = response.data.match(/{.*}/s);
       if (jsonResponse) {
         const parsedData = JSON.parse(jsonResponse[0]);
@@ -64,22 +76,27 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
           setErrorMessage('');
           setResponse(parsedData);
           setMessage('Lead created successfully');
-          setButtonText("Отправлено!");
+          setButtonText("Отправлено!"); // Устанавливаем текст кнопки "Отправлено!" при успешной отправке
           console.log('success');
         } else {
           const errorMessage = parsedData.leadData?.data?.error || 'An unknown error occurred';
-          setErrorMessage(errorMessage);
+          setErrorMessage("Номер введен неверно или уже существует");
           setMessage(`Error: ${errorMessage}`);
           console.error('Error creating lead:', errorMessage);
+          setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
         }
       } else {
         setErrorMessage('Не удалось обработать ответ сервера');
         console.error('Ошибка обработки ответа:', response.data);
+        setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
       }
     } catch (error) {
-      setErrorMessage('Номер введен неверно или уже существует');
+      setErrorMessage('Произошла ошибка при отправке данных. Попробуйте еще раз.');
       setMessage('An error occurred while submitting the form. Please try again.');
       console.error('Произошла ошибка при отправке данных.', error);
+      setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -105,6 +122,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 placeholder="Ваше имя"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
               <input
                 type="text"
@@ -127,6 +145,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 placeholder="Номер телефона"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                required
               />
               <input
                 type="text"
@@ -153,16 +172,13 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
             </div>
             {errorMessage && (
               <div className={style.errorMessage} style={{ color: 'red', marginBottom: '10px' }}>
-                Номер введен неверно или уже существует
+                {errorMessage}
               </div>
             )}
-            {/* {message && (
-              <div className={style.message} style={{ color: 'green', marginBottom: '10px' }}>
-                {message}
-              </div>
-            )} */}
             <div className={style.submitButton}>
-              <button type="submit">{buttonText}</button>
+              <button type="submit" disabled={isSubmitting}>
+                {buttonText}
+              </button>
             </div>
           </form>
           <div className={style.policy}>
