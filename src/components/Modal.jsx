@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import style from "../scss/components/modal.module.scss";
 import zvezda from "../assets/img/zvezda.webp";
 import { Link } from "react-router-dom";
-import { generateSignature } from "../utils/auth";
 
 const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [response, setResponse] = useState(null);
@@ -12,71 +11,93 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [businessField, setBusinessField] = useState("");
   const [yearsInBusiness, setYearsInBusiness] = useState("");
   const [trafficKPI, setTrafficKPI] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [buttonText, setButtonText] = useState("Давайте начнём!");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    console.log("Current errorMessage:", errorMessage);
+  }, [errorMessage]);
 
   if (!isVisible) return null;
 
-  const createCustomer = async (customerData) => {
-    const method = "https://api.zadarma.com/v1/zcrm/customers";
-    const signature = generateSignature(method, customerData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    if (isSubmitting) return;
 
-    console.log("Generated Signature:", signature);
-    console.log("Customer Data:", customerData);
+    // Validate required fields
+    if (!name || !phone) {
+      setErrorMessage("Имя и номер телефона обязательны для заполнения");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setButtonText("Отправка...");
+
+    let comment = "lead from web";
+
+    if (businessField) {
+      comment += `, Сфера бизнеса: ${businessField}`;
+    }
+    if (yearsInBusiness) {
+      comment += `, Сколько лет работаете: ${yearsInBusiness}`;
+    }
+    if (trafficKPI) {
+      comment += `, Где запускали / планируете запускать трафик KPI: ${trafficKPI}`;
+    }
+
+    const customerData = {
+      name,
+      phones: [{ phone }],
+      comment
+    };
 
     try {
       const response = await axios.post(
-        "/api/v1/zcrm/customers",
+        'https://mercury-php.vercel.app/api/index.php',
         customerData,
         {
           headers: {
-            Authorization: signature,
+            'Content-Type': 'application/json',
           },
         }
       );
-      setResponse(response.data);
+
+      console.log("Response data:", response.data);
+
+      const jsonResponse = response.data.match(/{.*}/s);
+      if (jsonResponse) {
+        const parsedData = JSON.parse(jsonResponse[0]);
+
+        if (parsedData.status === 'success' && !parsedData.leadData?.data?.error) {
+          setErrorMessage('');
+          setResponse(parsedData);
+          setMessage('Lead created successfully');
+          setButtonText("Отправлено!"); // Устанавливаем текст кнопки "Отправлено!" при успешной отправке
+          console.log('success');
+        } else {
+          const errorMessage = parsedData.leadData?.data?.error || 'An unknown error occurred';
+          setErrorMessage("Номер введен неверно или уже существует");
+          setMessage(`Error: ${errorMessage}`);
+          console.error('Error creating lead:', errorMessage);
+          setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+        }
+      } else {
+        setErrorMessage('Не удалось обработать ответ сервера');
+        console.error('Ошибка обработки ответа:', response.data);
+        setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+      }
     } catch (error) {
-      console.error("Error creating customer:", error);
+      setErrorMessage('Произошла ошибка при отправке данных. Попробуйте еще раз.');
+      setMessage('An error occurred while submitting the form. Please try again.');
+      console.error('Произошла ошибка при отправке данных.', error);
+      setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+    } finally {
+      setIsSubmitting(false);
     }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const customerData = {
-      name: "Good Company",
-      status: "company",
-      type: "client",
-      responsible_user_id: 20,
-      employees_count: "50",
-      comment: "",
-      country: "GB",
-      city: "London",
-      address: "",
-      zip: "",
-      website: "",
-      lead_source: "manual",
-      phones: [
-        {
-          type: "work",
-          phone: "+44123456789",
-        },
-      ],
-      contacts: [
-        {
-          type: "email_work",
-          value: "good_company@example.com",
-        },
-      ],
-      labels: [{ id: 12 }, { id: 13 }],
-      utms: [{ id: 19 }, { id: 20 }],
-      custom_properties: [
-        {
-          id: 18,
-          value: "high",
-        },
-      ],
-    };
-
-    createCustomer(customerData);
   };
 
   const handleCloseModal = () => {
@@ -101,6 +122,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 placeholder="Ваше имя"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
               <input
                 type="text"
@@ -123,6 +145,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 placeholder="Номер телефона"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                required
               />
               <input
                 type="text"
@@ -147,8 +170,15 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 onChange={(e) => setTrafficKPI(e.target.value)}
               />
             </div>
+            {errorMessage && (
+              <div className={style.errorMessage} style={{ color: 'red', marginBottom: '10px' }}>
+                {errorMessage}
+              </div>
+            )}
             <div className={style.submitButton}>
-              <button type="submit">Давайте начнём!</button>
+              <button type="submit" disabled={isSubmitting}>
+                {buttonText}
+              </button>
             </div>
           </form>
           <div className={style.policy}>
@@ -159,11 +189,6 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
                 политикой конфиденциальности
               </Link>
             </span>
-            {response && (
-              <div>
-                <pre>{JSON.stringify(response, null, 2)}</pre>
-              </div>
-            )}
           </div>
         </div>
       </div>
