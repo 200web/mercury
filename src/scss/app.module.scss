@@ -54,7 +54,7 @@
     flex-direction: column;
 
     .description {
-      width: 70% !important;
+      width: 80% !important;
       height: 20vh;
 
       @media (max-width: 355px) {
@@ -79,7 +79,7 @@
         left: 77%;
 
         .description {
-          padding: 0.5rem 1rem 0.5rem 0.5rem !important;
+          padding: 0.2rem 1rem 0.5rem 0.5rem !important;
         }
 
         img {
@@ -102,7 +102,7 @@
 
         .lower {
           label {
-            font-size: clamp(16px, 4vw, 28px) !important;
+            font-size: clamp(18px, 4vw, 28px) !important;
           }
         }
 
@@ -121,7 +121,7 @@
         .description {
           width: 70% !important;
           padding: 0.5rem 0 0 0.5rem !important;
-          font-size: clamp(15px, 1.3vw, 20px) !important;
+          font-size: clamp(16px, 1.3vw, 20px) !important;
         }
 
         .number {
@@ -179,7 +179,7 @@
       .button {
         background-color: #4a5dea;
         min-width: fit-content;
-        font-size: clamp(14px, 1.7vw, 19px);
+        font-size: clamp(16px, 1.7vw, 19px);
         padding: clamp(0.8rem, 2vw, 1rem) 2rem;
         border-radius: 60px;
         text-align: center;
@@ -195,7 +195,7 @@
       .state {
         text-align: center;
         margin: auto 0;
-        font-size: clamp(11px, 2vw, 19px);
+        font-size: clamp(13px, 2vw, 19px);
         img {
           position: absolute;
           width: clamp(50px, 2vw, 70px);
@@ -230,7 +230,7 @@
       .description {
         width: 45%;
         padding: 0.5rem 1rem 0.5rem 1rem;
-        font-size: clamp(13.6px, 1.7vw, 22px);
+        font-size: clamp(15px, 1.7vw, 22px);
         z-index: 8;
       }
 
@@ -268,7 +268,7 @@
           font-size: clamp(16px, 1.7vw, 22px);
 
           @media (max-width: 560px) {
-            font-size: clamp(15px, 1.3vw, 20px);
+            font-size: clamp(17px, 1.3vw, 20px);
           }
         }
       }
@@ -876,8 +876,8 @@
         height: 80%;
 
         & .header {
-          bottom: 73%;
-          right: 68%;
+          bottom: 72%;
+          right: 57%;
           width: 33rem;
           @media (max-width: 1295px) {
             width: 40%;
