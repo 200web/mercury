@@ -121,9 +121,9 @@
         .description {
           width: 70% !important;
           padding: 0.5rem 0 0 0.5rem !important;
-          font-size: clamp(16px, 1.3vw, 20px) !important;
+          font-size: clamp(15.5px, 1.3vw, 20px) !important;
 
-          @media (max-width: 349px) {
+          @media (max-width: 370px) {
             font-size: clamp(14px, 1.3vw, 20px) !important;
           }
         }
