@@ -119,11 +119,12 @@
         transform: translateY(-50%);
         border-radius: 11px !important;
         .description {
-          width: 70% !important;
+          width: 8rem !important;
           padding: 0.5rem 0 0 0.5rem !important;
           font-size: clamp(15.5px, 1.3vw, 20px) !important;
 
           @media (max-width: 370px) {
+            width: 7rem !important;
             font-size: clamp(14px, 1.3vw, 20px) !important;
           }
         }
@@ -250,7 +251,7 @@
       .description {
         width: 45%;
         padding: 0.5rem 1rem 0.5rem 1rem;
-        font-size: clamp(15px, 1.7vw, 22px);
+        font-size: clamp(14.5px, 1.7vw, 22px);
         z-index: 8;
       }
 
