@@ -17,14 +17,59 @@ import StageOfWork from "../components/StageWork";
 import FooterContact from "../components/FooterContact";
 import Founders from "./Founders";
 import StageOfWorkSection from "./StageOfWorkSection";
-
-const HeaderSection = ({ setIsModalVisible }) => {
+const HeaderSection = ({ setIsModalVisible, selectedLocale }) => {
   const [activeCard, setIsActiveCard] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 960);
 
+  const [mainData, setMainData] = React.useState({
+    Name: "Mercury Arts",
+    Description: "Помогаем бизнесу продавать свои товары и услуги в соцсетях",
+    Consultation_button: "Консультация",
+    Promo_text0: "Бесплатно",
+    Promo_text1: "Сейчас",
+    Card0: "Увеличиваем продажи",
+    Card1: "Работаем на рынках EU USA",
+    Card2: "Опыт работы в различных нишах 40+",
+  });
+
   const timestamp = new Date().getTime();
   const apngSrc = `${stat}?${timestamp}`;
+
+  // Загружаем данные с API при смене локали
+  React.useEffect(() => {
+    console.log("Selected Locale:", selectedLocale); // Проверка значения локал
+    const fetchMainData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/main-screen?locale=${selectedLocale}`
+        );
+        if (response.ok) {
+          const result = await response.json();
+          const fetchedData = result.data;
+
+          setMainData((prevData) => ({
+            ...prevData,
+            Name: fetchedData.Name || prevData.Name,
+            Description: fetchedData.Description || prevData.Description,
+            Consultation_button:
+              fetchedData.Consultation_button || prevData.Consultation_button,
+            Promo_text0: fetchedData.Promo_text0 || prevData.Promo_text0,
+            Promo_text1: fetchedData.Promo_text1 || prevData.Promo_text1,
+            Card0: fetchedData.Card0 || prevData.Card0,
+            Card1: fetchedData.Card1 || prevData.Card1,
+            Card2: fetchedData.Card2 || prevData.Card2,
+          }));
+        } else {
+          console.error("Ошибка получения данных с сервера");
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+      }
+    };
+
+    fetchMainData();
+  }, [selectedLocale]);
 
   const handleMoveOver = (id) => {
     setIsHovered(true);
@@ -67,21 +112,19 @@ const HeaderSection = ({ setIsModalVisible }) => {
       <section className={appStyle.section}>
         <div className={appStyle.headerBlock}>
           <div className={appStyle.description}>
-            <label className={appStyle.HText}>Mercury Arts</label>
-            <span className={appStyle.description}>
-              ПомTESTогаем бизнесу продавать свои товары и услуги в соцсетях
-            </span>
+            <label className={appStyle.HText}>{mainData.Name}</label>
+            <span className={appStyle.description}>{mainData.Description}</span>
             <div className={appStyle.descriptionButton}>
               <div className={appStyle.button} onClick={setIsModalVisible}>
-                <span>Консультация</span>
+                <span>{mainData.Consultation_button}</span>
               </div>
               <div className={appStyle.state}>
                 <img src={loaded} alt="access" />
-                <span>Бесплатно </span>
+                <span>{mainData.Promo_text0} </span>
               </div>
               <div className={appStyle.state}>
                 <img src={loaded} alt="access" />
-                <span>Cейчас</span>
+                <span>{mainData.Promo_text1}</span>
               </div>
             </div>
           </div>
@@ -94,13 +137,13 @@ const HeaderSection = ({ setIsModalVisible }) => {
             />
             <div className={appStyle.addCard1}>
               <div className={appStyle.description}>
-                <span>Увеличиваем продажи</span>
+                <span>{mainData.Card0}</span>
               </div>
               <img draggable="false" src={apngSrc} alt="stat" />
             </div>
             <div className={appStyle.addCard2}>
               <div className={appStyle.description}>
-                <span>Работаем на рынках</span>
+                <span>{mainData.Card1}</span>
               </div>
               <div className={appStyle.lower}>
                 <label>EU USA</label>
@@ -111,7 +154,7 @@ const HeaderSection = ({ setIsModalVisible }) => {
             </div>
             <div className={appStyle.addCard3}>
               <div className={appStyle.description}>
-                <span>Опыт работы в различных нишах</span>
+                <span>{mainData.Card2}</span>
               </div>
               <label className={appStyle.number}>40+</label>
             </div>
