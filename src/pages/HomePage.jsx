@@ -16,7 +16,8 @@ const HomePage = ({ setIsModalVisible }) => {
         setIsModalVisible={setIsModalVisible}
         selectedLocale={selectedLocale} // Передача локали
       />
-      <Footer />
+      <Footer 
+      selectedLocale={selectedLocale}/>
     </>
   );
 };

@@ -61,7 +61,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
     const fetchMenuData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/menu?locale=${selectedLocale}`
+          `${process.env.REACT_APP_API_URL}api/menu?locale=${selectedLocale}`
         );
         const result = await response.json();
         setMenuData(result.data); 

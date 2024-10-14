@@ -1,18 +1,24 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import appStyle from "../scss/app.module.scss";
-import arrow from "../assets/img/Arrow.webp";
+
 import like from "../assets/img/like.webp";
 import evgen from "../assets/img/Evgen.webp";
 import georgiy from "../assets/img/georgi.webp";
 import arrowLeft from "../assets/img/arrow Left.png";
 import arrowRight from "../assets/img/arrow Right.png";
+import Reviews from "./Reviews";
+import FormSection from "./FormSection";
 
-const Founders = ({ setIsModalVisible }) => {
+const Founders = ({ setIsModalVisible, selectedLocale }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [isAnimating, setIsAnimating] = React.useState(false);
+  const [isPaused, setIsPaused] = React.useState(false);
   const firstRowRef = useRef(null);
   const secondRowRef = useRef(null);
-  const persons = [
+  const [foundersData, setFoundersData] = React.useState([]);
+  const [title, setTitle] = React.useState("Основатели"); // Добавлено состояние для заголовка
+
+  const defaultFounders = [
     {
       name: "Евгений Полудень",
       headerLabel: "Сооснователь и Генеральный директор",
@@ -29,9 +35,49 @@ const Founders = ({ setIsModalVisible }) => {
     },
   ];
 
-  const [isPaused, setIsPaused] = React.useState(false);
-
   React.useEffect(() => {
+    const fetchFoundersData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/founder?locale=${selectedLocale}`
+        );
+        if (response.ok) {
+          const result = await response.json();
+          const data = result.data;
+
+          // Устанавливаем заголовок из данных
+          setTitle(data.Foundes_title);
+
+          setFoundersData([
+            {
+              name: data.Foundes_name,
+              headerLabel: data.Foundes_position,
+              headerSpan: data.Foundes_name,
+              description: data.Foundes_description,
+              image: evgen,
+            },
+            {
+              name: data.Foundes_name2,
+              headerLabel: data.Foundes_position2,
+              headerSpan: data.Foundes_name2,
+              description: data.Foundes_description2,
+              image: georgiy,
+            },
+          ]);
+        } else {
+          console.error("Ошибка получения данных с сервера");
+          setFoundersData(defaultFounders); // Используем резервные данные на русском
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+        setFoundersData(defaultFounders); // Используем резервные данные на русском
+      }
+    };
+
+    fetchFoundersData();
+  }, [selectedLocale]);
+
+  useEffect(() => {
     if (firstRowRef.current && secondRowRef.current) {
       const firstRow = firstRowRef.current;
       const secondRow = secondRowRef.current;
@@ -58,7 +104,7 @@ const Founders = ({ setIsModalVisible }) => {
     setIsAnimating(true);
     setTimeout(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? persons.length - 1 : prevIndex - 1
+        prevIndex === 0 ? foundersData.length - 1 : prevIndex - 1
       );
       setIsAnimating(false);
     }, 300);
@@ -68,19 +114,19 @@ const Founders = ({ setIsModalVisible }) => {
     setIsAnimating(true);
     setTimeout(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === persons.length - 1 ? 0 : prevIndex + 1
+        prevIndex === foundersData.length - 1 ? 0 : prevIndex + 1
       );
       setIsAnimating(false);
     }, 300);
   };
 
-  const currentPerson = persons[currentIndex];
+  const currentPerson = foundersData.length > 0 ? foundersData[currentIndex] : defaultFounders[0];
 
   return (
     <section className={appStyle.section}>
       <div className={appStyle.foundersBlock}>
         <div className={appStyle.Row}>
-          <label>Founders</label>
+          <label>{title}</label> {/* Используем заголовок из данных */}
         </div>
         <div className={appStyle.image}>
           <img
@@ -96,9 +142,8 @@ const Founders = ({ setIsModalVisible }) => {
           <span>{currentPerson.name}</span>
         </span>
         <div
-          className={`${appStyle.descriptionContainer} ${
-            isAnimating ? appStyle.fadeOut : appStyle.fadeIn
-          }`}
+          className={`${appStyle.descriptionContainer} ${isAnimating ? appStyle.fadeOut : appStyle.fadeIn
+            }`}
         >
           <div className={appStyle.header}>
             <label>{currentPerson.headerLabel}</label>
@@ -118,333 +163,9 @@ const Founders = ({ setIsModalVisible }) => {
           </button>
         </div>
       </div>
-      <div className={appStyle.rewievsBlock}>
-        <div className={appStyle.Row}>
-          <label>Наши отзывы</label>
-        </div>
-        <div className={appStyle.rewievsCarousel}>
-          <div className={appStyle.firstVertRow} ref={firstRowRef}>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Дмитрий</label>
-                  <span>Автосервис</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts сделали для нас рекламу, которая
-                  привлекла новых клиентов в наш автосервис. За короткое время
-                  количество записей на обслуживание выросло, и мы довольны
-                  результатом.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Вадим</label>
-                  <span>Приложение-планер</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Большое спасибо, агентство отлично справилось с задачей.
-                  Ребята всегда оперативно реагируют на запросы, и работать с
-                  ними очень комфортно.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Мария</label>
-                  <span>Ресторан</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Мы долго искали подрядчиков по соцсетям, и парни предложили
-                  четкую стратегию, которая сработала! Теперь у нас стабильно
-                  растет аудитория в профиле и полный зал по вечерам и выходным.
-                  Рекомендуем!
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Игорь</label>
-                  <span>Интернет-магазин одежды</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts помогли нам настроить конверсионные
-                  кампании в Instagram и Facebook. Продажи выросли, планируем
-                  расширять ассортимент товарок на рекламу. Отличная работа!
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Дмитрий</label>
-                  <span>Автосервис</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts сделали для нас рекламу, которая
-                  привлекла новых клиентов в наш автосервис. За короткое время
-                  количество записей на обслуживание выросло, и мы довольны
-                  результатом.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Вадим</label>
-                  <span>Приложение-планер</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Большое спасибо, агентство отлично справилось с задачей.
-                  Ребята всегда оперативно реагируют на запросы, и работать с
-                  ними очень комфортно.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Мария</label>
-                  <span>Ресторан</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Мы долго искали подрядчиков по соцсетям, и парни предложили
-                  четкую стратегию, которая сработала! Теперь у нас стабильно
-                  растет аудитория в профиле и полный зал по вечерам и выходным.
-                  Рекомендуем!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className={appStyle.secondVertRow} ref={secondRowRef}>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Дмитрий</label>
-                  <span>Автосервис</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts сделали для нас рекламу, которая
-                  привлекла новых клиентов в наш автосервис. За короткое время
-                  количество записей на обслуживание выросло, и мы довольны
-                  результатом.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Вадим</label>
-                  <span>Приложение-планер</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Большое спасибо, агентство отлично справилось с задачей.
-                  Ребята всегда оперативно реагируют на запросы, и работать с
-                  ними очень комфортно.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Мария</label>
-                  <span>Ресторан</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Мы долго искали подрядчиков по соцсетям, и парни предложили
-                  четкую стратегию, которая сработала! Теперь у нас стабильно
-                  растет аудитория в профиле и полный зал по вечерам и выходным.
-                  Рекомендуем!
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Игорь</label>
-                  <span>Интернет-магазин одежды</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts помогли нам настроить конверсионные
-                  кампании в Instagram и Facebook. Продажи выросли, планируем
-                  расширять ассортимент товарок на рекламу. Отличная работа!
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Дмитрий</label>
-                  <span>Автосервис</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Ребята из Mercury Arts сделали для нас рекламу, которая
-                  привлекла новых клиентов в наш автосервис. За короткое время
-                  количество записей на обслуживание выросло, и мы довольны
-                  результатом.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Вадим</label>
-                  <span>Приложение-планер</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Большое спасибо, агентство отлично справилось с задачей.
-                  Ребята всегда оперативно реагируют на запросы, и работать с
-                  ними очень комфортно.
-                </p>
-              </div>
-            </div>
-            <div
-              className={appStyle.card}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>Мария</label>
-                  <span>Ресторан</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>
-                  Мы долго искали подрядчиков по соцсетям, и парни предложили
-                  четкую стратегию, которая сработала! Теперь у нас стабильно
-                  растет аудитория в профиле и полный зал по вечерам и выходным.
-                  Рекомендуем!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <Reviews selectedLocale={selectedLocale} />
+      {/* 
       <div className={appStyle.formButton}>
         <div className={appStyle.label}>
           <label>Заполни форму</label>
@@ -455,7 +176,12 @@ const Founders = ({ setIsModalVisible }) => {
             <img draggable="false" src={arrow} alt="arrow" />
           </div>
         </div>
-      </div>
+      </div> */}
+
+      <FormSection
+        setIsModalVisible={setIsModalVisible}
+        selectedLocale={selectedLocale} />
+
     </section>
   );
 };

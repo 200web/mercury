@@ -532,7 +532,7 @@
       &.hidden {
         transition: 0.5s;
         transform: translateY(-110%);
-
+       
         @media (max-width: 960px) {
           transform: translate(-105%, 0);
         }
@@ -853,8 +853,10 @@
 
         & .header {
           bottom: 73%;
-          right: 68%;
+          // right: 70%;
+          left: 3%;
           width: 33rem;
+          // margin: 0 0 0 0;
           @media (max-width: 1295px) {
             width: 40%;
             margin: 0 0 3rem 0;
@@ -3366,14 +3368,14 @@
     }
 
     .firstVertRow {
-      animation: animate_text_up 25s linear infinite;
+      animation: animate_text_up 40s linear infinite;
     }
 
     .secondVertRow {
-      animation: animate_text_down 25s linear infinite;
+      animation: animate_text_down 40s linear infinite;
 
       @media (max-width: 900px) {
-        animation: animate_text_up 25s linear infinite;
+        animation: animate_text_up 40s linear infinite;
       }
     }
 
@@ -3616,13 +3618,23 @@
 }
 
 @keyframes animate_text_up {
-  from {
-    transform: translate3d(0, 0, 0);
+  0% {
+    transform: translateY(100%);
   }
-  to {
-    transform: translate3d(0, -100%, 0);
+  100% {
+    transform: translateY(-100%);
   }
 }
+
+@keyframes animate_text_down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 
 @keyframes fly-up {
   0% {
