@@ -10,12 +10,20 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const lastScrollY = useRef(0);
 
-  const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false); 
+  const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false);
   const [menuData, setMenuData] = useState(null);
-  
+
   const browserLocale = navigator.language.split("-")[0];
 
-  const [selectedLocale, setSelectedLocaleState] = useState("en"); // Установим начальное значение по умолчанию
+  const [selectedLocale, setSelectedLocaleState] = useState(browserLocale); // Установим начальное значение по умолчанию
+
+  const defaultMenuData = {
+    Services: "Услуги",
+    Stages: "Этапы работы",
+    Portfolio: "Портфолио",
+    Contacts: "Контакты",
+    Form: "Форма"
+  };
 
   const handleMenuVisible = () => {
     setMenuVisible(!menuVisible);
@@ -64,9 +72,10 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
           `${process.env.REACT_APP_API_URL}api/menu?locale=${selectedLocale}`
         );
         const result = await response.json();
-        setMenuData(result.data); 
+        setMenuData(result.data || defaultMenuData); // Если ответа нет, используем русские значения
       } catch (error) {
         console.error("Error fetching menu data:", error);
+        setMenuData(defaultMenuData); // Если произошла ошибка, заполняем данными по умолчанию
       }
     };
 
@@ -81,14 +90,12 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
   };
 
   useEffect(() => {
-    console.log(`Сохранённая локаль: ${localStorage.getItem("locale")}, Текущая локаль: ${selectedLocale}`);  
+    console.log(`Сохранённая локаль: ${localStorage.getItem("locale")}, Текущая локаль: ${selectedLocale}`);
   }, [selectedLocale]);
-
   return (
     <header
-      className={`${headerStyle.headerLayout} ${
-        isHeaderHidden ? headerStyle.hidden : ""
-      }`}
+      className={`${headerStyle.headerLayout} ${isHeaderHidden ? headerStyle.hidden : ""
+        }`}
       ref={headerRef}
     >
       <div className={headerStyle.header}>
@@ -101,13 +108,12 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
         <div className={headerStyle.rightContent}>
           <div className={headerStyle.button} onClick={setIsModalVisible}>
             <button>
-              {menuData ? menuData.Form : "Loading..."}
+              {menuData ? menuData.Form : "Форма"}
             </button>
           </div>
           <div
-            className={`${headerStyle.localeSelector} ${
-              isLocaleMenuOpen ? headerStyle.open : ""
-            }`}
+            className={`${headerStyle.localeSelector} ${isLocaleMenuOpen ? headerStyle.open : ""
+              }`}
             onMouseEnter={() => setIsLocaleMenuOpen(true)}
             onMouseLeave={() => setIsLocaleMenuOpen(false)}
           >
@@ -122,9 +128,8 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
         </div>
 
         <div
-          className={`${headerStyle.menuButton} ${
-            isMobile ? headerStyle.visible : ""
-          } ${menuVisible ? headerStyle.active : ""}`}
+          className={`${headerStyle.menuButton} ${isMobile ? headerStyle.visible : ""
+            } ${menuVisible ? headerStyle.active : ""}`}
           onClick={handleMenuVisible}
         >
           <span className={headerStyle.toggle}></span>
@@ -135,9 +140,8 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
 
       {menuData ? (
         <nav
-          className={`${headerStyle.nav} ${
-            isMobile ? headerStyle.mobile : ""
-          } ${menuVisible && isMobile ? headerStyle.active : ""}`}
+          className={`${headerStyle.nav} ${isMobile ? headerStyle.mobile : ""
+            } ${menuVisible && isMobile ? headerStyle.active : ""}`}
         >
           <ul>
             <div
@@ -161,7 +165,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
                 className={isActive === 1 ? headerStyle.active : ""}
                 onClick={() => handleActiveButton(1)}
               >
-                <a>{menuData.Stages}</a>
+                <a>{menuData.Stages} </a>
               </li>
             )}
             {menuData.Portfolio && (
@@ -180,6 +184,17 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
                 <a>{menuData.Contacts}</a>
               </li>
             )}
+
+
+              <div className={headerStyle.localeMenuisOpen}>
+                <span onClick={() => handleLocaleChange("pl")}>PL</span>
+                <span onClick={() => handleLocaleChange("ru")}>RU</span>
+                <span onClick={() => handleLocaleChange("en")}>EN</span>
+                <span onClick={() => handleLocaleChange("uk")}>UK</span>
+              </div>
+           
+
+
           </ul>
         </nav>
       ) : (

@@ -4,8 +4,10 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const HomePage = ({ setIsModalVisible }) => {
-  const [selectedLocale, setSelectedLocale] = useState("en"); // Установите начальное значение локали
+  
+const defaultLocale = navigator.language.split('-')[0];
 
+  const [selectedLocale, setSelectedLocale] = useState(defaultLocale);
   return (
     <>
       <Header

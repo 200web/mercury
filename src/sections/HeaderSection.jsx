@@ -39,7 +39,7 @@ const HeaderSection = ({ setIsModalVisible, selectedLocale }) => {
     Promo_text1: "Сейчас",
     Card0: "Увеличиваем продажи",
     Card1: "Работаем на рынках EU USA",
-    Card2: "Опыт работы в различных нишах 40+",
+    Card2: "Опыт работы в различных нишах",
   });
 
 
@@ -272,7 +272,7 @@ const [serviceData, setServiceData] = React.useState({
                 <span>{mainData.Card1}</span>
               </div>
               <div className={appStyle.lower}>
-                <label>EU USA</label>
+                <label></label>
                 <div className={appStyle.image}>
                   <img draggable="false" src={equlizer} alt="stat" />
                 </div>

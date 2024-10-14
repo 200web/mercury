@@ -124,16 +124,19 @@
           font-size: clamp(15.5px, 1.3vw, 20px) !important;
 
           @media (max-width: 370px) {
+            
             width: 7rem !important;
             font-size: clamp(14px, 1.3vw, 20px) !important;
           }
-        }
+        
 
         .number {
           position: absolute;
           right: 0;
           bottom: 0;
+
         }
+      }
       }
 
       .mercury {
