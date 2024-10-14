@@ -2,14 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 import headerStyle from "../scss/components/header.module.scss";
 import logo from "../assets/img/logo.webp";
 
-const Header = ({ setIsModalVisible }) => {
+const Header = ({ setIsModalVisible, setSelectedLocale }) => {
   const headerRef = useRef();
   const [isActive, setIsActive] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const [menuVisible, setMenuVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 840);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const lastScrollY = useRef(0);
+
+  const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false); 
+  const [menuData, setMenuData] = useState(null);
+  
+  const browserLocale = navigator.language.split("-")[0];
+
+  const [selectedLocale, setSelectedLocaleState] = useState("en"); // Установим начальное значение по умолчанию
 
   const handleMenuVisible = () => {
     setMenuVisible(!menuVisible);
@@ -20,47 +26,15 @@ const Header = ({ setIsModalVisible }) => {
     if (isMobile) {
       setMenuVisible(!menuVisible);
     }
-    switch (id) {
-      case 0: {
-        const element = document.getElementById("Услуги");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-        break;
-      }
-
-      case 1: {
-        const element = document.getElementById("Этапы");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-        break;
-      }
-
-      case 2: {
-        const element = document.getElementById("Портфолио");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-        break;
-      }
-
-      case 3: {
-        const element = document.getElementById("Контакты");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-        break;
-      }
+    const elementIds = ["Услуги", "Этапы", "Портфолио", "Контакты"];
+    const element = document.getElementById(elementIds[id]);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleScroll = () => {
-    if (window.scrollY > lastScrollY.current) {
-      setIsHeaderHidden(true);
-    } else {
-      setIsHeaderHidden(false);
-    }
+    setIsHeaderHidden(window.scrollY > lastScrollY.current);
     lastScrollY.current = window.scrollY;
   };
 
@@ -78,6 +52,38 @@ const Header = ({ setIsModalVisible }) => {
     };
   }, []);
 
+  useEffect(() => {
+    // Устанавливаем локаль на язык браузера при загрузке
+    setSelectedLocaleState(browserLocale || "en");
+  }, [browserLocale]);
+
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/menu?locale=${selectedLocale}`
+        );
+        const result = await response.json();
+        setMenuData(result.data); 
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+    };
+
+    fetchMenuData();
+  }, [selectedLocale]);
+
+  const handleLocaleChange = (locale) => {
+    setSelectedLocale(locale); // Обновление локали в родительском компоненте
+    setSelectedLocaleState(locale); // Локальное обновление состояния локали
+    localStorage.setItem("locale", locale); // Сохраняем выбранную локаль в localStorage
+    setIsLocaleMenuOpen(false); // Закрываем меню после выбора
+  };
+
+  useEffect(() => {
+    console.log(`Сохранённая локаль: ${localStorage.getItem("locale")}, Текущая локаль: ${selectedLocale}`);  
+  }, [selectedLocale]);
+
   return (
     <header
       className={`${headerStyle.headerLayout} ${
@@ -86,13 +92,35 @@ const Header = ({ setIsModalVisible }) => {
       ref={headerRef}
     >
       <div className={headerStyle.header}>
-        <div className={headerStyle.title}>MERCURYARTS</div>
-        <div className={headerStyle.logo}>
-          <img src={logo} alt="Logo" />
+        <div className={headerStyle.leftContent}>
+          <div className={headerStyle.title}>MERCURYARTS</div>
+          <div className={headerStyle.logo}>
+            <img src={logo} alt="Logo" />
+          </div>
         </div>
-        <div className={headerStyle.button} onClick={setIsModalVisible}>
-          <button>Форма</button>
+        <div className={headerStyle.rightContent}>
+          <div className={headerStyle.button} onClick={setIsModalVisible}>
+            <button>
+              {menuData ? menuData.Form : "Loading..."}
+            </button>
+          </div>
+          <div
+            className={`${headerStyle.localeSelector} ${
+              isLocaleMenuOpen ? headerStyle.open : ""
+            }`}
+            onMouseEnter={() => setIsLocaleMenuOpen(true)}
+            onMouseLeave={() => setIsLocaleMenuOpen(false)}
+          >
+            <span>{selectedLocale.toUpperCase()}</span>
+            <div className={headerStyle.localeMenu}>
+              {selectedLocale !== "pl" && <span onClick={() => handleLocaleChange("pl")}>PL</span>}
+              {selectedLocale !== "ru" && <span onClick={() => handleLocaleChange("ru")}>RU</span>}
+              {selectedLocale !== "en" && <span onClick={() => handleLocaleChange("en")}>EN</span>}
+              {selectedLocale !== "uk" && <span onClick={() => handleLocaleChange("uk")}>UK</span>}
+            </div>
+          </div>
         </div>
+
         <div
           className={`${headerStyle.menuButton} ${
             isMobile ? headerStyle.visible : ""
@@ -104,46 +132,59 @@ const Header = ({ setIsModalVisible }) => {
           <span className={headerStyle.toggle}></span>
         </div>
       </div>
-      <nav
-        className={`${headerStyle.nav} ${isMobile ? headerStyle.mobile : ""} ${
-          menuVisible && isMobile ? headerStyle.active : ""
-        }`}
-      >
-        <ul>
-          <div
-            className={headerStyle.underline}
-            style={
-              isMobile
-                ? { top: `calc(${isActive * 25}% + 2rem)` }
-                : { left: `${isActive * 25}%` }
-            }
-          ></div>
-          <li
-            className={isActive === 0 ? headerStyle.active : ""}
-            onClick={() => handleActiveButton(0)}
-          >
-            <a>Услуги</a>
-          </li>
-          <li
-            className={isActive === 1 ? headerStyle.active : ""}
-            onClick={() => handleActiveButton(1)}
-          >
-            <a>Этапы работы</a>
-          </li>
-          <li
-            className={isActive === 2 ? headerStyle.active : ""}
-            onClick={() => handleActiveButton(2)}
-          >
-            <a>Портфолио</a>
-          </li>
-          <li
-            className={isActive === 3 ? headerStyle.active : ""}
-            onClick={() => handleActiveButton(3)}
-          >
-            <a>Контакты</a>
-          </li>
-        </ul>
-      </nav>
+
+      {menuData ? (
+        <nav
+          className={`${headerStyle.nav} ${
+            isMobile ? headerStyle.mobile : ""
+          } ${menuVisible && isMobile ? headerStyle.active : ""}`}
+        >
+          <ul>
+            <div
+              className={headerStyle.underline}
+              style={
+                isMobile
+                  ? { top: `calc(${isActive * 25}% + 2rem)` }
+                  : { left: `${isActive * 25}%` }
+              }
+            ></div>
+            {menuData.Services && (
+              <li
+                className={isActive === 0 ? headerStyle.active : ""}
+                onClick={() => handleActiveButton(0)}
+              >
+                <a>{menuData.Services}</a>
+              </li>
+            )}
+            {menuData.Stages && (
+              <li
+                className={isActive === 1 ? headerStyle.active : ""}
+                onClick={() => handleActiveButton(1)}
+              >
+                <a>{menuData.Stages}</a>
+              </li>
+            )}
+            {menuData.Portfolio && (
+              <li
+                className={isActive === 2 ? headerStyle.active : ""}
+                onClick={() => handleActiveButton(2)}
+              >
+                <a>{menuData.Portfolio}</a>
+              </li>
+            )}
+            {menuData.Contacts && (
+              <li
+                className={isActive === 3 ? headerStyle.active : ""}
+                onClick={() => handleActiveButton(3)}
+              >
+                <a>{menuData.Contacts}</a>
+              </li>
+            )}
+          </ul>
+        </nav>
+      ) : (
+        <div>Loading menu...</div>
+      )}
     </header>
   );
 };

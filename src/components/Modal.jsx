@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import style from "../scss/components/modal.module.scss";
 import zvezda from "../assets/img/zvezda.webp";
@@ -16,6 +17,10 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [buttonText, setButtonText] = useState("Давайте начнём!");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    console.log("Current errorMessage:", errorMessage);
+  }, [errorMessage]);
 
   useEffect(() => {
     console.log("Current errorMessage:", errorMessage);
@@ -58,9 +63,11 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
     try {
       const response = await axios.post(
         'https://mercury-php.vercel.app/api/index.php',
+        'https://mercury-php.vercel.app/api/index.php',
         customerData,
         {
           headers: {
+            'Content-Type': 'application/json',
             'Content-Type': 'application/json',
           },
         }
@@ -186,7 +193,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               Отправляя данную форму, вы даете согласие на обработку
               персональных данных, а также ознакомлен(-а) с{" "}
               <Link to="/policy" onClick={handleCloseModal}>
-                политикой конфиденциальности
+                политикой конфиденциальности.
               </Link>
             </span>
           </div>

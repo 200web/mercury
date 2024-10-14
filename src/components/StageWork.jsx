@@ -2,7 +2,7 @@ import React from "react";
 import style from "../scss/components/stageOfWork.module.scss";
 import flag from "../assets/img/Flag.webp";
 
-const StageOfWork = ({ setIsModalVisible }) => {
+const StageOfWork = ({ setIsModalVisible, selectedLocale }) => {
   const myRef = React.useRef();
   const [isVisible, setIsVisible] = React.useState(false);
   const [startAnimation, setStartAnimation] = React.useState(false);
@@ -12,21 +12,84 @@ const StageOfWork = ({ setIsModalVisible }) => {
   const [isMobile, setIsMobile] = React.useState(
     window.innerWidth <= 1050 || isSafari
   );
-  const [roadmapItemVisible, setRoadmapItemVisible] = React.useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const [rowVisible, setRowVisible] = React.useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+
+  // State for menu data
+  const [menuData, setMenuData] = React.useState({
+    Stages: "Этапы работы",
+  });
+  
+  // Изменяем размер массива на 5
+  const [roadmapItemVisible, setRoadmapItemVisible] = React.useState([false, false, false, false, false]);
+  const [rowVisible, setRowVisible] = React.useState([false, false, false, false, false]);
+
+  // State for work stage data with default values
+  const [workStageData, setWorkStageData] = React.useState({
+    work_stage_1: "Консультация и брифинг: выявление задач и постановка целей",
+    work_stage_2: "Формирование стратегии и планирование бюджета",
+    work_stage_3: "Создание общих чатов и передача доступов к таблицам отчетности",
+    work_stage_4: "Подписание договора",
+    work_stage_5: "Начало работы",
+    work_stage_button: "Консультация",
+  });
+
+  // Fetch work stages data from API
+  React.useEffect(() => {
+    console.log("Selected Locale:", selectedLocale); // Проверка значения локали
+   
+   
+   
+
+    const fetchMenuData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/menu?locale=${selectedLocale}`
+        );
+        if (response.ok) {
+          const result = await response.json();
+          const fetchedData = result.data;
+  
+          setMenuData((prevData) => ({
+            ...prevData,
+            Stages: fetchedData.Stages || prevData.Stages,
+          }));
+        } else {
+          console.error("Ошибка получения данных с сервера");
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+      }
+    };
+
+   
+   
+    const fetchWorkStages = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/work-stage?locale=${selectedLocale}`
+        );
+        if (response.ok) {
+          const result = await response.json();
+          const fetchedData = result.data;
+
+          setWorkStageData((prevData) => ({
+            ...prevData,
+            work_stage_1: fetchedData.work_stage_1 || prevData.work_stage_1,
+            work_stage_2: fetchedData.work_stage_2 || prevData.work_stage_2,
+            work_stage_3: fetchedData.work_stage_3 || prevData.work_stage_3,
+            work_stage_4: fetchedData.work_stage_4 || prevData.work_stage_4,
+            work_stage_5: fetchedData.work_stage_5 || prevData.work_stage_5,
+            work_stage_button: fetchedData.work_stage_button || prevData.work_stage_button,
+          }));
+        } else {
+          console.error("Ошибка получения данных с сервера");
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+      }
+    };
+    fetchMenuData();
+    fetchWorkStages();
+  }, [selectedLocale]); // Добавляем зависимость от selectedLocale
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -63,33 +126,18 @@ const StageOfWork = ({ setIsModalVisible }) => {
         setTimeout(() => setSideIsVisible(true), animationDuration),
       ];
 
-      if (!isMobile) {
-        const rowVisibilityTimings = [0, 200, 400, 600, 800, 1000];
-        rowVisibilityTimings.forEach((time, index) =>
-          timeoutIds.push(
-            setTimeout(() => {
-              setRowVisible((prev) => {
-                const newRowVisible = [...prev];
-                newRowVisible[index] = true;
-                return newRowVisible;
-              });
-            }, animationDuration + time)
-          )
-        );
-      } else {
-        const rowVisibilityTimings = [0, 200, 400, 600, 800, 1000];
-        rowVisibilityTimings.forEach((time, index) =>
-          timeoutIds.push(
-            setTimeout(() => {
-              setRowVisible((prev) => {
-                const newRowVisible = [...prev];
-                newRowVisible[index] = true;
-                return newRowVisible;
-              });
-            }, animationDuration + time)
-          )
-        );
-      }
+      const rowVisibilityTimings = [0, 200, 400, 600, 800];
+      rowVisibilityTimings.forEach((time, index) =>
+        timeoutIds.push(
+          setTimeout(() => {
+            setRowVisible((prev) => {
+              const newRowVisible = [...prev];
+              newRowVisible[index] = true;
+              return newRowVisible;
+            });
+          }, animationDuration + time)
+        )
+      );
 
       const roadmapVisibilityTimings = [1300, 3100, 5100, 7200, 9300];
       roadmapVisibilityTimings.forEach((time, index) =>
@@ -112,14 +160,10 @@ const StageOfWork = ({ setIsModalVisible }) => {
     <div className={style.stageWorkBlock} id="Этапы">
       <div className={`${!isMobile ? style.Row : style.RowMobile}`}>
         <div className={style.HText}>
-          <label>Этапы работы</label>
+          <label>{menuData.Stages}</label>
         </div>
         {!isMobile && (
-          <div
-            className={`${style.scrollerEl} ${
-              startAnimation ? style.active : ""
-            }`}
-          >
+          <div className={`${style.scrollerEl} ${startAnimation ? style.active : ""}`}>
             <div className={style.roadmap}>
               <div>
                 <svg
@@ -141,148 +185,35 @@ const StageOfWork = ({ setIsModalVisible }) => {
                     }}
                   />
                 </svg>
-                <div
-                  className={`${style.circle} ${
-                    roadmapItemVisible[0] ? style.active : ""
-                  }`}
-                >
-                  <img draggable="false" src={flag} alt="flag" />
-                </div>
-                <div
-                  className={`${style.circle} ${
-                    roadmapItemVisible[1] ? style.active : ""
-                  }`}
-                >
-                  <img draggable="false" src={flag} alt="flag" />
-                </div>
-                <div
-                  className={`${style.circle} ${
-                    roadmapItemVisible[2] ? style.active : ""
-                  }`}
-                >
-                  <img draggable="false" src={flag} alt="flag" />
-                </div>
-                <div
-                  className={`${style.circle} ${
-                    roadmapItemVisible[3] ? style.active : ""
-                  }`}
-                >
-                  <img draggable="false" src={flag} alt="flag" />
-                </div>
-                <div
-                  className={`${style.circle} ${
-                    roadmapItemVisible[4] ? style.active : ""
-                  }`}
-                >
-                  <img draggable="false" src={flag} alt="flag" />
-                </div>
+                {roadmapItemVisible.map((visible, index) => (
+                  <div key={index} className={`${style.circle} ${visible ? style.active : ""}`}>
+                    <img draggable="false" src={flag} alt="flag" />
+                  </div>
+                ))}
               </div>
-              <span
-                className={`${style.roadmapItem} ${
-                  roadmapItemVisible[0] ? style.active : ""
-                }`}
-              >
-                <label>1</label>
-                <span>
-                  Консультация и брифинг: выявление задач и постановка целей
+              {roadmapItemVisible.map((visible, index) => (
+                <span key={index} className={`${style.roadmapItem} ${visible ? style.active : ""}`}>
+                  <label>{index + 1}</label>
+                  <span>{workStageData[`work_stage_${index + 1}`]}</span>
                 </span>
-              </span>
-              <div
-                className={`${style.roadmapItem} ${
-                  roadmapItemVisible[1] ? style.active : ""
-                }`}
-              >
-                <label>2</label>
-                <span>Формирование стратегии и планирование бюджета</span>
-              </div>
-              <div
-                className={`${style.roadmapItem} ${
-                  roadmapItemVisible[2] ? style.active : ""
-                }`}
-              >
-                <label>3</label>
-                <span>
-                  Создание общих чатов и передача доступов к таблицам отчетности
-                </span>
-              </div>
-              <div
-                className={`${style.roadmapItem} ${
-                  roadmapItemVisible[3] ? style.active : ""
-                }`}
-              >
-                <label>4</label>
-                <span>Подписание договора</span>
-              </div>
-              <div
-                className={`${style.roadmapItem} ${
-                  roadmapItemVisible[4] ? style.active : ""
-                }`}
-              >
-                <label>5</label>
-                <span>Начало работы</span>
-              </div>
+              ))}
             </div>
           </div>
         )}
-        <div
-          className={`${
-            !isMobile ? style.sideDescription : style.sideDescriptionMobile
-          } ${sideIsVisible ? style.active : ""}`}
-          ref={myRef}
-        >
+        <div className={`${!isMobile ? style.sideDescription : style.sideDescriptionMobile} ${sideIsVisible ? style.active : ""}`} ref={myRef}>
           <div className={style.rowList}>
-            <div
-              className={`${style.row} ${rowVisible[0] ? style.active : ""}`}
-            >
-              <label className={style.header}>1</label>
-              <span className={style.description}>
-                <span>
-                  Консультация и брифинг: выявление задач и постановка целей
+            {rowVisible.map((visible, index) => (
+              <div key={index} className={`${style.row} ${visible ? style.active : ""}`}>
+                <label className={style.header}>{index + 1}</label>
+                <span className={style.description}>
+                  <span>{workStageData[`work_stage_${index + 1}`]}</span>
                 </span>
-              </span>
-            </div>
-            <div
-              className={`${style.row} ${rowVisible[1] ? style.active : ""}`}
-            >
-              <label className={style.header}>2</label>
-              <span className={style.description}>
-                <span>Формирование стратегии и планирование бюджета</span>
-              </span>
-            </div>
-            <div
-              className={`${style.row} ${rowVisible[2] ? style.active : ""}`}
-            >
-              <label className={style.header}>3</label>
-              <span className={style.description}>
-                <span>
-                  Создание общих чатов и передача доступов к таблицам отчетности
-                </span>
-              </span>
-            </div>
-            <div
-              className={`${style.row} ${rowVisible[3] ? style.active : ""}`}
-            >
-              <label className={style.header}>4</label>
-              <span className={style.description}>
-                <span>Подписание договора</span>
-              </span>
-            </div>
-            <div
-              className={`${style.row} ${rowVisible[4] ? style.active : ""}`}
-            >
-              <label className={style.header}>5</label>
-              <span className={style.description}>
-                <span>Начало работы</span>
-              </span>
-            </div>
+              </div>
+            ))}
           </div>
-          <div
-            className={`${style.buttonLayout} ${
-              rowVisible[5] ? style.active : ""
-            }`}
-          >
+          <div className={`${style.buttonLayout} ${sideIsVisible ? style.active : ""}`}>
             <div className={style.button} onClick={setIsModalVisible}>
-              <span>Консультация</span>
+              <span>{workStageData.work_stage_button}</span>
             </div>
           </div>
         </div>

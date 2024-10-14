@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import appStyles from "../scss/app.module.scss";
 import telegram from "../assets/img/telega.webp";
 import facebook from "../assets/img/Face.webp";
 import instagram from "../assets/img/inst.webp";
 import whatsapp from "../assets/img/whatsapp.webp";
 
-const FooterContact = () => {
+const FooterContact = ({ selectedLocale }) => {
+  const [contactsLabel, setContactsLabel] = useState("Контакты");
+
+  const fetchContactsLabel = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}api/menu?locale=${selectedLocale}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Ошибка получения данных");
+      }
+
+      const result = await response.json();
+      const fetchedData = result.data;
+
+      // Обновляем надпись "Контакты" на основе данных из API
+      setContactsLabel(fetchedData.Contacts);
+    } catch (error) {
+      console.error("Ошибка запроса данных:", error);
+      // В случае ошибки оставляем русский вариант "Контакты"
+      setContactsLabel("Контакты");
+    }
+  };
+
+  useEffect(() => {
+    fetchContactsLabel();
+  }, [selectedLocale]);
+
   return (
     <div className={appStyles.contactBlock} id="Контакты">
       <div className={appStyles.contactContent}>
         <div className={appStyles.container__contact}>
-          <label id="Contacts">Контакты</label>
+          <label id="Contacts">{contactsLabel}</label>
         </div>
         <div className={appStyles.cardGrid}>
           <div className={appStyles.socialContainer}>
@@ -26,7 +54,7 @@ const FooterContact = () => {
               </div>
             </a>
             <a
-              href="https://t.me/robin_mercury"
+              href="https://t.me/mercury_roman"
               className={appStyles.container}
             >
               <div className={appStyles.socialCard}>
@@ -47,7 +75,7 @@ const FooterContact = () => {
                 <div className={appStyles.title}>Instagram</div>
               </div>
             </a>
-            <a href="https://wa.me/48576216786" className={appStyles.container}>
+            <a href="https://wa.me/message/YYCTQG4PVSQVC1" className={appStyles.container}>
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
                   <img src={whatsapp} width={70} height={70} alt="WhatsApp" />
