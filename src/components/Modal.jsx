@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import style from "../scss/components/modal.module.scss";
 import zvezda from "../assets/img/zvezda.webp";
