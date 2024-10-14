@@ -170,7 +170,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
               Отправляя данную форму, вы даете согласие на обработку
               персональных данных, а также ознакомлен(-а) с{" "}
               <Link to="/policy" onClick={handleCloseModal}>
-                политикой конфиденциальности
+                политикой конфиденциальности.
               </Link>
             </span>
           </div>
