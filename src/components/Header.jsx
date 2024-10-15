@@ -92,6 +92,14 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
     console.log(`Сохранённая локаль: ${localStorage.getItem("locale")}, Текущая локаль: ${selectedLocale}`);
   }, [selectedLocale]);
 
+  const localeLabels = {
+    pl: "PL",
+    ru: "RU",
+    en: "EN",
+    uk: "UA" 
+  };
+
+
   return (
     <header
       className={`${headerStyle.headerLayout} ${isHeaderHidden ? headerStyle.hidden : ""}`}
@@ -120,7 +128,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
               {["pl", "ru", "en", "uk"].map((locale) => (
                 selectedLocale !== locale && (
                   <span key={locale} onClick={() => handleLocaleChange(locale)}>
-                    {locale.toUpperCase()}
+                      {localeLabels[locale]}
                   </span>
                 )
               ))}
@@ -172,7 +180,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
                 <span onClick={() => handleLocaleChange("pl")}>PL</span>
                 <span onClick={() => handleLocaleChange("ru")}>RU</span>
                 <span onClick={() => handleLocaleChange("en")}>EN</span>
-                <span onClick={() => handleLocaleChange("uk")}>UK</span>
+                <span onClick={() => handleLocaleChange("uk")}>UA</span>
               </div>
 
           </ul>
