@@ -167,6 +167,14 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
                 <a>{menuData.Contacts}</a>
               </li>
             )}
+
+             <div className={headerStyle.localeMenuisOpen}>
+                <span onClick={() => handleLocaleChange("pl")}>PL</span>
+                <span onClick={() => handleLocaleChange("ru")}>RU</span>
+                <span onClick={() => handleLocaleChange("en")}>EN</span>
+                <span onClick={() => handleLocaleChange("uk")}>UK</span>
+              </div>
+
           </ul>
         </nav>
       ) : (

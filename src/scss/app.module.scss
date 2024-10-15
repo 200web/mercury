@@ -108,6 +108,10 @@
 
         .image {
           border-radius: 8px !important;
+          @media (max-width: 768px) {
+            display: none;
+          }
+
         }
       }
 
@@ -118,6 +122,8 @@
         top: 18.4rem !important;
         transform: translateY(-50%);
         border-radius: 11px !important;
+
+        
         .description {
           width: 8rem !important;
           padding: 0.5rem 0 0 0.5rem !important;
@@ -129,12 +135,15 @@
             font-size: clamp(14px, 1.3vw, 20px) !important;
           }
         
+      }
 
-        .number {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-
+      .number {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        
+        @media (max-width: 768px) {
+          display: none !important;
         }
       }
       }

@@ -279,10 +279,13 @@ const [serviceData, setServiceData] = React.useState({
               </div>
             </div>
             <div className={appStyle.addCard3}>
+
               <div className={appStyle.description}>
                 <span>{mainData.Card2}</span>
               </div>
+
               <label className={appStyle.number}>40+</label>
+              
             </div>
           </div>
         </div>
