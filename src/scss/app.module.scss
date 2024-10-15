@@ -3347,9 +3347,17 @@
   }
 }
 
-.rewievsBlock {
+
+
+
+.reviewsBlock {
   width: 85%;
   margin: 0 auto;
+  margin-bottom: 10rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 5rem;
+  }
 
   .Row {
     width: 100%;
@@ -3364,78 +3372,34 @@
     }
   }
 
-  .rewievsCarousel {
+  .reviewsStatic {
     display: flex;
-    margin-top: 2rem;
-    height: 900px;
+    margin: 2rem auto 2rem auto;
+    
+    height: auto;
     overflow: hidden;
     column-gap: 2rem;
 
     @media (max-width: 900px) {
       flex-direction: column;
 
-      .firstVertRow {
+      .firstRow {
         width: 100% !important;
       }
 
-      .secondVertRow {
+      .secondRow {
         width: 100% !important;
         margin-top: 1rem;
       }
     }
 
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 20%;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 100%
-      );
-      left: 0;
-      bottom: 0;
-      z-index: 1;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 20%;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 100%
-      );
-      left: 0;
-      top: -1%;
-      transform: rotate(180deg);
-      z-index: 1;
-    }
-
-    .firstVertRow,
-    .secondVertRow {
+    .firstRow,
+    .secondRow {
       width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       row-gap: 1rem;
-    }
-
-    .firstVertRow {
-      animation: animate_text_up 40s linear infinite;
-    }
-
-    .secondVertRow {
-      animation: animate_text_down 40s linear infinite;
-
-      @media (max-width: 900px) {
-        animation: animate_text_up 40s linear infinite;
-      }
     }
 
     .card {
@@ -3463,21 +3427,6 @@
           background-color: #2a2a2a;
         }
 
-        .avatar {
-          width: 55px;
-          height: 55px;
-          background-color: #4c4c4c;
-          border-radius: 50%;
-          margin-left: 0.5rem;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-        }
-
         .name {
           width: 95%;
           margin: 0 auto;
@@ -3489,6 +3438,7 @@
             display: block;
             width: 100%;
             font-size: clamp(17px, 1.8vw, 30px);
+            padding-top: 5px;
 
             @media (max-width: 980px) {
               width: 80%;
@@ -3529,35 +3479,12 @@
         }
       }
 
-      &.card1 {
-        left: 18%;
-        z-index: 8;
-        transform: translateX(-50%) scale(0.8);
-        opacity: 0.75;
-      }
-
-      &.card2 {
-        left: 50%;
-        transform: translateX(-50%) scale(1);
-        z-index: 9;
-        opacity: 1;
-      }
-
-      &.card3 {
-        left: 82%;
-        transform: translateX(-50%) scale(0.8);
-        z-index: 8;
-        opacity: 0.75;
-      }
-
       &:hover {
         opacity: 1;
         color: black;
         background-color: #d6dcdc;
 
         .name {
-          border-color: black;
-
           label {
             color: black;
           }
@@ -3565,18 +3492,23 @@
 
         .like {
           filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(255deg)
-            brightness(100%) contrast(104%);
-        }
-
-        .reviewDescriptionText {
-          p {
-            color: black;
-          }
+            brightness(100%) contrast(101%);
         }
       }
     }
   }
 }
+
+
+//         .reviewDescriptionText {
+//           p {
+//             color: black;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 .formButton {
   display: flex;
