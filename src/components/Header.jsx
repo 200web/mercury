@@ -108,6 +108,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
       <div className={headerStyle.header}>
         <div className={headerStyle.leftContent}>
           <div className={headerStyle.title}>MERCURYARTS</div>
+
           <div className={headerStyle.logo}>
             <img src={logo} alt="Logo" />
           </div>
@@ -118,12 +119,13 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
               {menuData ? menuData.Form : "Форма"}
             </button>
           </div>
+
           <div
             className={`${headerStyle.localeSelector} ${isLocaleMenuOpen ? headerStyle.open : ""}`}
             onMouseEnter={() => setIsLocaleMenuOpen(true)}
             onMouseLeave={() => setIsLocaleMenuOpen(false)}
           >
-            <span>{selectedLocale.toUpperCase()}</span>
+            <span>{localeLabels[selectedLocale].toUpperCase()}</span>
             <div className={headerStyle.localeMenu}>
               {["pl", "ru", "en", "uk"].map((locale) => (
                 selectedLocale !== locale && (
