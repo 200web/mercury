@@ -14,7 +14,6 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
   const [menuData, setMenuData] = useState(null);
 
   const browserLocale = navigator.language.split("-")[0];
-
   const [selectedLocale, setSelectedLocaleState] = useState(browserLocale); // Установим начальное значение по умолчанию
 
   const defaultMenuData = {
@@ -22,7 +21,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
     Stages: "Этапы работы",
     Portfolio: "Портфолио",
     Contacts: "Контакты",
-    Form: "Форма"
+    Form: "Форма",
   };
 
   const handleMenuVisible = () => {
@@ -92,10 +91,10 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
   useEffect(() => {
     console.log(`Сохранённая локаль: ${localStorage.getItem("locale")}, Текущая локаль: ${selectedLocale}`);
   }, [selectedLocale]);
+
   return (
     <header
-      className={`${headerStyle.headerLayout} ${isHeaderHidden ? headerStyle.hidden : ""
-        }`}
+      className={`${headerStyle.headerLayout} ${isHeaderHidden ? headerStyle.hidden : ""}`}
       ref={headerRef}
     >
       <div className={headerStyle.header}>
@@ -112,24 +111,25 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
             </button>
           </div>
           <div
-            className={`${headerStyle.localeSelector} ${isLocaleMenuOpen ? headerStyle.open : ""
-              }`}
+            className={`${headerStyle.localeSelector} ${isLocaleMenuOpen ? headerStyle.open : ""}`}
             onMouseEnter={() => setIsLocaleMenuOpen(true)}
             onMouseLeave={() => setIsLocaleMenuOpen(false)}
           >
             <span>{selectedLocale.toUpperCase()}</span>
             <div className={headerStyle.localeMenu}>
-              {selectedLocale !== "pl" && <span onClick={() => handleLocaleChange("pl")}>PL</span>}
-              {selectedLocale !== "ru" && <span onClick={() => handleLocaleChange("ru")}>RU</span>}
-              {selectedLocale !== "en" && <span onClick={() => handleLocaleChange("en")}>EN</span>}
-              {selectedLocale !== "uk" && <span onClick={() => handleLocaleChange("uk")}>UK</span>}
+              {["pl", "ru", "en", "uk"].map((locale) => (
+                selectedLocale !== locale && (
+                  <span key={locale} onClick={() => handleLocaleChange(locale)}>
+                    {locale.toUpperCase()}
+                  </span>
+                )
+              ))}
             </div>
           </div>
         </div>
 
         <div
-          className={`${headerStyle.menuButton} ${isMobile ? headerStyle.visible : ""
-            } ${menuVisible ? headerStyle.active : ""}`}
+          className={`${headerStyle.menuButton} ${isMobile ? headerStyle.visible : ""} ${menuVisible ? headerStyle.active : ""}`}
           onClick={handleMenuVisible}
         >
           <span className={headerStyle.toggle}></span>
@@ -140,61 +140,33 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
 
       {menuData ? (
         <nav
-          className={`${headerStyle.nav} ${isMobile ? headerStyle.mobile : ""
-            } ${menuVisible && isMobile ? headerStyle.active : ""}`}
+          className={`${headerStyle.nav} ${isMobile ? headerStyle.mobile : ""} ${menuVisible && isMobile ? headerStyle.active : ""}`}
         >
           <ul>
             <div
               className={headerStyle.underline}
-              style={
-                isMobile
-                  ? { top: `calc(${isActive * 25}% + 2rem)` }
-                  : { left: `${isActive * 25}%` }
-              }
+              style={isMobile ? { top: `calc(${isActive * 25}% + 2rem)` } : { left: `${isActive * 25}%` }}
             ></div>
             {menuData.Services && (
-              <li
-                className={isActive === 0 ? headerStyle.active : ""}
-                onClick={() => handleActiveButton(0)}
-              >
+              <li className={isActive === 0 ? headerStyle.active : ""} onClick={() => handleActiveButton(0)}>
                 <a>{menuData.Services}</a>
               </li>
             )}
             {menuData.Stages && (
-              <li
-                className={isActive === 1 ? headerStyle.active : ""}
-                onClick={() => handleActiveButton(1)}
-              >
-                <a>{menuData.Stages} </a>
+              <li className={isActive === 1 ? headerStyle.active : ""} onClick={() => handleActiveButton(1)}>
+                <a>{menuData.Stages}</a>
               </li>
             )}
             {menuData.Portfolio && (
-              <li
-                className={isActive === 2 ? headerStyle.active : ""}
-                onClick={() => handleActiveButton(2)}
-              >
+              <li className={isActive === 2 ? headerStyle.active : ""} onClick={() => handleActiveButton(2)}>
                 <a>{menuData.Portfolio}</a>
               </li>
             )}
             {menuData.Contacts && (
-              <li
-                className={isActive === 3 ? headerStyle.active : ""}
-                onClick={() => handleActiveButton(3)}
-              >
+              <li className={isActive === 3 ? headerStyle.active : ""} onClick={() => handleActiveButton(3)}>
                 <a>{menuData.Contacts}</a>
               </li>
             )}
-
-
-              <div className={headerStyle.localeMenuisOpen}>
-                <span onClick={() => handleLocaleChange("pl")}>PL</span>
-                <span onClick={() => handleLocaleChange("ru")}>RU</span>
-                <span onClick={() => handleLocaleChange("en")}>EN</span>
-                <span onClick={() => handleLocaleChange("uk")}>UK</span>
-              </div>
-           
-
-
           </ul>
         </nav>
       ) : (

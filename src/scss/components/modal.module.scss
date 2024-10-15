@@ -51,7 +51,7 @@ input {
 
 .modalHeader label {
   color: white;
-  width: 30rem;
+  width: 40rem;
   font-family: "Inter";
   font-weight: 500;
   font-size: clamp(21px, 4.5vw, 40px);
@@ -323,7 +323,8 @@ input {
 
     a {
       text-decoration: none;
-      color: #b4e600;
+      color: #ffff;
+      text-decoration: underline;
     }
   }
 }

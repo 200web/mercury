@@ -4,7 +4,7 @@ import style from "../scss/components/modal.module.scss";
 import zvezda from "../assets/img/zvezda.webp";
 import { Link } from "react-router-dom";
 
-const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
+const Modal = ({ isVisible, onClose, setIsModalVisible, selectedLocale }) => {
   const [response, setResponse] = useState(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,29 +17,75 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Move hooks outside any conditions
   useEffect(() => {
     console.log("Current errorMessage:", errorMessage);
   }, [errorMessage]);
 
-  useEffect(() => {
-    console.log("Current errorMessage:", errorMessage);
-  }, [errorMessage]);
+  const [modalData, setModalData] = useState({
+    form_title: "Отправьте вашу заявку и мы свяжемся с вами!",
+    form_description: "Это поможет лучше понять цели вашего бизнеса.",
+    form_name: "Ваше имя",
+    form_number: "Номер телефона",
+    form_business_area: "Сейчас",
+    form_years: "Сфера бизнеса (необязательно)",
+    form_KPI_traffic: "Где запускали / планируете запускать трафик KPI (необязательно)",
+    form_button: "Давайте начнём!",
+    form_privacy_policy: "Отправляя данную форму, вы даете согласие на обработку персональных данных, а также ознакомлен(-а) с политикой конфиденциальности",
+  });
 
+  useEffect(() => {
+    console.log("Selected Locale: Modal", selectedLocale);
+
+    const fetchModalData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/form-page?locale=${selectedLocale}`
+        );
+        if (response.ok) {
+          const result = await response.json();
+          const fetchedData = result.data;
+
+          setModalData((prevData) => ({
+            ...prevData,
+            form_title: fetchedData.form_title || prevData.form_title,
+            form_description: fetchedData.form_description || prevData.form_description,
+            form_name: fetchedData.form_name || prevData.form_name,
+            form_number: fetchedData.form_number || prevData.form_number,
+            form_business_area: fetchedData.form_business_area || prevData.form_business_area,
+            form_years: fetchedData.form_years || prevData.form_years,
+            form_KPI_traffic: fetchedData.form_KPI_traffic || prevData.form_KPI_traffic,
+            form_button: fetchedData.form_button || prevData.form_button,
+            form_privacy_policy: fetchedData.form_privacy_policy || prevData.form_privacy_policy,
+          }));
+
+          setButtonText(fetchedData.form_button || "Давайте начнём!");
+        } else {
+          console.error("Ошибка получения данных с сервера");
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+      }
+    };
+
+    fetchModalData();
+  }, [selectedLocale]);
+
+  // Keep return logic after hooks
   if (!isVisible) return null;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (isSubmitting) return;
 
-    // Validate required fields
     if (!name || !phone) {
-      setErrorMessage("Имя и номер телефона обязательны для заполнения");
+      setErrorMessage("Name and Phone are required");
       return;
     }
 
     setIsSubmitting(true);
-    setButtonText("Отправка...");
+    setButtonText("Loading...");
 
     let comment = "lead from web";
 
@@ -62,11 +108,9 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
     try {
       const response = await axios.post(
         'https://mercury-php.vercel.app/api/index.php',
-        'https://mercury-php.vercel.app/api/index.php',
         customerData,
         {
           headers: {
-            'Content-Type': 'application/json',
             'Content-Type': 'application/json',
           },
         }
@@ -82,25 +126,21 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
           setErrorMessage('');
           setResponse(parsedData);
           setMessage('Lead created successfully');
-          setButtonText("Отправлено!"); // Устанавливаем текст кнопки "Отправлено!" при успешной отправке
-          console.log('success');
+          setButtonText("Success!");
         } else {
           const errorMessage = parsedData.leadData?.data?.error || 'An unknown error occurred';
           setErrorMessage("Номер введен неверно или уже существует");
           setMessage(`Error: ${errorMessage}`);
-          console.error('Error creating lead:', errorMessage);
-          setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+          setButtonText({buttonText});
         }
       } else {
         setErrorMessage('Не удалось обработать ответ сервера');
-        console.error('Ошибка обработки ответа:', response.data);
-        setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+        setButtonText({buttonText});
       }
     } catch (error) {
       setErrorMessage('Произошла ошибка при отправке данных. Попробуйте еще раз.');
       setMessage('An error occurred while submitting the form. Please try again.');
-      console.error('Произошла ошибка при отправке данных.', error);
-      setButtonText("Давайте начнём!"); // Возвращаем текст кнопки в исходное состояние при ошибке
+      setButtonText({buttonText});
     } finally {
       setIsSubmitting(false);
     }
@@ -118,21 +158,21 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className={style.modalHeader}>
-            <label>Отправьте вашу заявку и мы свяжемся с вами!</label>
-            <p>Это поможет лучше понять цели вашего бизнеса.</p>
+            <label>{modalData.form_title}</label>
+            <p>{modalData.form_description}</p>
           </div>
           <form className={style.modalForm} onSubmit={handleSubmit}>
             <div className={style.formGroup}>
               <input
                 type="text"
-                placeholder="Ваше имя"
+                placeholder={modalData.form_name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
               <input
                 type="text"
-                placeholder="Сфера бизнеса (необязательно)"
+                placeholder={modalData.form_business_area}
                 value={businessField}
                 onChange={(e) => setBusinessField(e.target.value)}
               />
@@ -148,14 +188,14 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
             <div className={style.formGroup}>
               <input
                 type="text"
-                placeholder="Номер телефона"
+                placeholder={modalData.form_number}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
               <input
                 type="text"
-                placeholder="Сколько лет работаете (необязательно)"
+                placeholder={modalData.form_years}
                 value={yearsInBusiness}
                 onChange={(e) => setYearsInBusiness(e.target.value)}
               />
@@ -171,7 +211,7 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
             <div className={style.formGroup}>
               <input
                 type="text"
-                placeholder="Где запускали / планируете запускать трафик KPI (необязательно)"
+                placeholder={modalData.form_KPI_traffic}
                 value={trafficKPI}
                 onChange={(e) => setTrafficKPI(e.target.value)}
               />
@@ -189,10 +229,9 @@ const Modal = ({ isVisible, onClose, setIsModalVisible }) => {
           </form>
           <div className={style.policy}>
             <span>
-              Отправляя данную форму, вы даете согласие на обработку
-              персональных данных, а также ознакомлен(-а) с{" "}
+           
               <Link to="/policy" onClick={handleCloseModal}>
-                политикой конфиденциальности.
+              {modalData.form_privacy_policy}{" "}
               </Link>
             </span>
           </div>

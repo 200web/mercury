@@ -1,25 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import HeaderSection from "../sections/HeaderSection";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-const HomePage = ({ setIsModalVisible }) => {
-  
-const defaultLocale = navigator.language.split('-')[0];
-
-  const [selectedLocale, setSelectedLocale] = useState(defaultLocale);
+const HomePage = ({ setIsModalVisible, selectedLocale, setSelectedLocale }) => {
   return (
     <>
       <Header
         setIsModalVisible={setIsModalVisible}
-        setSelectedLocale={setSelectedLocale} // Передача функции для обновления локали
+        setSelectedLocale={setSelectedLocale} // Передаем функцию для обновления локали
       />
       <HeaderSection
         setIsModalVisible={setIsModalVisible}
-        selectedLocale={selectedLocale} // Передача локали
+        selectedLocale={selectedLocale} // Передаем локаль в HeaderSection
       />
-      <Footer 
-      selectedLocale={selectedLocale}/>
+      <Footer selectedLocale={selectedLocale} /> {/* Локаль в футере */}
     </>
   );
 };
