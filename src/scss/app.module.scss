@@ -3338,154 +3338,161 @@
 
 
 
-.reviewsBlock {
-  width: 85%;
-  margin: 0 auto;
-  margin-bottom: 10rem;
+// .reviewsBlock {
+//   width: 85%;
+//   margin: 0 auto;
+//   margin-bottom: 10rem;
 
-  @media (max-width: 768px) {
-    margin-bottom: 5rem;
-  }
+//   @media (max-width: 768px) {
+//     margin-bottom: 5rem;
+//   }
 
-  .Row {
-    width: 100%;
-    text-align: center;
-    font-size: 41px;
-    font-family: "Inter";
-    margin-bottom: 8rem;
-    margin-top: 10rem;
+//   .Row {
+//     width: 100%;
+//     text-align: center;
+//     font-size: 41px;
+//     font-family: "Inter";
+//     margin-bottom: 8rem;
+//     margin-top: 10rem;
 
-    @media (max-width: 600px) {
-      margin-top: 7rem;
-    }
-  }
+//     @media (max-width: 600px) {
+//       margin-top: 7rem;
+//     }
+//   }
 
-  .reviewsStatic {
-    display: flex;
-    margin: 2rem auto 2rem auto;
+//   .reviewsStatic {
+//     display: flex;
+//     margin: 2rem auto 2rem auto;
     
-    height: auto;
-    overflow: hidden;
-    column-gap: 2rem;
+//     height: auto;
+//     overflow: hidden;
+//     column-gap: 2rem;
 
-    @media (max-width: 900px) {
-      flex-direction: column;
+//     @media (max-width: 900px) {
+//       flex-direction: column;
 
-      .firstRow {
-        width: 100% !important;
-      }
+//       .firstRow {
+//         width: 100% !important;
+//       }
 
-      .secondRow {
-        width: 100% !important;
-        margin-top: 1rem;
-      }
-    }
+//       .secondRow {
+//         width: 100% !important;
+//         margin-top: 1rem;
+//       }
+//     }
 
-    .firstRow,
-    .secondRow {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      row-gap: 1rem;
-    }
+//   .reviewsStatic {
+//     display: flex;
+//     flex-direction: column;
+//     column-gap: 2rem;
+//     animation: scrollReviews 10s linear infinite; // Animation that scrolls the reviews
+//   }
 
-    .card {
-      display: block;
-      width: 100%;
-      height: max-content;
-      background-color: #1e1e1e;
-      color: white;
-      border-radius: 10px;
-      padding: 1rem 0;
-      text-align: left;
-      transition: 0.5s;
+//     .firstRow,
+//     .secondRow {
+//       width: 50%;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       row-gap: 1rem;
+//     }
 
-      .reviewCardHeader {
-        display: flex;
-        width: 95%;
-        margin: 0.5rem auto 0 auto;
-        .like {
-          position: absolute;
-          right: 0;
-          top: 0;
-          padding: 0.5rem;
-          transition: 0.5s;
-          border-radius: 10px;
-          background-color: #2a2a2a;
-        }
+//     .card {
+//       display: block;
+//       width: 100%;
+//       height: max-content;
+//       background-color: #1e1e1e;
+//       color: white;
+//       border-radius: 10px;
+//       padding: 1rem 0;
+//       text-align: left;
+//       transition: 0.5s;
 
-        .name {
-          width: 95%;
-          margin: 0 auto;
-          padding: 0 0 1rem 0;
-          font-family: "Inter";
-          font-weight: 500;
+//       .reviewCardHeader {
+//         display: flex;
+//         width: 95%;
+//         margin: 0.5rem auto 0 auto;
+//         .like {
+//           position: absolute;
+//           right: 0;
+//           top: 0;
+//           padding: 0.5rem;
+//           transition: 0.5s;
+//           border-radius: 10px;
+//           background-color: #2a2a2a;
+//         }
 
-          span {
-            display: block;
-            width: 100%;
-            font-size: clamp(17px, 1.8vw, 30px);
-            padding-top: 5px;
+//         .name {
+//           width: 95%;
+//           margin: 0 auto;
+//           padding: 0 0 1rem 0;
+//           font-family: "Inter";
+//           font-weight: 500;
 
-            @media (max-width: 980px) {
-              width: 80%;
-            }
+//           span {
+//             display: block;
+//             width: 100%;
+//             font-size: clamp(17px, 1.8vw, 30px);
+//             padding-top: 5px;
 
-            @media (max-width: 380px) {
-              width: 75%;
-            }
-          }
+//             @media (max-width: 980px) {
+//               width: 80%;
+//             }
 
-          label {
-            display: block;
-            width: 100%;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-          }
-        }
-      }
+//             @media (max-width: 380px) {
+//               width: 75%;
+//             }
+//           }
 
-      .reviewDescriptionText {
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        margin: 0 auto;
-        transition: 0.5s;
-        font-size: 15px;
-        line-height: 23px;
-        color: rgba(255, 255, 255, 0.8);
-        padding: 1rem 0 2rem 0;
-        font-family: "Inter";
+//           label {
+//             display: block;
+//             width: 100%;
+//             font-size: 14px;
+//             color: rgba(255, 255, 255, 0.7);
+//           }
+//         }
+//       }
 
-        p {
-          width: 85%;
-          margin-bottom: 0.2rem;
-          font-size: 16px;
-          color: rgba(255, 255, 255, 0.7);
-        }
-      }
+//       .reviewDescriptionText {
+//         width: 90%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: start;
+//         margin: 0 auto;
+//         transition: 0.5s;
+//         font-size: 15px;
+//         line-height: 23px;
+//         color: rgba(255, 255, 255, 0.8);
+//         padding: 1rem 0 2rem 0;
+//         font-family: "Inter";
 
-      &:hover {
-        opacity: 1;
-        color: black;
-        background-color: #d6dcdc;
+//         p {
+//           width: 85%;
+//           margin-bottom: 0.2rem;
+//           font-size: 16px;
+//           color: rgba(255, 255, 255, 0.7);
+//         }
+//       }
 
-        .name {
-          label {
-            color: black;
-          }
-        }
+//       &:hover {
+//         opacity: 1;
+//         color: black;
+//         background-color: #d6dcdc;
 
-        .like {
-          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(255deg)
-            brightness(100%) contrast(101%);
-        }
-      }
-    }
-  }
-}
+//         .name {
+//           label {
+//             color: black;
+//           }
+//         }
+
+//         .like {
+//           filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(255deg)
+//             brightness(100%) contrast(101%);
+//         }
+//       }
+//     }
+//   }
+// }
 
 
 //         .reviewDescriptionText {
@@ -3497,6 +3504,238 @@
 //     }
 //   }
 // }
+.reviewsBlock {
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  position: relative;
+  height: auto; // Adjust to auto to avoid overlapping with other blocks
+  overflow: hidden; // Prevent overflow from showing
+
+  @media (max-width: 768px) {
+    margin-bottom: 5rem;
+  }
+
+  .Row {
+    width: 100%;
+    text-align: center;
+    font-size: 41px;
+    font-family: "Inter";
+    margin-bottom: 6rem;
+    margin-top: 10rem;
+
+    @media (max-width: 600px) {
+      margin-top: 7rem;
+      font-size: 30px; // Измените размер шрифта на мобильных устройствах
+    }
+  }
+
+  .reviewsStatic {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    height: 600px; // Установите высоту в зависимости от ваших требований
+    padding: 0; 
+    margin: 0; 
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: -5%;
+        right: -5%;
+        height: 70px; // Высота размытия, настройте по своему усмотрению
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
+        filter: blur(10px); // Уровень размытия, настройте по своему усмотрению
+        z-index: 1; // Убедитесь, что псевдоэлементы находятся над содержимым
+    }
+
+    &::before {
+        top: -8%; // Псевдоэлемент для верхней границы
+    }
+
+    &::after {
+        bottom: -8%; // Псевдоэлемент для нижней границы
+        transform: rotate(180deg); // Поворачиваем градиент для нижней границы
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column; // Измените направление на столбец
+      height: 700px; // Установите высоту в auto
+    }
+
+    .firstRow {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      animation: scrollReviews 25s linear infinite;
+
+      @media (max-width: 768px) {
+        width: 100%; // Установите ширину в 100%
+        animation: scrollReviewsMob 70s linear infinite; // Увеличьте время анимации
+      }
+    }
+
+    .secondRow {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      animation: scrollReviewsBack 20s linear infinite;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    @keyframes scrollReviews {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-100%); // Halfway point, reviews move up
+      }
+      100% {
+        transform: translateY(-200%); // Move up further for continuous effect
+      }
+    }
+
+    @keyframes scrollReviewsMob {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-40%); // Halfway point, reviews move up
+      }
+      100% {
+        transform: translateY(-80%); // Move up further for continuous effect
+      }
+    }
+
+    @keyframes scrollReviewsBack {
+      0% {
+        transform: translateY(-200%); // Начальная позиция (вверху)
+      }
+      50% {
+        transform: translateY(-100%); // Половина пути, отзывы перемещаются вниз
+      }
+      100% {
+        transform: translateY(0); // Перемещаемся вниз дальше для непрерывного эффекта
+      }
+    }
+  }
+
+  .card {
+    display: block;
+    width: 90%;
+    height: max-content;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+    transition: 0.5s;
+    margin: 1rem 0 1rem 0;
+
+    @media (max-width: 768px) {
+      width: 95%; // Убедитесь, что карточка занимает 95% ширины на мобильном
+      margin: 1rem auto; // Настройте отступы
+    }
+
+    .reviewCardHeader {
+      display: flex;
+      width: 95%;
+      margin: 0.5rem auto 0 auto;
+
+      .like {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0.5rem;
+        transition: 0.5s;
+        border-radius: 10px;
+        background-color: #2a2a2a;
+      }
+
+      .name {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0 0 1rem 0;
+        font-family: "Inter";
+        font-weight: 500;
+
+        span {
+          display: block;
+          width: 100%;
+          font-size: clamp(17px, 1.8vw, 30px);
+          padding-top: 5px;
+          color: #d6dcdc;
+
+          @media (max-width: 980px) {
+            width: 80%;
+          }
+
+          @media (max-width: 380px) {
+            width: 75%;
+          }
+        }
+
+        label {
+          display: block;
+          width: 100%;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+
+    .reviewDescriptionText {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin: 0 auto;
+      transition: 0.5s;
+      font-size: 15px;
+      line-height: 23px;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 1rem 0 2rem 0;
+      font-family: "Inter";
+
+      p {
+        width: 85%;
+        margin-bottom: 0.2rem;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+      color: black;
+      background-color: #d6dcdc;
+
+      .name {
+        label {
+          color: black;
+        }
+        span {
+          color: black !important;
+        }
+      }
+
+      .reviewDescriptionText {
+        p {
+          color: #000000;
+        }
+      }
+
+      .like {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(255deg)
+          brightness(100%) contrast(101%);
+      }
+    }
+  }
+}
 
 .formButton {
   display: flex;
@@ -3523,7 +3762,7 @@
 
     @media (max-width: 550px) {
       margin-top: 5rem;
-      padding: 0 0 1rem 1rem;
+      padding: 0 0 1.5rem 1rem;
     }
 
     label {
@@ -3531,12 +3770,12 @@
       width: 100%;
       font-size: clamp(23px, 6vw, 62px);
       font-family: "Inter";
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     span {
       display: block;
-      width: 100%;
+      width: 120%;
       font-size: clamp(14px, 3vw, 30px);
       font-family: "Inter";
     }
@@ -3549,12 +3788,12 @@
     padding: 0 2rem 2rem 0;
 
     @media (max-width: 650px) {
-      scale: 0.8;
+      scale: 0.6;
     }
 
     @media (max-width: 550px) {
-      padding: 0 1rem 0.7rem 0;
-      scale: 0.7;
+      padding: 0 0rem 0.7rem 0;
+      scale: 0.6;
     }
 
     .button {
@@ -3562,7 +3801,7 @@
       justify-content: center;
       background-color: white;
       border-radius: 12px;
-      padding: 1rem clamp(1.5rem, 4vw, 2.5rem);
+      padding: 1rem clamp(1rem, 4vw, 2rem);
       cursor: pointer;
 
       img {

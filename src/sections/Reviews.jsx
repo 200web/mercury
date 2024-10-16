@@ -1,33 +1,51 @@
 import React, { useState, useEffect } from "react";
-
 import appStyle from "../scss/app.module.scss";
 import like from "../assets/img/like.webp";
+
+const ReviewCard = ({ name, position, description }) => {
+  return (
+    <div className={appStyle.card}>
+      <div className={appStyle.reviewCardHeader}>
+        <div className={appStyle.like}>
+          <img draggable="false" src={like} alt="like" />
+        </div>
+        <div className={appStyle.name}>
+          <label>{name}</label>
+          <span>{position}</span>
+        </div>
+      </div>
+      <div className={appStyle.reviewDescriptionText}>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+};
 
 const Reviews = ({ selectedLocale }) => {
   const [reviewsData, setReviewsData] = useState([
     {
       name: "Дмитрий",
       position: "Автосервис",
-      description: "Ребята из Mercury Arts сделали для нас рекламу, которая привлекла новых клиентов в наш автосервис. За короткое время количество записей на обслуживание выросло, и мы довольны результатом.",
+      description: "Ребята из Mercury Arts сделали для нас рекламу...",
     },
     {
       name: "Вадим",
       position: "Приложение-планер",
-      description: "Большое спасибо, агентство отлично справилось с задачей. Ребята всегда оперативно реагируют на запросы, и работать с ними очень комфортно.",
+      description: "Большое спасибо, агентство отлично справилось...",
     },
     {
       name: "Мария",
       position: "Ресторан",
-      description: "Мы долго искали подрядчиков по соцсетям, и парни предложили четкую стратегию, которая сработала! Теперь у нас стабильно растет аудитория в профиле и полный зал по вечерам и выходным. Рекомендуем!",
+      description: "Мы долго искали подрядчиков по соцсетям...",
     },
     {
       name: "Игорь",
       position: "Интернет-магазин одежды",
-      description: "Ребята из Mercury Arts помогли нам настроить конверсионные кампании в Instagram и Facebook. Продажи выросли, планируем расширять ассортимент товаров на рекламу. Отличная работа!",
+      description: "Ребята из Mercury Arts помогли нам настроить...",
     },
   ]);
 
-  const [reviewsTitle, setReviewsTitle] = useState(''); // Заголовок отзывов
+  const [reviewsTitle, setReviewsTitle] = useState("Наши отзывы");
 
   const fetchReviewsData = async () => {
     try {
@@ -42,10 +60,8 @@ const Reviews = ({ selectedLocale }) => {
       const result = await response.json();
       const fetchedData = result.data;
 
-      // Устанавливаем заголовок отзывов
-      setReviewsTitle(fetchedData.Reviews_title || 'Наши отзывы');
+      setReviewsTitle(fetchedData.Reviews_title || "Наши отзывы");
 
-      // Обновляем данные отзывов с учетом данных из API
       const updatedReviewsData = [
         {
           name: fetchedData.Reviews_dmitrii,
@@ -80,51 +96,40 @@ const Reviews = ({ selectedLocale }) => {
     fetchReviewsData();
   }, [selectedLocale]);
 
-  // Разбиваем отзывы на два ряда
-  const firstRowReviews = reviewsData.slice(0, 2);
-  const secondRowReviews = reviewsData.slice(2, 4);
+  // // Дублируем отзывы для создания бесконечного эффекта
+  // const infiniteReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
+
+  // // Создаем два отдельных ряда
+  // const firstRowReviews = infiniteReviews.filter((_, index) => index === 0);
+  // const secondRowReviews = infiniteReviews.filter((_, index) => index % 2 !== 0);
+  const firstRowReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
+  const secondRowReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
 
   return (
     <div className={appStyle.reviewsBlock}>
       <div className={appStyle.Row}>
-        <label>{reviewsTitle || 'Наши отзывы'}</label>
+        <label>{reviewsTitle || "Наши отзывы"}</label>
       </div>
 
       <div className={appStyle.reviewsStatic}>
         <div className={appStyle.firstRow}>
           {firstRowReviews.map((review, index) => (
-            <div key={index} className={appStyle.card}>
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>{review.name}</label>
-                  <span>{review.position}</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>{review.description}</p>
-              </div>
-            </div>
+            <ReviewCard
+              key={index}
+              name={review.name}
+              position={review.position}
+              description={review.description}
+            />
           ))}
         </div>
         <div className={appStyle.secondRow}>
           {secondRowReviews.map((review, index) => (
-            <div key={index} className={appStyle.card}>
-              <div className={appStyle.reviewCardHeader}>
-                <div className={appStyle.like}>
-                  <img draggable="false" src={like} alt="like" />
-                </div>
-                <div className={appStyle.name}>
-                  <label>{review.name}</label>
-                  <span>{review.position}</span>
-                </div>
-              </div>
-              <div className={appStyle.reviewDescriptionText}>
-                <p>{review.description}</p>
-              </div>
-            </div>
+            <ReviewCard
+              key={index}
+              name={review.name}
+              position={review.position}
+              description={review.description}
+            />
           ))}
         </div>
       </div>
