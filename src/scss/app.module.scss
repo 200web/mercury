@@ -3568,11 +3568,11 @@
       width: 50%;
       display: flex;
       flex-direction: column;
-      animation: scrollReviews 25s linear infinite;
+      animation: scrollReviews 35s linear infinite;
 
       @media (max-width: 768px) {
         width: 100%; // Установите ширину в 100%
-        animation: scrollReviewsMob 70s linear infinite; // Увеличьте время анимации
+        animation: scrollReviewsMob 100s linear infinite; // Увеличьте время анимации
       }
     }
 
@@ -3580,7 +3580,7 @@
       width: 50%;
       display: flex;
       flex-direction: column;
-      animation: scrollReviewsBack 20s linear infinite;
+      animation: scrollReviewsBack 36s linear infinite;
 
       @media (max-width: 768px) {
         display: none;
@@ -3604,10 +3604,10 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-40%); // Halfway point, reviews move up
+        transform: translateY(-50%); // Halfway point, reviews move up
       }
       100% {
-        transform: translateY(-80%); // Move up further for continuous effect
+        transform: translateY(-100%); // Move up further for continuous effect
       }
     }
 
