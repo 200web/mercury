@@ -3568,7 +3568,7 @@
       width: 50%;
       display: flex;
       flex-direction: column;
-      animation: scrollReviews 35s linear infinite;
+      animation: scrollReviews 45s linear infinite;
 
       @media (max-width: 768px) {
         width: 100%; // Установите ширину в 100%
@@ -3580,7 +3580,7 @@
       width: 50%;
       display: flex;
       flex-direction: column;
-      animation: scrollReviewsBack 36s linear infinite;
+      animation: scrollReviewsBack 46s linear infinite;
 
       @media (max-width: 768px) {
         display: none;
@@ -3793,7 +3793,7 @@
 
     @media (max-width: 550px) {
       padding: 0 0rem 0.7rem 0;
-      scale: 0.6;
+      scale: 0.5;
     }
 
     .button {
