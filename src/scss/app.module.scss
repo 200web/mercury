@@ -3560,8 +3560,9 @@
     }
 
     @media (max-width: 768px) {
-      flex-direction: column; // Измените направление на столбец
+      
       height: 700px; // Установите высоту в auto
+
     }
 
     .firstRow {
@@ -3572,7 +3573,13 @@
 
       @media (max-width: 768px) {
         width: 100%; // Установите ширину в 100%
-        animation: scrollReviewsMob 180s linear infinite; // Увеличьте время анимации
+        animation: none;
+        flex-direction: column; // Измените направление на столбец
+      overflow-y: auto; /* Вертикальный скролл */
+      -webkit-overflow-scrolling: touch; /* Плавный скроллинг для iOS */
+      touch-action: pan-y; /* Позволяет вертикально листать пальцем */
+      scroll-behavior: smooth; /* Плавный скроллинг при прокрутке */
+      padding: 2rem 0 2rem 0;
       }
     }
 

@@ -102,7 +102,12 @@ const Reviews = ({ selectedLocale }) => {
   // // Создаем два отдельных ряда
   // const firstRowReviews = infiniteReviews.filter((_, index) => index === 0);
   // const secondRowReviews = infiniteReviews.filter((_, index) => index % 2 !== 0);
-  const firstRowReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const firstRowReviews = isMobile
+    ? [...reviewsData] // На мобильной версии используем только один раз
+    : [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData]; // На десктопе дублируем
+
   const secondRowReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
 
   return (
