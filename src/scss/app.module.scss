@@ -158,28 +158,29 @@
 
   .description {
     width: 50%;
-
+  
     .HText {
       display: block;
       font-size: clamp(40px, 5vw, 72px);
       font-family: "Inter";
       text-wrap: nowrap;
     }
-
-    .description {
+  
+    .descriptionText {
       display: block;
       font-size: clamp(18px, 3vw, 30px);
       font-family: "Inter";
       opacity: 0.75;
-      width: 65%;
-      margin-top: clamp(2rem, 5vw, 6rem);
+      width: 95%;
+      margin-top: 10px;
+      // clamp(2rem, 5vw, 4rem);
     }
-
-     .descriptionButton {
+  
+    .descriptionButton {
       display: flex;
-      margin-top: 26vh;
+      margin-top: 35vh;
       z-index: 50;
-
+  
       .button {
         background-color: #4a5dea;
         min-width: fit-content;
@@ -189,47 +190,40 @@
         text-align: center;
         transition: 0.2s;
         cursor: pointer;
-
+  
         &:hover {
           color: black;
           background-color: #deff50;
         }
       }
-
+  
       .state {
-        text-align: center;
-        margin: auto 0;
+        display: flex;
+        align-items: center; 
+        justify-content: flex-start;
+        margin-left: 1rem;
         font-size: clamp(13px, 2vw, 19px);
-        margin-left: 1rem !important;
-
+        // padding: 0.5rem 0;
+  
         @media (max-width: 768px) {
-          margin-left: 0.3px !important;
+          margin-left: 0rem;
         }
-
+  
         img {
-          position: absolute;
           width: clamp(50px, 2vw, 70px);
-          top: 50%;
-          left: clamp(30%, 3vw, 40%);
-          transform: translate(-50%, -50%);
           filter: sepia(100%) saturate(0%) hue-rotate(255deg) brightness(150%)
             contrast(200%);
-
-          @media (max-width: 768px) {
-            left: 20%;
-          }
+          // margin-right: 1px; /* Set margin for spacing between img and text */
         }
-
+  
         span {
-          padding-left: 60px;
-          @media (max-width: 768px) {
-            padding-left: 30px;
-          }
+          font-size: inherit;
+          margin-left: -8px;
         }
       }
-    
     }
   }
+  
 
   .visual {
     width: 50%;

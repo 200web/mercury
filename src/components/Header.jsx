@@ -96,7 +96,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
     pl: "PL",
     ru: "RU",
     en: "EN",
-    uk: "UA" 
+    uk: "UA"
   };
 
 
@@ -113,6 +113,10 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
             <img src={logo} alt="Logo" />
           </div>
         </div>
+
+
+
+
         <div className={headerStyle.rightContent}>
           <div className={headerStyle.button} onClick={setIsModalVisible}>
             <button>
@@ -130,7 +134,7 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
               {["pl", "ru", "en", "uk"].map((locale) => (
                 selectedLocale !== locale && (
                   <span key={locale} onClick={() => handleLocaleChange(locale)}>
-                      {localeLabels[locale]}
+                    {localeLabels[locale]}
                   </span>
                 )
               ))}
@@ -178,12 +182,18 @@ const Header = ({ setIsModalVisible, setSelectedLocale }) => {
               </li>
             )}
 
-             <div className={headerStyle.localeMenuisOpen}>
-                <span onClick={() => handleLocaleChange("pl")}>PL</span>
-                <span onClick={() => handleLocaleChange("ru")}>RU</span>
-                <span onClick={() => handleLocaleChange("en")}>EN</span>
-                <span onClick={() => handleLocaleChange("uk")}>UA</span>
-              </div>
+            <div className={headerStyle.button} onClick={setIsModalVisible}>
+              <button>
+                {menuData ? menuData.Form : "Форма"}
+              </button>
+            </div>
+
+            <div className={headerStyle.localeMenuisOpen}>
+              <span onClick={() => handleLocaleChange("pl")}>PL</span>
+              <span onClick={() => handleLocaleChange("ru")}>RU</span>
+              <span onClick={() => handleLocaleChange("en")}>EN</span>
+              <span onClick={() => handleLocaleChange("uk")}>UA</span>
+            </div>
 
           </ul>
         </nav>
