@@ -18,7 +18,7 @@ const Footer = () => {
           </main>
           <label className={footer.policy}>
             <Link to="/policy">
-              <span>Policy</span>
+              <span>Privacy Policy</span>
             </Link>
           </label>
         </div>
