@@ -105,7 +105,7 @@ const Reviews = ({ selectedLocale }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const firstRowReviews = isMobile
-    ? [...reviewsData] // На мобильной версии используем только один раз
+    ? [...reviewsData, ...reviewsData] // На мобильной версии используем только один раз
     : [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData]; // На десктопе дублируем
 
   const secondRowReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
