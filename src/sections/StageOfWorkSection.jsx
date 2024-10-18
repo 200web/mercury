@@ -31,14 +31,13 @@ const StageOfWorkSection = ({ selectedLocale }) => {
       case_average_cost: "Средняя цена заявки",
       case_best_cost: "Лучшая цена заявки",
       case_leads_received: "Получено заявок",
+
     },
     Case2: {
       title: "Автосервис Real Auto",
       description: "Автосервис с такими услугами как: покраска, удаление вмятин",
       geography: "Польша",
       goals: "Новые клиенты на услуги",
-
-      // spent: null,
     },
     Case3: {
       title: "Ударостойкие столешницы Getalit",
@@ -57,6 +56,45 @@ const StageOfWorkSection = ({ selectedLocale }) => {
       best_cost_avarage_month_cost_download: "Среднемесячная стоимость  одного скачивания",
     },
   });
+
+
+
+
+
+  const [caseNumbersData, setCaseNumbersData] = React.useState({
+    Case1: {
+
+      Card1_image: {radio},
+    },
+    Case2: {
+      Card2_banner_1: "493$",
+      Card2_banner_2: "4.9$",
+      Card2_banner_3: "3.5$",
+      Card2_banner_4: "101",
+      
+      Card2_image: {car},
+    },
+    Case3: {
+      Card3_banner_1: "2440$",
+      Card3_banner_2: "5.2$",
+      Card3_banner_3: "4.1$",
+      Card3_banner_4: "384",
+      Card3_banner_5: "512",
+
+      Card3_image: {desk},
+    },
+    Case4: {
+      Card4_banner_1: "1004$",
+      Card4_banner_2: "93",
+      Card4_banner_3: "4.5$",
+      Card4_banner_4: "11",
+
+      Card4_image: {comp},
+    },
+  });
+
+
+
 
   React.useEffect(() => {
     const fetchCaseData = async () => {
@@ -90,7 +128,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
               description: fetchedData.Case_real_auto_description || caseData.Case2.description,
               geography: fetchedData.Case_real_auto_geography || caseData.Case2.geography,
               goals: fetchedData.Case_real_auto_goals || caseData.Case2.goals,
-              spent: fetchedData.Case_real_auto_spent || caseData.Case2.spent,
+
             },
             Case3: {
               title: fetchedData.Case_getalit || caseData.Case3.title,
@@ -124,6 +162,74 @@ const StageOfWorkSection = ({ selectedLocale }) => {
   }, [selectedLocale]);
 
 
+
+  React.useEffect(() => {
+    const fetchCaseNumbersData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/case?populate=*`
+        );
+        if (response.ok) {
+
+          const result = await response.json();
+          const fetchedData = result.data;
+          const apiUrl = process.env.REACT_APP_API_URL;
+          const trimmedApiUrl = apiUrl.endsWith('/') ? apiUrl.slice(0, -1) : apiUrl;
+
+          console.log("Fetched data:", fetchedData);
+
+          setCaseNumbersData({
+            Case1: {
+               Card1_image: fetchedData.Card1_image[0]?.url
+              ? `${trimmedApiUrl}${fetchedData.Card1_image[0].url}` // Объединяем базовый адрес с частью URL изображения
+              : caseNumbersData.Case1.Card1_image,
+               },
+            Case2: {
+              Card2_banner_1: fetchedData.Card2_banner_1 || caseNumbersData.Case2.Card2_banner_1,
+              Card2_banner_2: fetchedData.Card2_banner_2 || caseNumbersData.Case2.Card2_banner_2,
+              Card2_banner_3: fetchedData.Card2_banner_3 || caseNumbersData.Case2.Card2_banner_3,
+              Card2_banner_4: fetchedData.Card2_banner_4 || caseNumbersData.Case2.Card2_banner_4,
+            
+              Card2_image: fetchedData.Card2_image[0]?.url
+              ? `${trimmedApiUrl}${fetchedData.Card2_image[0].url}` 
+              : caseNumbersData.Case2.Card2_image,
+               },
+            Case3: {
+              Card3_banner_1: fetchedData.Card3_banner_1 || caseNumbersData.Case3.Card3_banner_1,
+              Card3_banner_2: fetchedData.Card3_banner_2 || caseNumbersData.Case3.Card3_banner_2,
+              Card3_banner_3: fetchedData.Card3_banner_3 || caseNumbersData.Case3.Card3_banner_3,
+              Card3_banner_4: fetchedData.Card3_banner_4 || caseNumbersData.Case3.Card3_banner_4,
+              Card3_banner_5: fetchedData.Card3_banner_5 || caseNumbersData.Case3.Card3_banner_5,
+           
+              Card3_image: fetchedData.Card3_image[0]?.url
+              ? `${trimmedApiUrl}${fetchedData.Card3_image[0].url}` 
+              : caseNumbersData.Case3.Card3_image,
+            },
+            Case4: {
+              Card4_banner_1: fetchedData.Card4_banner_1 || caseNumbersData.Case4.Card4_banner_1,
+              Card4_banner_2: fetchedData.Card4_banner_2 || caseNumbersData.Case4.Card4_banner_2,
+              Card4_banner_3: fetchedData.Card4_banner_3 || caseNumbersData.Case4.Card4_banner_3,
+              Card4_banner_4: fetchedData.Card4_banner_4 || caseNumbersData.Case4.Card4_banner_4,
+             
+              Card4_image: fetchedData.Card4_image[0]?.url
+              ? `${trimmedApiUrl}${fetchedData.Card4_image[0].url}` 
+              : caseNumbersData.Case4.Card4_image,
+           
+            },
+          });
+          console.log(caseNumbersData);
+          console.log("API URL:", process.env.REACT_APP_API_URL);
+
+        } else {
+          console.error("Ошибка получения данных с сервера");
+        }
+      } catch (error) {
+        console.error("Ошибка запроса данных:", error);
+      }
+    };
+
+    fetchCaseNumbersData();
+  }, [selectedLocale]);
 
 
 
@@ -173,7 +279,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
     <section className={appStyle.section} onClick={handleClickLeaveSection}>
       <div className={appStyle.caseBlock} id="Портфолио">
         <div className={appStyle.Row}>
-          <label>{caseData.Case1.title} </label>
+          <label>
+            {caseData?.Case1?.title || "Кейсы"}
+          </label>
         </div>
 
 
@@ -200,7 +308,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
             <div className={appStyle.contentBox}>
               <div className={appStyle.leftSide}>
                 <div className={appStyle.image}>
-                  <img draggable="false" src={radio} alt="radio" />
+                  <img draggable="false" src={caseNumbersData.Case1.Card1_image} alt="radio" />   {/* image */}
                 </div>
               </div>
               <div className={appStyle.rightSide}>
@@ -271,7 +379,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
             <div className={appStyle.contentBox}>
               <div className={appStyle.leftSide}>
                 <div className={appStyle.image}>
-                  <img draggable="false" src={desk} alt="radio" />
+                  <img draggable="false" src={caseNumbersData.Case3.Card3_image} alt="radio" />  {/* image */}
                 </div>
               </div>
               <div className={appStyle.rightSide}>
@@ -317,7 +425,10 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      2440$
+                      <span>
+                        {caseNumbersData.Case3.Card3_banner_1}
+                        {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -327,7 +438,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>5.2$</span>
+                      <span>
+                        {caseNumbersData.Case3.Card3_banner_2}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -335,7 +448,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case1.case_best_cost}     {/* case_best_cost */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.1$</span>
+                      <span>
+                        {caseNumbersData.Case3.Card3_banner_3}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -343,7 +458,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case1.case_leads_received}     {/* case_leads_received */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>384</span>
+                      <span>
+                        {caseNumbersData.Case3.Card3_banner_4}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -351,7 +468,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case3.new_subscriptions}     {/* new_subscriptions */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>512</span>
+                      <span>
+                        {caseNumbersData.Case3.Card3_banner_5}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -400,7 +519,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
             <div className={appStyle.contentBox}>
               <div className={appStyle.leftSide}>
                 <div className={appStyle.image}>
-                  <img draggable="false" src={car} alt="desk" />
+                  <img draggable="false" src={caseNumbersData.Case2.Card2_image} alt="desk" />
                 </div>
               </div>
               <div className={appStyle.rightSide}>
@@ -446,7 +565,10 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      493$
+                      <span>
+                        {caseNumbersData.Case2.Card2_banner_1}       {/* card banner */}
+                      </span>
+
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -456,7 +578,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.9$</span>
+                      <span>
+                        {caseNumbersData.Case2.Card2_banner_2}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -464,7 +588,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case1.case_best_cost}     {/* case_best_cost */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>3.5$</span>
+                      <span>
+                        {caseNumbersData.Case2.Card2_banner_3}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -472,7 +598,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case1.case_leads_received}     {/* case_leads_received */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>101</span>
+                      <span>
+                        {caseNumbersData.Case2.Card2_banner_4}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -517,7 +645,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
             <div className={appStyle.contentBox}>
               <div className={appStyle.leftSide}>
                 <div className={appStyle.image}>
-                  <img draggable="false" src={comp} alt="desk" />
+                  <img draggable="false" src={caseNumbersData.Case4.Card4_image} alt="desk" /> {/* image */}
                 </div>
               </div>
               <div className={appStyle.rightSide}>
@@ -563,7 +691,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      1004$
+                      <span>
+                        {caseNumbersData.Case4.Card4_banner_1}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -573,7 +703,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>93</span>
+                      <span>
+                        {caseNumbersData.Case4.Card4_banner_2}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -581,7 +713,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case4.best_cost_download}     {/* best_cost_download */}
                     </div>
                     <div className={appStyle.value}>
-                      <span>4.5$</span>
+                      <span>
+                        {caseNumbersData.Case4.Card4_banner_3}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                   <div className={appStyle.card}>
@@ -592,7 +726,9 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       </span>
                     </div>
                     <div className={appStyle.value}>
-                      <span>11</span>
+                      <span>
+                        {caseNumbersData.Case4.Card4_banner_4}       {/* card banner */}
+                      </span>
                     </div>
                   </div>
                 </div>
