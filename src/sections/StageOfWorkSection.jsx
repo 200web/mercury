@@ -536,7 +536,7 @@ const StageOfWorkSection = ({ selectedLocale }) => {
                       {caseData.Case1.description}     {/* description */}
                     </label>
                     <span className={appStyle.description}>
-                      {caseData.Case3.description}     {/* project description */}
+                      {caseData.Case2.description}     {/* project description */}
                     </span>
                   </div>
                   <div className={appStyle.row}>

@@ -477,9 +477,13 @@
         }
 
         & .header {
-          bottom: 76%;
-          right: 68%;
-          width: 25%;
+          bottom: 75%;
+          right: 65%;
+          width: 28%;
+
+          @media (max-width: 1400px) {
+            bottom: 70%;
+          }
 
           @media (max-width: 960px) {
             bottom: 0;
