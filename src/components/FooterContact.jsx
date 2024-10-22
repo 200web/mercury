@@ -58,7 +58,7 @@ const FooterContact = ({ selectedLocale }) => {
 
   return (
     <div className={appStyles.contactBlock} id="Контакты">
-      <div className={appStyles.contactContent}>
+      {/* <div className={appStyles.contactContent}> */}
         <div className={appStyles.container__contact}>
           <label id="Contacts">{contactsLabel}</label>
         </div>
@@ -107,7 +107,7 @@ const FooterContact = ({ selectedLocale }) => {
             </a>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

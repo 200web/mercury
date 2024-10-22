@@ -688,28 +688,28 @@
               transform: translate(-50%, -10%);
               transition: 0.5s;
 
-              @media (max-width: 960px) {
-                width: 100%;
-                height: 100%;
+              @media (max-width: 768px) {
+                width: 120%;
+                height: 120%;
                 object-fit: contain;
                 transform: translate(-30%, -25%);
               }
 
-              @media (max-width: 560px) {
-                transform: translate(-35%, -25%);
-              }
+              // @media (max-width: 560px) {
+              //   transform: translate(-35%, -25%);
+              // }
 
-              @media (max-width: 490px) {
-                transform: translate(-40%, -25%);
-              }
+              // @media (max-width: 490px) {
+              //   transform: translate(-40%, -25%);
+              // }
 
-              @media (max-width: 420px) {
-                transform: translate(-45%, -25%);
-              }
+              // @media (max-width: 420px) {
+              //   transform: translate(-45%, -25%);
+              // }
 
-              @media (max-width: 375px) {
-                transform: translate(-55%, -25%);
-              }
+              // @media (max-width: 375px) {
+              //   transform: translate(-55%, -25%);
+              // }
             }
           }
         }
@@ -3011,70 +3011,90 @@
   background-color: #deff50;
   margin-bottom: 5rem;
 
-  .contactContent {
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
+  // .contactContent {
+  //   width: 95%;
+  //   margin: 0 auto;
+  //   display: flex;
+    
+
+
     .container {
       position: relative;
 
       &__contact {
-        width: 50%;
-        padding-top: 1em;
+        width: 20%;
+        padding: 2rem 0 0 2rem;
 
         @media (max-width: 900px) {
           width: 100%;
           position: absolute;
           text-align: center;
-          padding-top: 4em;
+          padding: 2rem 0 0 0;
         }
 
         label {
           width: 90%;
-          margin: 1rem 0 0 0;
+          
           font-family: "Inter";
           font-weight: 500;
           color: rgb(0, 0, 0);
           font-size: clamp(50px, 5vw, 64px);
+
+          @media (max-width: 768px) {
+            font-size: clamp(40px, 5vw, 44px);
+          }
+
         }
       }
     }
 
     .cardGrid {
-      width: 50%;
-      margin: 0 auto;
-      margin-top: 7rem;
+      width: 100%;
+      margin: 0;
+      margin-top: 4rem;
 
       @media (max-width: 1050px) {
-        width: 70%;
+        width: 100%;
       }
 
       @media (max-width: 900px) {
         width: 100%;
-        margin-top: 12rem;
+        margin: 0;
       }
 
       .socialContainer {
-        width: 100%;
+        width: 80%;
         position: relative;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
-        margin: 0 auto;
-        margin-bottom: 5rem;
-        gap: 1%;
+        margin: 0 0 5rem 6rem;
+        gap: 8%;
+
+        @media (max-width: 768px) {
+          flex-wrap: wrap;
+          margin: 8rem 0 3rem -1rem;
+          width: 100%;
+        }
+
         .container {
-          width: 49%;
-          height: 100%;
-          margin-bottom: 1%;
+          width: 20%;
+          height: 20%;
           text-decoration: none;
+
+          @media (max-width: 768px) {
+            width: 30%;
+          }
+
+
           .socialCard {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+           
             position: relative;
-            width: 100%;
-            height: 310px;
+            width: 130%;
+            height: 280px;
             border-radius: 30px;
             transition: 0.15s;
             transition: background-color 0.6s;
@@ -3156,10 +3176,11 @@
             }
           }
         }
+        
       }
     }
   }
-}
+// }
 
 .foundersBlock {
   width: 95%;
@@ -3744,7 +3765,7 @@
 .formButton {
   display: flex;
   align-items: end;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   background-color: #4d60e2;
   border-radius: 30px;
