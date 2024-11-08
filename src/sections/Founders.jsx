@@ -4,6 +4,7 @@ import appStyle from "../scss/app.module.scss";
 import like from "../assets/img/like.webp";
 import evgen from "../assets/img/Evgen.webp";
 import georgiy from "../assets/img/georgi.webp";
+import dima from "../assets/img/portraitDima.webp";
 import arrowLeft from "../assets/img/arrow Left.png";
 import arrowRight from "../assets/img/arrow Right.png";
 import Reviews from "./Reviews";
@@ -15,10 +16,7 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
   const [isPaused, setIsPaused] = React.useState(false);
   const firstRowRef = useRef(null);
   const secondRowRef = useRef(null);
-  const [foundersData, setFoundersData] = React.useState([]);
-  const [title, setTitle] = React.useState("Основатели"); // Добавлено состояние для заголовка
-
-  const defaultFounders = [
+  const [foundersData, setFoundersData] = React.useState([
     {
       name: "Евгений Полудень",
       headerLabel: "Сооснователь и Генеральный директор",
@@ -33,7 +31,15 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
       description: `<b>Эксперт по работе с клиентами с многолетним стажем</b>. Его способность <b>понимать потребности клиентов</b> и создавать персонализированные стратегии - ключ к <b>успеху нашего агенства.</b> Георгий управляет клиентскими проектами и стремится к установлению <b>долгосрочных партнерских отношений.</b>`,
       image: georgiy,
     },
-  ];
+    {
+      name: "Дмитрий Астап",
+      headerLabel: "Бизнес-консультант и специалист по комплексному маркетингу",
+      headerSpan: "Дмитрий Астап",
+      description: `<b>Дмитрий Астап</b> — бизнес-консультант и специалист по комплексному маркетингу. Разрабатывает стратегии роста, масштабирует бизнес-процессы и увеличивает рентабельность проектов. Создавая уникальную идентификацию для компаний.`,
+      image: dima,
+    },
+  ]);
+  const [title, setTitle] = React.useState("Основатели"); // Добавлено состояние для заголовка
 
   React.useEffect(() => {
     const fetchFoundersData = async () => {
@@ -66,11 +72,9 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
           ]);
         } else {
           console.error("Ошибка получения данных с сервера");
-          setFoundersData(defaultFounders); // Используем резервные данные на русском
         }
       } catch (error) {
         console.error("Ошибка запроса данных:", error);
-        setFoundersData(defaultFounders); // Используем резервные данные на русском
       }
     };
 
@@ -120,7 +124,8 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
     }, 300);
   };
 
-  const currentPerson = foundersData.length > 0 ? foundersData[currentIndex] : defaultFounders[0];
+  const currentPerson =
+    foundersData.length > 0 ? foundersData[currentIndex] : foundersData[0];
 
   return (
     <section className={appStyle.section}>
@@ -142,8 +147,9 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
           <span>{currentPerson.name}</span>
         </span>
         <div
-          className={`${appStyle.descriptionContainer} ${isAnimating ? appStyle.fadeOut : appStyle.fadeIn
-            }`}
+          className={`${appStyle.descriptionContainer} ${
+            isAnimating ? appStyle.fadeOut : appStyle.fadeIn
+          }`}
         >
           <div className={appStyle.header}>
             <label>{currentPerson.headerLabel}</label>
@@ -180,8 +186,8 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
 
       <FormSection
         setIsModalVisible={setIsModalVisible}
-        selectedLocale={selectedLocale} />
-
+        selectedLocale={selectedLocale}
+      />
     </section>
   );
 };
