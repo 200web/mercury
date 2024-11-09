@@ -73,7 +73,7 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
               name: data.Foundes_name3,
               headerLabel: data.Foundes_position3,
               headerSpan: data.Foundes_name3,
-              description: data.Foundes_description2,
+              description: data.Foundes_description3,
               image: dima,
             },
           ]);
