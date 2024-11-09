@@ -70,11 +70,10 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
               image: georgiy,
             },
             {
-              name: "Дмитрий Астап",
-              headerLabel:
-                "Бизнес-консультант и специалист по комплексному маркетингу",
-              headerSpan: "Дмитрий Астап",
-              description: `<b>Дмитрий Астап</b> — бизнес-консультант и специалист по комплексному маркетингу. Разрабатывает стратегии роста, масштабирует бизнес-процессы и увеличивает рентабельность проектов. Создавая уникальную идентификацию для компаний.`,
+              name: data.Foundes_name3,
+              headerLabel: data.Foundes_position3,
+              headerSpan: data.Foundes_name3,
+              description: data.Foundes_description2,
               image: dima,
             },
           ]);
@@ -155,9 +154,8 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
           <span>{currentPerson.name}</span>
         </span>
         <div
-          className={`${appStyle.descriptionContainer} ${
-            isAnimating ? appStyle.fadeOut : appStyle.fadeIn
-          }`}
+          className={`${appStyle.descriptionContainer} ${isAnimating ? appStyle.fadeOut : appStyle.fadeIn
+            }`}
         >
           <div className={appStyle.header}>
             <label>{currentPerson.headerLabel}</label>
