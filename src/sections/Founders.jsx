@@ -32,7 +32,7 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
       image: georgiy,
     },
   ]);
-  const [title, setTitle] = React.useState("Основатели"); // Добавлено состояние для заголовка
+  const [title, setTitle] = React.useState("Основатели"); 
 
   React.useEffect(() => {
     const fetchFoundersData = async () => {
@@ -64,7 +64,7 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
             },
           ]);
         } else {
-          console.error("Ошибка получения данных с сервера");
+          console.error("Ошибка получения данных с сервера 0");
         }
       } catch (error) {
         console.error("Ошибка запроса данных:", error);
