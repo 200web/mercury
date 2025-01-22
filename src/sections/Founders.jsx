@@ -31,13 +31,6 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
       description: `<b>Эксперт по работе с клиентами с многолетним стажем</b>. Его способность <b>понимать потребности клиентов</b> и создавать персонализированные стратегии - ключ к <b>успеху нашего агенства.</b> Георгий управляет клиентскими проектами и стремится к установлению <b>долгосрочных партнерских отношений.</b>`,
       image: georgiy,
     },
-    {
-      name: "Дмитрий Астап",
-      headerLabel: "Бизнес-консультант и специалист по комплексному маркетингу",
-      headerSpan: "Дмитрий Астап",
-      description: `<b>Дмитрий Астап</b> — бизнес-консультант и специалист по комплексному маркетингу. Разрабатывает стратегии роста, масштабирует бизнес-процессы и увеличивает рентабельность проектов. Создавая уникальную идентификацию для компаний.`,
-      image: dima,
-    },
   ]);
   const [title, setTitle] = React.useState("Основатели"); // Добавлено состояние для заголовка
 
@@ -68,13 +61,6 @@ const Founders = ({ setIsModalVisible, selectedLocale }) => {
               headerSpan: data.Foundes_name2,
               description: data.Foundes_description2,
               image: georgiy,
-            },
-            {
-              name: data.Foundes_name3,
-              headerLabel: data.Foundes_position3,
-              headerSpan: data.Foundes_name3,
-              description: data.Foundes_description3,
-              image: dima,
             },
           ]);
         } else {
