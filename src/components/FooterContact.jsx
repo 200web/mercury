@@ -42,7 +42,7 @@ const FooterContact = ({ selectedLocale }) => {
 
       console.log(fetchedData.instagram_link);
     } catch (error) {
-      console.error("Ошибка запроса данных:", error);
+      console.error("Ошибка запроса данных", error);
       // В случае ошибки оставляем русский вариант "Контакты"
       setContactsLabel("Контакты");
     }
