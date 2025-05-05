@@ -76,7 +76,7 @@ const FooterContact = ({ selectedLocale }) => {
               </div>
             </a>
             <a
-              href="https://t.me/mercury_roman"
+              href="https://t.me/george_mercury"
               className={appStyles.container}
             >
               <div className={appStyles.socialCard}>
@@ -97,7 +97,7 @@ const FooterContact = ({ selectedLocale }) => {
                 <div className={appStyles.title}>Instagram</div>
               </div>
             </a>
-            <a href="https://wa.me/message/YYCTQG4PVSQVC1" className={appStyles.container}>
+            <a href="https://api.whatsapp.com/send?phone=48459569775" className={appStyles.container}>
               <div className={appStyles.socialCard}>
                 <div className={appStyles.image}>
                   <img src={whatsapp} width={70} height={70} alt="WhatsApp" />
